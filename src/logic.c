@@ -55,14 +55,12 @@ static int level;
 static int myRandom;
 
 /*
- * This function returns the total number of moves made, augments that number
- * or resets it to zero, dependant upon the int that is entered when the
- * function is called.
+ * keepCount is used to inform the computer how many moves remain, this function
+ * has several uses, each defined by the integer value entered.
  *
- * 0 -> RESET
- * 1 -> augment
- * 2 -> VALUE return the value of movesMade
- *
+ * 0 -> return count
+ * 1 -> count
+ * 2 -> reset
  */
 int keepCount(int option)
 {
@@ -239,7 +237,8 @@ void printDebugMoves()
 }
 
 /*
- * Refresh recalculate redraw the grid, wash rinse and hang out to dry.
+ * updateGame refreshes the graphical display, the int entered represents the
+ * player, 1 for player 1 and 2 for player 2, 0 initiates a total reset.
  */
 int updateGame(int player)
 {

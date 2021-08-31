@@ -90,53 +90,38 @@ void play(int firstRun)
 	winner = 0;
 	coin = 3;
 
+        // Setup loop.
+        while (firstRun)
+        {
+                updateGame(RESET);
+                keepCount(RESET);
+
+                firstRun = 0;
+                if (coin == UN_SPUN) {
+                        choice = headsOrTails();
+                }
+                coin = coinToss(2);
+
+                if (choice != coin) 
+                {
+                        player2WinsToss(PLAYER2);
+                        break;
+                }
+
+                playet1WinsTheToss(PLAYER1);
+
+                if (coin)
+                        coin = 0;
+                else 
+                        coin = 1;
+        }
+
+        // Game loop.
 	while(!winner)
 	{
-		while (firstRun)
-		{
-/*
- * updateGame refreshes the graphical display, the int entered represents the
- * player, 1 for player 1 and 2 for player 2, 0 initiates a total reset.
- */
-			updateGame(RESET);
-/*
- * keepCount is used to inform the computer how many moves remain, this function
- * has several uses, each defined by the integer value entered.
- *
- * 0 -> return count
- * 1 -> count
- * 2 -> reset
- */
-			keepCount(RESET);
-
-			firstRun = 0;
-			if (coin == UN_SPUN) {
-				choice = headsOrTails();
-			}
-			coin = coinToss(2);
-
-			if (choice != coin) 
-			{
-				player2WinsToss(PLAYER2);
-				break;
-			}
-
-			playet1WinsTheToss(PLAYER1);
-
-			if (coin)
-				coin = 0;
-			else 
-				coin = 1;
-		}
-
 		status = yourMove(PLAYER1);
 		if(status == WIN) {
-/*
- * This function is found at the end of draw.c, it is simply a text output to
- * screen, the first int defines the situation and the second the player, 0
- * being anyone and 1 and 2, player one and two consecutively.
- */
-			// You win (text out).
+                        // Print status
 			sysOut(0, 0);
 			keepScore(PLAYER1, INC);
 			keepScore(PLAYER2, RESET);
@@ -151,7 +136,6 @@ void play(int firstRun)
 		stale_mate = 0;
 
 		if(status == WIN && !winner) {
-			//updateGame(WIN);
 			// I win.
 			sysOut(1, 0);
 			keepScore(PLAYER2, INC);
