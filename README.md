@@ -1,8 +1,9 @@
-###ticTacToe
+### ticTacToe
 
 A small game built with c for the terminal, I have used c's pointers to design
 the large glyphs and board as an exercise in passing arrays as pointers, mapping
 one array into another.
+```
  _   _     _____         _____ 
 | |_(_) __|_   _|_ _  __|_   _|__   ___
 | __| |/ __|| |/ _` |/ __|| |/ _ \ / _ \
@@ -33,6 +34,7 @@ one array into another.
 
 It is your move ...  
 
+```
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
