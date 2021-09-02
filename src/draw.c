@@ -465,9 +465,13 @@ void playEnding() {
         char *buf = es_newBuffer();
         FILE *f = es_openFile();
         ssize_t n;
-        while ((n = es_readLine(f, buf)) && n > 0 ) {
+        int count;
+        while ((n = es_readLine(f, buf, &count)) && n > 0 ) {
                 write(1, buf, n);
                 usleep(7000);
+        }
+        if (0) {
+                printf("%s: memory required: %d", __FILE__, count);
         }
         if (n < 0) {
                 printf("error: %s: es_readLine returned -1", __FILE__);

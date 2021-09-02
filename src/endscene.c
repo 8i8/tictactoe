@@ -4,7 +4,7 @@
 #include <string.h>
 
 #define FNAME "assets/end-scene"
-#define BUFFER_SIZE 1000000
+#define BUFFER_SIZE 63000
 
 char* es_newBuffer()
 {
@@ -57,7 +57,7 @@ void push(char c) {
         ptr = 1;
 }
 
-int es_readLine(FILE *f, char *buf) 
+int es_readLine(FILE *f, char *buf, int *count) 
 {
         // Check for a file.
         if (f == NULL) {
@@ -67,14 +67,18 @@ int es_readLine(FILE *f, char *buf)
         char* ctest = "\033[22;0f";
         char* rbuf = malloc(sizeof(char) * RBUF);
 
-        int c, n, ri, out;
-        for (n = 0, out = 0; (c = read(f)) != EOF; n++) {
+        int c, n, ri, out, max;
+        for (n = 0, out = 0; (c = read(f)) != EOF; n++, max++) {
                 assert(n <= BUFFER_SIZE);
                 buf[n] = c;
 
                 if (c == '\033') {
                         if (out > 0){
                                 push(c);
+                                if (max > *count) {
+                                        *count = max;
+                                }
+                                max = 0;
                                 break;
                         }
                         ri = 0;
