@@ -90,35 +90,35 @@ void play(int firstRun)
 	winner = 0;
 	coin = 3;
 
-        // Setup loop.
-        while (firstRun)
-        {
-                updateGame(RESET);
-                keepCount(RESET);
-
-                firstRun = 0;
-                if (coin == UN_SPUN) {
-                        choice = headsOrTails();
-                }
-                coin = coinToss(2);
-
-                if (choice != coin) 
-                {
-                        player2WinsToss(PLAYER2);
-                        break;
-                }
-
-                playet1WinsTheToss(PLAYER1);
-
-                if (coin)
-                        coin = 0;
-                else 
-                        coin = 1;
-        }
-
         // Game loop.
 	while(!winner)
 	{
+                // Setup.
+                while (firstRun)
+                {
+                        updateGame(RESET);
+                        keepCount(RESET);
+
+                        firstRun = 0;
+                        if (coin == UN_SPUN) {
+                                choice = headsOrTails();
+                        }
+                        coin = coinToss(2);
+
+                        if (choice != coin) 
+                        {
+                                player2WinsToss(PLAYER2);
+                                break;
+                        }
+
+                        playet1WinsTheToss(PLAYER1);
+
+                        if (coin)
+                                coin = 0;
+                        else 
+                                coin = 1;
+                }
+
 		status = yourMove(PLAYER1);
 		if(status == WIN) {
                         // Print status
