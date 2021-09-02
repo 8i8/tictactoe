@@ -119,7 +119,10 @@ void play(int firstRun)
                                 coin = 1;
                 }
 
+                // Player input.
 		status = yourMove(PLAYER1);
+
+                // Player win.
 		if(status == WIN) {
                         // Print status
 			sysOut(0, 0);
@@ -132,13 +135,14 @@ void play(int firstRun)
 		} else if (status == STALE_MATE)
 				stale_mate = 1;
 
+                // Computers move.
 		if(!winner && !stale_mate)
 			status = computerMove(PLAYER2);
 
 		stale_mate = 0;
 
+                // Computer wins.
 		if(status == WIN && !winner) {
-			// I win.
 			sysOut(1, 0);
                         if (keepScore(PLAYER1, INC) > 0) {
                                 winner = 2;
@@ -155,6 +159,7 @@ void play(int firstRun)
 			winner = 1;
 		}
 
+                // Game end.
 		if(winner) {
 			winner = 0;
 			firstRun = 1;
