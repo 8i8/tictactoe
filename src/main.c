@@ -123,11 +123,13 @@ void play(int firstRun)
 		if(status == WIN) {
                         // Print status
 			sysOut(0, 0);
-			keepScore(PLAYER1, INC);
+                        if (keepScore(PLAYER1, INC) > 0) {
+                                winner = 1;
+                                break;
+                        }
 			keepScore(PLAYER2, RESET);
 			winner = 1;
-		} else
-			if (status == STALE_MATE)
+		} else if (status == STALE_MATE)
 				stale_mate = 1;
 
 		if(!winner && !stale_mate)
@@ -138,12 +140,13 @@ void play(int firstRun)
 		if(status == WIN && !winner) {
 			// I win.
 			sysOut(1, 0);
-			keepScore(PLAYER2, INC);
+                        if (keepScore(PLAYER1, INC) > 0) {
+                                winner = 2;
+                                break;
+                        }
 			keepScore(PLAYER1, RESET);
-			winner = 1;
-		}
-
-		if (status == STALE_MATE) {
+			winner = 2;
+		} else if (status == STALE_MATE) {
 			updateGame(PLAYER1);
 			// Stale-mate
 			sysOut(2, 0);
@@ -152,14 +155,19 @@ void play(int firstRun)
 			winner = 1;
 		}
 
-
-		if(winner)
-		{
+		if(winner) {
 			winner = 0;
 			firstRun = 1;
 			winningLine();
 			sleep(2);
 		}
 	}
+
+        // End of the game.
+        if (winner == 1) {
+                winningLine();
+                sleep(2);
+                playEnding();
+        }
 }
 
