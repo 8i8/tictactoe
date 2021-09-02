@@ -4,7 +4,7 @@ exedir	=
 
 EXE	= $(exedir)ticTacToe
 
-SRCS	= $(srcdir)draw.c $(srcdir)logic.c $(srcdir)main.c
+SRCS	= $(srcdir)draw.c $(srcdir)logic.c $(srcdir)main.c $(srcdir)endscene.c
 OBJS	= $(SRCS:$(srcdir)%.c=$(objdir)%.o)
 OUTDIRS	= $(dir $(objdir) $(exedir))
 
