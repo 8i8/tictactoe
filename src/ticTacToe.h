@@ -40,7 +40,7 @@ void play(int firstRun);
 
 //logic.c
 int  keepCount(int option);
-void keepScore(int player, int inc);
+int keepScore(int player, int inc);
 void resetMoves(void);
 int  setLevel(int newLevel);
 void winningLine(void);

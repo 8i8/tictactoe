@@ -42,6 +42,8 @@
 #define AUGMENT	1
 #define VALUE	2
 
+#define WIN 17
+
 static int moves[3][3];
 static int nextMoves[2][3][3];
 static int playerStatus[2][9];
@@ -79,11 +81,10 @@ int keepCount(int option)
 }
 
 /*
- * The score for the score bars, this will eventually become another dimension
- * to this game, triggering the win and some sort of graphical effect when that
- * happens, for now it triggers a seg-fault ...
+ * The score for the score bars, triggers the end of a series of games
+ * when a player reaches or surpasses the value of WIN.
  */
-void keepScore(int player, int inc)
+int keepScore(int player, int inc)
 {
 	player = player -1;
 	if (inc == 0) {
@@ -91,11 +92,16 @@ void keepScore(int player, int inc)
 	} else if (inc == 1) {
 		score[player]++;
 		score[player]++;
+                if (score[player] >= WIN) {
+                        return 1;
+                }
 	} else if (inc == 2)
 		if (score[player] > 0)
 			score[player]--;
 
 	scoreBarCharts(score[0], score[1]);
+
+        return 0;
 }
 
 /*
