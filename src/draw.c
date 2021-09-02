@@ -34,6 +34,7 @@
 #include <unistd.h>
 #include <sys/ioctl.h>
 #include "ticTacToe.h"
+#include "endscene.h"
 
 /*
  * The heading what!
@@ -458,4 +459,18 @@ void sysOut(int write, int player) {
 	};
 
 	printf("%s", text[ write + (player) ]);
+}
+
+void playEnding() {
+        char *buf = es_newBuffer();
+        FILE *f = es_openFile();
+        ssize_t n;
+        while ((n = es_readLine(f, buf)) && n > 0 ) {
+                write(1, buf, n);
+                usleep(7000);
+        }
+        if (n < 0) {
+                printf("error: %s: es_readLine returned -1", __FILE__);
+        }
+        es_freeBuffer(buf);
 }
