@@ -180,9 +180,6 @@ int traslateCharForMove(int x, int y, int player)
  */
 void printDebugMoves()
 {
-	int player1 = PLAYER1 - 1;
-	int player2 = PLAYER2 - 1;
-
 	/* Above the debug squares */
 	if (myRandom)
 		puts("Random mode on.");
@@ -190,10 +187,10 @@ void printDebugMoves()
 		puts("Random mode off.");
 	printf("Level= %d\n", level);
 	printf("Moves made = %d\n", keepCount(VALUE));
-	printf("Player 1 status -> %d\n", playerStatus[player1][0]);
-	printf("Player 2 status -> %d\n\n", playerStatus[player2][0]);
-	printf("Player 1 score -> %d\n", score[player1]);
-	printf("Player 2 score -> %d\n\n", score[player2]);
+	printf("Player 1 status -> %d\n", playerStatus[PLAYER1][0]);
+	printf("Player 2 status -> %d\n\n", playerStatus[PLAYER2][0]);
+	printf("Player 1 score -> %d\n", score[PLAYER1]);
+	printf("Player 2 score -> %d\n\n", score[PLAYER2]);
 	/* The four matrices */
 	for (int i = 0; i < M_SQRT; i++) {
 		/* Player one */
@@ -201,25 +198,25 @@ void printDebugMoves()
 		for (int j = 0; j < M_SQRT; j++) {
 			printf("%2d", moves[i][j]);
 		}
-		printf(" |%2d\t", playerStatus[player1][i+1]);
+		printf(" |%2d\t", playerStatus[PLAYER1][i+1]);
 		/* Player two */
 		printf(" |");
 		for (int j = 0; j < M_SQRT; j++) {
 			printf("%2d", moves[i][j]);
 		}
-		printf(" |%2d\t", playerStatus[player2][i+1]);
+		printf(" |%2d\t", playerStatus[PLAYER2][i+1]);
 
 		/* Player one nextMoves*/
 		printf(" |");
 		for (int j = 0; j < M_SQRT; j++) {
-			printf("%2d", nextMoves[player1][i][j]);
+			printf("%2d", nextMoves[PLAYER1][i][j]);
 		}
 		printf(" |\t");
 
 		/* Player two nextMoves */
 		printf(" |");
 		for (int j = 0; j < M_SQRT; j++) {
-			printf("%2d", nextMoves[player2][i][j]);
+			printf("%2d", nextMoves[PLAYER2][i][j]);
 		}
 		printf(" |\t");
 		puts("");
@@ -227,15 +224,15 @@ void printDebugMoves()
 	/* Beneath the two matrices */
 	printf("  ------   \t  ------   \t  ------   \t  ------\n");
 	/* P1 status array */
-	printf("%d ", playerStatus[player1][8]);
+	printf("%d ", playerStatus[PLAYER1][8]);
 	for (int i = 0; i < 3; i++)
-		printf("%2d", playerStatus[player1][i+5]);
-	printf(" %2d\t", playerStatus[player1][4]);
+		printf("%2d", playerStatus[PLAYER1][i+5]);
+	printf(" %2d\t", playerStatus[PLAYER1][4]);
 	/* P1 status array */
-	printf("%d ", playerStatus[player2][8]);
+	printf("%d ", playerStatus[PLAYER2][8]);
 	for (int i = 0; i < 3; i++)
-		printf("%2d", playerStatus[player2][i+5]);
-	printf(" %2d\t", playerStatus[player2][4]);
+		printf("%2d", playerStatus[PLAYER2][i+5]);
+	printf(" %2d\t", playerStatus[PLAYER2][4]);
 	/* End of the line */
 	puts("\n");
 }

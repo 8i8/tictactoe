@@ -30,8 +30,8 @@
 
 #define DEBUG	0
 
-#define PLAYER1	1
-#define PLAYER2	2
+#define PLAYER1	0
+#define PLAYER2	1
 
 
 // ticTacToe.c
