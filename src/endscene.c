@@ -17,18 +17,18 @@ void es_freeBuffer(char *c)
         free(c);
 }
 
-FILE* es_openFile() 
+FILE* es_openFile()
 {
         FILE *file = fopen(FNAME, "r");
         if (file == NULL) {
-                printf("error: %s: failed to open file: %s\n", 
+                printf("error: %s: failed to open file: %s\n",
                                 __FILE__, FNAME);
                 exit(0);
         }
         return file;
 }
 
-int es_closeFile(FILE *f) 
+int es_closeFile(FILE *f)
 {
         int i = fclose(f);
         if (i != 0) {
@@ -57,7 +57,7 @@ void push(char c) {
         ptr = 1;
 }
 
-int es_readLine(FILE *f, char *buf, int *count) 
+int es_readLine(FILE *f, char *buf, int *count)
 {
         // Check for a file.
         if (f == NULL) {

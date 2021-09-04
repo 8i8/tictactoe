@@ -7,7 +7,7 @@
 
  Description : naughts and crosses / tic tac toe
 
-    Copyright (C) 2017 Iain Hill. 
+    Copyright (C) 2017 Iain Hill.
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
  ============================================================================
  */
 
-/* TODO 
+/* TODO
  *  - Develop some form of instructions page,
  *  - Give access to settings.
  *  - Add a way for players to quit whilst the game is running.
