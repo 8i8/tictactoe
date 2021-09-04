@@ -120,7 +120,7 @@ static int glyphBlank[4][7] =
  * Translates the stored moves recorded in the moves array in the file logic.c,
  * into the values displayed on screen in both the grid arrays, found above.
  */
-void writeMoves(int *moves)
+void writeMovesToBoard(int *moves)
 {
 	/*
 	 * Map the 3*3 grid into the corresponding display, no fancy math here

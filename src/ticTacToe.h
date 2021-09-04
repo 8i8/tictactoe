@@ -66,7 +66,7 @@ int  translateStatus(int state, int line, int player);
 
 // draw.c
 void ticTacToe(void);
-void writeMoves(int *moves);
+void writeMovesToBoard(int *moves);
 void writeGlyphToGrid(int* glyph, int j);
 void scoreBarCharts(int score1, int score2);
 void drawWinningLine(int line);

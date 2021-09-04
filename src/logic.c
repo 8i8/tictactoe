@@ -110,7 +110,7 @@ void resetMoves()
 {
 	for (int i = 0; i < MATRIX; i++)
 		*(*moves+i) = 0;
-	writeMoves(*moves);
+	writeMovesToBoard(*moves);
 
 	if (myRandom)
 		level = coinToss(5)+1;
@@ -247,10 +247,10 @@ int updateGame(int player)
 
 	if (player) {
 		status = calculateStatus(player);
-		writeMoves(*moves);
 	} 
 	else
 	{
+		writeMovesToBoard(*moves);
 		clearStatusArrays();
 		resetMoves();
 	}
