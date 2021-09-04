@@ -41,9 +41,9 @@
 #define STALE_MATE	5
 #define UN_SPUN		3
 
-#define RESET	0
-#define INC	1
-#define MINUS2	2
+#define RESET	        0
+#define INCREMENT	4
+#define DECREMENT	-4
 
 int main(void)
 {
@@ -126,14 +126,14 @@ void play(int firstRun)
 		if(status == WIN) {
                         // Print status
 			sysOut(0, 0);
-                        if (keepScore(PLAYER1, INC) > 0) {
+                        if (keepScore(PLAYER1, INCREMENT) > 0) {
                                 winner = 1;
                                 break;
                         }
 			keepScore(PLAYER2, RESET);
 			winner = 1;
 		} else if (status == STALE_MATE)
-				stale_mate = 1;
+			stale_mate = 1;
 
                 // Computers move.
 		if(!winner && !stale_mate)
@@ -144,7 +144,7 @@ void play(int firstRun)
                 // Computer wins.
 		if(status == WIN && !winner) {
 			sysOut(1, 0);
-                        if (keepScore(PLAYER1, INC) > 0) {
+                        if (keepScore(PLAYER2, INCREMENT) > 0) {
                                 winner = 2;
                                 break;
                         }
@@ -154,8 +154,8 @@ void play(int firstRun)
 			updateGame(PLAYER1);
 			// Stale-mate
 			sysOut(2, 0);
-			keepScore(PLAYER1, MINUS2);
-			keepScore(PLAYER2, MINUS2);
+			keepScore(PLAYER1, DECREMENT);
+			keepScore(PLAYER2, DECREMENT);
 			winner = 1;
 		}
 
