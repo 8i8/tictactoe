@@ -290,7 +290,7 @@ void drawGrid()
 	if (DEBUG)
 		printDebugMoves();
 
-	if (max > 22) {
+	if (max > 80) {
 		for (int i = 0; i < 19; i++) {
 			for (int j = 0; j < 80; j++)
 				printf("%c",bigScreen[i][j]);
@@ -412,7 +412,7 @@ int clearScreen()
 	struct winsize max;
 	ioctl(0, TIOCGWINSZ , &max);
 	puts("\033[H\033[J");	/* Clear screen */
-	return max.ws_row;
+	return max.ws_col;
 
 }
 
