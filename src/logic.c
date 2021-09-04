@@ -86,20 +86,18 @@ int keepCount(int option)
  */
 int keepScore(int player, int inc)
 {
-	player = player -1;
 	if (inc == 0) {
 		score[player] = 0;
-	} else if (inc == 1) {
-		score[player]++;
-		score[player]++;
-                if (score[player] >= WIN) {
-                        return 1;
-                }
-	} else if (inc == 2)
-		if (score[player] > 0)
-			score[player]--;
+	} 
+        score[player] += inc;
+        if (score[player] >= WIN) {
+                return 1;
+        }
+        if (score[player] < 0) {
+                score[player] = 0;
+        }
 
-	scoreBarCharts(score[0], score[1]);
+	scoreBarCharts(score[PLAYER1], score[PLAYER2]);
 
         return 0;
 }
