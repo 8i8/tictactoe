@@ -106,7 +106,7 @@ int keepScore(int player, int inc)
  * Resets the moves array to zero and then calls the function that writes the
  * new status quo to the grid.
  */
-void resetMoves()
+void resetBoard()
 {
 	for (int i = 0; i < MATRIX; i++)
 		*(*moves+i) = 0;
@@ -252,7 +252,7 @@ int updateGame(int player)
 	{
 		writeMovesToBoard(*moves);
 		clearStatusArrays();
-		resetMoves();
+		resetBoard();
 	}
 
 	drawScore(score[PLAYER1], score[PLAYER2]);

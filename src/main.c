@@ -69,7 +69,7 @@ void menu()
 		getchar();
 		verif = setLevel(48);
 	}
-	resetMoves();
+	resetBoard();
 }
 
 /*

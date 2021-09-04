@@ -41,7 +41,7 @@ void play(int firstRun);
 //logic.c
 int  keepCount(int option);
 int keepScore(int player, int inc);
-void resetMoves(void);
+void resetBoard(void);
 int  setLevel(int newLevel);
 void winningLine(void);
 int  traslateCharForMove(int x, int y, int player);
