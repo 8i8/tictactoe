@@ -51,7 +51,7 @@ int  updateGame(int player);
 int  headsOrTails(void);
 int  coinToss(int howManySides);
 void player2WinsToss(int player);
-void playet1WinsTheToss(int player);
+void player1WinsTheToss(int player);
 int  yourMove(int player);
 int  computerMove(int player);
 int  randomMove(int player);

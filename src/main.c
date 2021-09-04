@@ -109,7 +109,7 @@ void play(int firstRun)
                                 break;
                         }
 
-                        playet1WinsTheToss(PLAYER1);
+                        player1WinsTheToss(PLAYER1);
 
                         if (coin)
                                 coin = 0;

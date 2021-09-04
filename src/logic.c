@@ -314,7 +314,7 @@ void player2WinsToss(int player)
 /*
  * Player one starts the game, this is simply the text output.
  */
-void playet1WinsTheToss(int player)
+void player1WinsTheToss(int player)
 {
 	drawGrid();
 	sysOut(5, player);
