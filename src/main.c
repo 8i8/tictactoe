@@ -35,8 +35,6 @@
 #include "ticTacToe.h"
 #include <unistd.h>
 
-#define RESET	0
-
 #define WIN		4
 #define STALE_MATE	5
 #define UN_SPUN		3
