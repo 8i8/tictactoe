@@ -470,6 +470,7 @@ void playEnding() {
                 write(1, buf, n);
                 usleep(7000);
         }
+        write(1, "\033[1;0f", 6);
         if (0) {
                 printf("%s: memory required: %d", __FILE__, count);
         }
