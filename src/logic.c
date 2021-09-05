@@ -47,6 +47,20 @@
 static int moves[3][3];
 static int nextMoves[2][3][3];
 static int playerStatus[2][9];
+
+/*
+ * The first index, 0 contains the best overall state available to the
+ * player.
+ * Following this is the state of each square in relation to its
+ * neighbours, accounting for each horizontal, vertical and diagonal
+ * direction. This data is used to evaluate the next move.
+ *
+ * indices 2,3,4 horizontal rows.
+ * indices 5,6,7 vertical columns.
+ * indices 8, 9 the two diagonals.
+ *
+ */
+static int currentStateOfPlay[2][9];
 static int score[2];
 static int line;
 
@@ -187,8 +201,8 @@ void printDebugMoves()
 		puts("Random mode off.");
 	printf("Level= %d\n", level);
 	printf("Moves made = %d\n", keepCount(VALUE));
-	printf("Player 1 status -> %d\n", playerStatus[PLAYER1][0]);
-	printf("Player 2 status -> %d\n\n", playerStatus[PLAYER2][0]);
+	printf("Player 1 status -> %d\n", currentStateOfPlay[PLAYER1][0]);
+	printf("Player 2 status -> %d\n\n", currentStateOfPlay[PLAYER2][0]);
 	printf("Player 1 score -> %d\n", score[PLAYER1]);
 	printf("Player 2 score -> %d\n\n", score[PLAYER2]);
 	/* The four matrices */
@@ -198,13 +212,13 @@ void printDebugMoves()
 		for (int j = 0; j < M_SQRT; j++) {
 			printf("%2d", moves[i][j]);
 		}
-		printf(" |%2d\t", playerStatus[PLAYER1][i+1]);
+		printf(" |%2d\t", currentStateOfPlay[PLAYER1][i+1]);
 		/* Player two */
 		printf(" |");
 		for (int j = 0; j < M_SQRT; j++) {
 			printf("%2d", moves[i][j]);
 		}
-		printf(" |%2d\t", playerStatus[PLAYER2][i+1]);
+		printf(" |%2d\t", currentStateOfPlay[PLAYER2][i+1]);
 
 		/* Player one nextMoves*/
 		printf(" |");
@@ -224,15 +238,15 @@ void printDebugMoves()
 	/* Beneath the two matrices */
 	printf("  ------   \t  ------   \t  ------   \t  ------\n");
 	/* P1 status array */
-	printf("%d ", playerStatus[PLAYER1][8]);
+	printf("%d ", currentStateOfPlay[PLAYER1][8]);
 	for (int i = 0; i < 3; i++)
-		printf("%2d", playerStatus[PLAYER1][i+5]);
-	printf(" %2d\t", playerStatus[PLAYER1][4]);
+		printf("%2d", currentStateOfPlay[PLAYER1][i+5]);
+	printf(" %2d\t", currentStateOfPlay[PLAYER1][4]);
 	/* P1 status array */
-	printf("%d ", playerStatus[PLAYER2][8]);
+	printf("%d ", currentStateOfPlay[PLAYER2][8]);
 	for (int i = 0; i < 3; i++)
-		printf("%2d", playerStatus[PLAYER2][i+5]);
-	printf(" %2d\t", playerStatus[PLAYER2][4]);
+		printf("%2d", currentStateOfPlay[PLAYER2][i+5]);
+	printf(" %2d\t", currentStateOfPlay[PLAYER2][4]);
 	/* End of the line */
 	puts("\n");
 }
@@ -334,7 +348,7 @@ int yourMove(int player)
 	// Ok play.
 	int status;
 	status = updateGame(player);
-	playerStatus[player-1][0] = status;
+	currentStateOfPlay[player][0] = status;
 	sysOut(7, player);
 
 	int x = 0;
@@ -378,7 +392,7 @@ int yourMove(int player)
 	keepCount(AUGMENT);
 	
 	status = updateGame(player);
-	playerStatus[player-1][0] = status;
+	currentStateOfPlay[player][0] = status;
 	return status;
 }
 
@@ -397,7 +411,7 @@ int computerMove(int player)
 	int status;
 	int coin;
 	status = updateGame(player);
-	playerStatus[player-1][0] = status;
+	currentStateOfPlay[player][0] = status;
 	sysOut(7, player);
 	sleep(2);
 
@@ -434,7 +448,7 @@ int computerMove(int player)
 
 	keepCount(AUGMENT);
 	status = updateGame(player);
-	playerStatus[player-1][0] = status;
+	currentStateOfPlay[player][0] = status;
 	return status;
 }
 
@@ -512,7 +526,7 @@ int bestPossibleMove(int player)
 	 * If the center square is empty and there is no winning move, move
 	 * there.
 	 */
-	if (moves[1][1] == 0 && playerStatus[playerM][0] != 3) {
+	if (moves[1][1] == 2 && currentStateOfPlay[player][0] != 3) {
 		moves[1][1] = player;
 		return 0;
 	}
@@ -524,22 +538,22 @@ int bestPossibleMove(int player)
 	 * The loop starts at one due to the position being used to store the
 	 * status.
 	 */
-	if (playerStatus[playerM][0] == 3) {
+	if (currentStateOfPlay[player][0] == 3) {
 		for (int i = 1; i <= 2*M_SQRT+2; i++) {
-			value = playerStatus[playerM][i];
+			value = currentStateOfPlay[player][i];
 			if (value == 3 || value == 5 || value == 6 ) {
-				translateStatus(value, i, player);
+				calculateNextMove(value, i);
 				return 4;
 			}
 		}
 	}
 
 	// If opponent has a winning move, block them.
-	if (playerStatus[opponent][0] == 3) {
+	if (currentStateOfPlay[opponent][0] == 3) {
 		for (int i = 1; i <= 2*M_SQRT+2; i++) {
-			value = playerStatus[opponent][i];
+			value = currentStateOfPlay[opponent][i];
 			if (value == 3 || value == 5 || value == 6 ) {
-				translateStatus(value, i, player);
+				calculateNextMove(value, i);
 				return 0;
 			}
 		}
@@ -550,23 +564,23 @@ int bestPossibleMove(int player)
 	// Evaluate next best moves.
 	count = 0;
 	// Fill the nextMoves grid with the available best moves of each player.
-	if (playerStatus[playerM][0] == 2) {
+	if (currentStateOfPlay[player][0] == 2) {
 		for (int i = 1; i <= 2*M_SQRT+2; i++) {
-			value = playerStatus[playerM][i];
+			value = currentStateOfPlay[player][i];
 			if (value == 1 || value == 2 || value == 4 ) {
 				/*
 				 * The translate status in this case, writes to
 				 * the nextMoves grid.
 				 */
-				translateStatus(value, i, player);
+				calculateNextMove(value, i);
 			}
-			value = playerStatus[opponent][i];
+			value = currentStateOfPlay[opponent][i];
 			if (value == 1 || value == 2 || value == 4 ) {
 				/*
 				 * The translate status in this case, writes to
 				 * the nextMoves grid.
 				 */
-				translateStatus(value, i, opponent+1);
+				calculateNextMove(value, i);
 			}
 		}
 		if (DEBUG)
@@ -677,7 +691,7 @@ int checkStaleMate()
 void clearStatusArrays()
 {
 	for (int i = 0; i < 2*M_SQRT+3; i++) {
-		*(*playerStatus+i) = 0;
+		*(*currentStateOfPlay+i) = 0;
 	}
 }
 
@@ -713,11 +727,11 @@ int calculateStatus(int player)
 				break;
 			}
 		}
-		playerStatus[playerMod][i+1] = x;
 		if (x == 7) line = i+1;
 		marker = getStatusValue(x);
 		if (marker > state) {
 			state = marker;
+		currentStateOfPlay[player][i+1] = x;
 		}
 		x = 0;
 	}
@@ -736,11 +750,11 @@ int calculateStatus(int player)
 				break;
 			}
 		}
-		playerStatus[playerMod][j+5] = x;
 		if (x == 7) line = j+5;
 		marker = getStatusValue(x);
 		if (marker > state) {
 			state = marker;
+		currentStateOfPlay[player][j+5] = x;
 		}
 		x = 0;
 	}
@@ -758,11 +772,11 @@ int calculateStatus(int player)
 			break;
 		}
 	}
-	playerStatus[playerMod][4] = x;
 	if (x == 7) line = 4;
 	marker = getStatusValue(x);
 	if (marker > state) {
 		state = marker;
+	currentStateOfPlay[player][4] = x;
 	}
 
 	x = 0;
@@ -782,11 +796,11 @@ int calculateStatus(int player)
 		}
 		j++;
 	}
-	playerStatus[playerMod][8] = x;
 	if (x == 7) line = 8;
 	marker = getStatusValue(x);
 	if (marker > state) {
 		state = marker;
+	currentStateOfPlay[player][8] = x;
 	}
 	x = 0;
 	return state;
@@ -868,7 +882,7 @@ int getStatusValue(int x)
 	}
 }
 
-int translateStatus(int state, int line, int player)
+int calculateNextMove(int state, int line)
 {
 	/*
 	 * Act upon states 0 through 7

@@ -70,6 +70,7 @@ int es_readLine(FILE *f, char *buf, int *count)
         int c, n, ri, out, max;
         for (n = 0, out = 0; (c = read(f)) != EOF; n++, max++) {
                 assert(n <= BUFFER_SIZE);
+
                 buf[n] = c;
 
                 if (c == '\033') {
