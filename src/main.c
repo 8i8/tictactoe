@@ -64,7 +64,6 @@ void menu()
 		getchar();
 		verif = setLevel('0');
 	}
-	resetBoard();
 }
 
 /*
