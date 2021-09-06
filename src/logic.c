@@ -31,7 +31,7 @@
 #include "ticTacToe.h"
 
 int  updateRowStates(int player);
-int  traslateCharForMove(int x, int y, int player);
+int  charToGlyph(int x, int y, int player);
 
 /* The size of the playing board, the 'hash'. */
 #define MATRIX	9
@@ -339,7 +339,7 @@ void player1WinsCoinToss(int player)
  * values that correspond to them, and then writes those values to the
  * board array.
  */
-int traslateCharForMove(int x, int y, int player)
+int charToGlyph(int x, int y, int player)
 {
 	if 	(x == 97) // a
 		x = 0;
@@ -412,7 +412,7 @@ int yourMove(int player)
 	}
 
 	// Write to the board array.
-	if (!traslateCharForMove(x, y, player)) {
+	if (!charToGlyph(x, y, player)) {
 		yourMove(player);
 		return 0;
 	}
