@@ -486,8 +486,7 @@ int randomMove(int player)
 	movesLeft = MATRIX - keepCount(VALUE);
 
 	if (movesLeft > 1) {
-		choice = rand()%(movesLeft-1);
-		choice++;
+		choice = rand()%(movesLeft-1) + 1;
 	}
 	else
 	{
