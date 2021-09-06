@@ -79,6 +79,71 @@ static int level;
 static int myRandom;
 
 /*
+ * ACME debugging tool for ticTacToe. Is this perhaps the embryo of a
+ * unit test?  See the header file, to activate -> DEBUG 1
+ */
+void printDebugMoves()
+{
+	/* Above the debug squares */
+	if (myRandom)
+		puts("Random mode on.");
+	else
+		puts("Random mode off.");
+	printf("Level= %d\n", level);
+	printf("Moves made = %d\n", keepCount(VALUE));
+	printf("Player 1 status -> %d\n", currentStateOfPlay[PLAYER1][0]);
+	printf("Player 2 status -> %d\n", currentStateOfPlay[PLAYER2][0]);
+	printf("Player 1 score -> %d\n", score[PLAYER1]);
+	printf("Player 2 score -> %d\n", score[PLAYER2]);
+	/* The four matrices */
+	printf(" p1 state  \t p2 state  \t p1 nextM  \t p2 nextM\n");
+	for (int i = 0; i < M_SQRT; i++) {
+		/* Player one */
+		printf(" |");
+		for (int j = 0; j < M_SQRT; j++) {
+			printf("%2d", moves[i][j]);
+		}
+		printf(" |%2d\t", currentStateOfPlay[PLAYER1][i+1]);
+		/* Player two */
+		printf(" |");
+		for (int j = 0; j < M_SQRT; j++) {
+			printf("%2d", moves[i][j]);
+		}
+		printf(" |%2d\t", currentStateOfPlay[PLAYER2][i+1]);
+
+		/* Player one nextMoves*/
+		printf(" |");
+		for (int j = 0; j < M_SQRT; j++) {
+			printf("%2d", nextMoves[PLAYER1][i][j]);
+		}
+		printf(" |\t");
+
+		/* Player two nextMoves */
+		printf(" |");
+		for (int j = 0; j < M_SQRT; j++) {
+			printf("%2d", nextMoves[PLAYER2][i][j]);
+		}
+		printf(" |\t");
+		puts("");
+	}
+
+	/* Beneath the two matrices */
+	printf("  ------   \t  ------   \t  ------   \t  ------\n");
+	/* P1 status array */
+	printf("%d ", currentStateOfPlay[PLAYER1][8]);
+	for (int i = 0; i < 3; i++)
+		printf("%2d", currentStateOfPlay[PLAYER1][i+5]);
+	printf(" %2d\t", currentStateOfPlay[PLAYER1][4]);
+	/* P1 status array */
+	printf("%d ", currentStateOfPlay[PLAYER2][8]);
+	for (int i = 0; i < 3; i++)
+		printf("%2d", currentStateOfPlay[PLAYER2][i+5]);
+	printf(" %2d\t", currentStateOfPlay[PLAYER2][4]);
+	/* End of the line */
+	puts("\n");
+}
+
+/*
  * keepCount is used to inform the computer how many moves remain, this
  * function has several uses, each defined by the integer value entered.
  *
@@ -195,70 +260,6 @@ int traslateCharForMove(int x, int y, int player)
 		moves[y][x] = player;
 		return 1;
 	}
-}
-
-/*
- * ACME debugging tool for ticTacToe. Is this perhaps the embryo of a
- * unit test?  See the header file, to activate -> DEBUG 1
- */
-void printDebugMoves()
-{
-	/* Above the debug squares */
-	if (myRandom)
-		puts("Random mode on.");
-	else
-		puts("Random mode off.");
-	printf("Level= %d\n", level);
-	printf("Moves made = %d\n", keepCount(VALUE));
-	printf("Player 1 status -> %d\n", currentStateOfPlay[PLAYER1][0]);
-	printf("Player 2 status -> %d\n", currentStateOfPlay[PLAYER2][0]);
-	printf("Player 1 score -> %d\n", score[PLAYER1]);
-	printf("Player 2 score -> %d\n", score[PLAYER2]);
-	/* The four matrices */
-	printf(" p1 state  \t p2 state  \t p1 nextM  \t p2 nextM\n");
-	for (int i = 0; i < M_SQRT; i++) {
-		/* Player one */
-		printf(" |");
-		for (int j = 0; j < M_SQRT; j++) {
-			printf("%2d", moves[i][j]);
-		}
-		printf(" |%2d\t", currentStateOfPlay[PLAYER1][i+1]);
-		/* Player two */
-		printf(" |");
-		for (int j = 0; j < M_SQRT; j++) {
-			printf("%2d", moves[i][j]);
-		}
-		printf(" |%2d\t", currentStateOfPlay[PLAYER2][i+1]);
-
-		/* Player one nextMoves*/
-		printf(" |");
-		for (int j = 0; j < M_SQRT; j++) {
-			printf("%2d", nextMoves[PLAYER1][i][j]);
-		}
-		printf(" |\t");
-
-		/* Player two nextMoves */
-		printf(" |");
-		for (int j = 0; j < M_SQRT; j++) {
-			printf("%2d", nextMoves[PLAYER2][i][j]);
-		}
-		printf(" |\t");
-		puts("");
-	}
-	/* Beneath the two matrices */
-	printf("  ------   \t  ------   \t  ------   \t  ------\n");
-	/* P1 status array */
-	printf("%d ", currentStateOfPlay[PLAYER1][8]);
-	for (int i = 0; i < 3; i++)
-		printf("%2d", currentStateOfPlay[PLAYER1][i+5]);
-	printf(" %2d\t", currentStateOfPlay[PLAYER1][4]);
-	/* P1 status array */
-	printf("%d ", currentStateOfPlay[PLAYER2][8]);
-	for (int i = 0; i < 3; i++)
-		printf("%2d", currentStateOfPlay[PLAYER2][i+5]);
-	printf(" %2d\t", currentStateOfPlay[PLAYER2][4]);
-	/* End of the line */
-	puts("\n");
 }
 
 /*
