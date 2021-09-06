@@ -250,6 +250,9 @@ void resetBoard()
 	if (myRandom)
 		level = coinToss(5)+1;
 
+        if (DEBUG)
+                fprintf(stderr, "log: level: %d\n", level);
+
 	redrawGrid(winingLine);
 	winingLine = 0;
 }
