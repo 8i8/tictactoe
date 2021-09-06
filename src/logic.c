@@ -315,7 +315,7 @@ int coinToss(int howManySides)
 /*
  * The Computer or player two starts the game.
  */
-void player2WinsToss(int player)
+void player2WinsCoinToss(int player)
 {
 	drawGrid();
 	sysOut(5, player);
@@ -327,7 +327,7 @@ void player2WinsToss(int player)
 /*
  * Player one starts the game, this is simply the text output.
  */
-void player1WinsTheToss(int player)
+void player1WinsCoinToss(int player)
 {
 	drawGrid();
 	sysOut(5, player);
