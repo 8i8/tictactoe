@@ -66,7 +66,7 @@ void clearNextMoves(void);
 int  checkStaleMate(void);
 void clearStatusArrays(void);
 int  updateStateOfPlay(int player);
-int  setBitForPlayerInSquare(int j, int state);
+int  setBit(int j, int row);
 int  getStatusValue(int x);
 int  calculateNextMove(int state, int line, int player);
 
