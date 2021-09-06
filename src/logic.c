@@ -706,16 +706,12 @@ void clearStatusArrays()
  */
 int updateStateOfPlay(int player)
 {
-	int playerMod;
 	int state;
-	int marker;
+	int max; // The best found state.
 	int i;
 	int j;
 	int x;
-	state = marker = x = 0;
-
-	// Player indices rectified for array index.
-	playerMod = player - 1;
+	state = max = x = 0;
 
 	// Horizontal status
 	for (i = 0; i < M_SQRT; i++) {
@@ -726,7 +722,9 @@ int updateStateOfPlay(int player)
 			{
 				x = setBitForPlayerInSquare(j);
 			}
-			else if ((moves[i][j] == 1) || (moves[i][j] == 2))
+                        // if the other player is here, mark them as
+                        // present.
+			else if (moves[i][j] == (player + 1) % 2)
 			{
 				x = 8;
 				break;
@@ -750,7 +748,7 @@ int updateStateOfPlay(int player)
 			{
 				x = setBitForPlayerInSquare(i);
 			}
-			else if ((moves[i][j] == 1) || (moves[i][j] == 2))
+			else if (moves[i][j] == (player + 1) % 2)
 			{
 				x = 8;
 				break;
@@ -773,7 +771,7 @@ int updateStateOfPlay(int player)
 		{
 			x = setBitForPlayerInSquare(i);
 		}
-		else if ((moves[i][i] == 1) || (moves[i][i] == 2))
+		else if (moves[i][j] == (player + 1) % 2)
 		{
 			x = 8;
 			break;
@@ -797,7 +795,7 @@ int updateStateOfPlay(int player)
 		{
 			x = setBitForPlayerInSquare(i);
 		}
-		else if ((moves[i][j] == 1) || (moves[i][j] == 2))
+		else if (moves[i][j] == (player + 1) % 2)
 		{
 			x = 8;
 			break;
