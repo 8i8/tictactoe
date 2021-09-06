@@ -104,7 +104,7 @@ int keepCount(int option)
 
 /*
  * The score for the score bars, triggers the end of a series of games
- * when a player reaches or surpasses the value of WIN.
+ * when a player reaches or surpasses the value of REQUIRED_TO_WIN.
  */
 int keepScore(int player, int inc)
 {
