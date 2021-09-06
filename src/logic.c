@@ -900,7 +900,8 @@ int getStatusValue(int x)
 			// Opponent present.
 			return 0;
 		default:
-			return 0;
+                        printf("error: getStatusValue: unknown state");
+                        exit(2);
 	}
 }
 
