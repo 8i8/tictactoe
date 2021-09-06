@@ -101,14 +101,9 @@ void printDebugMoves()
 	printf("Player 1 score -> %d\n", score[PLAYER1]);
 	printf("Player 2 score -> %d\n", score[PLAYER2]);
 	/* The four matrices */
-	printf("  p1state p2state p1nextM p2nextM\n");
+	printf("   board  p1nextM p2nextM\n");
 	for (int i = 0; i < M_SQRT; i++) {
-		/* Player one */
-		printf(" |");
-		for (int j = 0; j < M_SQRT; j++) {
-			printf("%2d", board[i][j]);
-		}
-		/* Player two */
+		/* board */
 		printf(" |");
 		for (int j = 0; j < M_SQRT; j++) {
 			printf("%2d", board[i][j]);
@@ -130,7 +125,7 @@ void printDebugMoves()
 	}
 
 	/* Beneath the two matrices */
-	printf("  ------- ------- ------- -------\n");
+	printf("  ------- ------- -------\n");
 
         /* state of play */
         printf("p1{%d}(%d,%d,%d}{%d}{%d,%d,%d}{%d}\n", 
