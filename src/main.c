@@ -90,6 +90,7 @@ void play(int firstRun)
                         updateGame(RESET);
                         keepCount(RESET);
 
+                        if (coin == COIN_UN_SPUN) {
                                 choice = headsOrTails();
                         }
                         coin = coinToss(2);
