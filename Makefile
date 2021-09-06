@@ -17,9 +17,15 @@ export DEB_BUILD_HARDENING
 
 CC	= gcc
 
-CFLAGS	= -Wextra -Wall -pedantic
-CFLAGS	+= -Wstrict-prototypes
-#CFLAGS	+= -O
+# CFLAGS  += -fsanitize=address
+# CFLAGS  += -fno-omit-frame-pointer
+# CFLAGS  += -fsanitize=undefined
+# CFLAGS  += -fsanitize=float-divide-by-zero
+# CFLAGS  += -fno-sanitize-recover=all
+
+CFLAGS  += -Wextra -Wall -pedantic
+CFLAGS  += -Wstrict-prototypes
+#CFLAGS	 += -O
 CFLAGS	+= -g
 
 .PHONY:	all clean distclean
