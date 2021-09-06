@@ -915,7 +915,7 @@ int getStatusValue(int x)
 	}
 }
 
-int makeMove(int state, int line, int player)
+int makeMove(int rowState, int line, int player)
 {
 	/*
 	 * Act upon states 0 through 7
@@ -928,7 +928,7 @@ int makeMove(int state, int line, int player)
 	 * 6 -> 110
 	 * 7 -> 111
 	 */
-	switch(state)
+	switch(rowState)
 	{
 		case 0:
 			// Anyone's
