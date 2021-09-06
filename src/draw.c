@@ -447,7 +447,7 @@ void sysOut(int write, int player) {
  * If player is > 0 then -1; Corrects the value of 'player' for use in
  * the printf statement, that is, when the output is player dependant.
  */
-	if (player) player = player - 1;
+        player--;
 
 	char* text[9] = {
 		"Congratulations, you are the winner!",			// 0
