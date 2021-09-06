@@ -152,6 +152,28 @@ void printDebugMoves()
 }
 
 /*
+ * updateGame refreshes the graphical display, the int entered
+ * represents the player else a reset.
+ */
+int updateGame(int player)
+{
+	int status;
+
+	if (player == PLAYER1 || player == PLAYER2) {
+		status = updateStateOfPlay(player);
+		writeMovesToBoard(*board);
+	} else if (player == RESET) {
+		clearStatusArrays();
+		resetBoard();
+	}
+
+	drawScore(score[0], score[1]);
+	drawGrid();
+
+	return status;
+}
+
+/*
  * keepCount is used to inform the computer how many moves remain, this
  * function has several uses, each defined by the integer value entered.
  *
@@ -267,28 +289,6 @@ int traslateCharForMove(int x, int y, int player)
         // Place the move on the board.
         board[y][x] = player;
         return 1;
-}
-
-/*
- * updateGame refreshes the graphical display, the int entered
- * represents the player else a reset.
- */
-int updateGame(int player)
-{
-	int status;
-
-	if (player == PLAYER1 || player == PLAYER2) {
-		status = updateStateOfPlay(player);
-		writeMovesToBoard(*board);
-	} else if (player == RESET) {
-		clearStatusArrays();
-		resetBoard();
-	}
-
-	drawScore(score[0], score[1]);
-	drawGrid();
-
-	return status;
 }
 
 /*
