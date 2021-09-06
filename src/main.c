@@ -36,7 +36,7 @@
 #include <unistd.h>
 
 void menu(void);
-void play(int firstRun);
+void play(void);
 
 int main(void)
 {
@@ -47,7 +47,7 @@ int main(void)
  * commands upon the games first launch.
  */
 	menu();
-	play(1);
+	play();
 	return EXIT_SUCCESS;
 }
 
@@ -65,15 +65,14 @@ void menu()
  * beginning of this program, bears witness to code which has yet to
  * come; that is my excuse, if you are buying.
  */
-void play(int firstRun)
+void play()
 {
 	int choice;
-	int coin;
-	int winner;
 	int status;
+	int coin = 3;
+	int winner = 0;
 	int stale_mate = 0;
-	winner = 0;
-	coin = 3;
+        int firstRun = 1;
 
         // Game loop.
 	while(!winner)
