@@ -488,9 +488,7 @@ int randomMove(int player)
 
 	if (movesLeft > 1) {
 		choice = rand()%(movesLeft-1) + 1;
-	}
-	else
-	{
+	} else {
 		choice = 1;
 	}
 
@@ -498,7 +496,6 @@ int randomMove(int player)
 	 * Count empty squares until move selection is reached.
 	 */
 	int count = 1;
-
 	for (int i = 0; i < M_SQRT; i++) {
 		for (int j = 0; j < M_SQRT; j++)
 		{
@@ -730,14 +727,12 @@ int updateStateOfPlay(int player)
 		for (j = 0; j < M_SQRT; j++)
 		{
                         // If the player is here, mark the square.
-			if (board[i][j] == player)
-			{
+			if (board[i][j] == player) {
 				x = setBit(j, x);
 			}
-                        // if the other player is here, mark them as
-                        // present.
-			else if (board[i][j] == opponent)
-			{
+                        // if the other player is here, mark the row as
+                        // a loss.
+			else if (board[i][j] == opponent) {
 				x = 8;
 				break;
 			}
@@ -747,7 +742,6 @@ int updateStateOfPlay(int player)
 		state = getStatusValue(x);
 		if (x == 7) {
                         winingLine = i+1;
-                        return state;
                 }
 		if (state > max) {
 			max = state;
@@ -759,12 +753,13 @@ int updateStateOfPlay(int player)
 	for (j = 0; j < M_SQRT; j++) {
 		for (i = 0; i < M_SQRT; i++)
 		{
-			if (board[i][j] == player)
-			{
+                        // If the player is here, mark the square.
+			if (board[i][j] == player) {
 				x = setBit(j, x);
 			}
-			else if (board[i][j] == opponent)
-			{
+                        // if the other player is here, mark the row as
+                        // a loss.
+			else if (board[i][j] == opponent) {
 				x = 8;
 				break;
 			}
@@ -774,7 +769,6 @@ int updateStateOfPlay(int player)
 		state = getStatusValue(x);
 		if (x == 7) {
                         winingLine = j+5;
-                        return state;
                 }
 		if (state > max) {
 			max = state;
@@ -785,12 +779,13 @@ int updateStateOfPlay(int player)
 	// Diagonal one
 	for (i = 0; i < 3; i++)
 	{
-		if (board[i][i] == player)
-		{
+                // If the player is here, mark the square.
+		if (board[i][i] == player) {
 			x = setBit(i, x);
 		}
-		else if (board[i][j] == opponent)
-		{
+                // if the other player is here, mark the row as
+                // a loss.
+		else if (board[i][j] == opponent) {
 			x = 8;
 			break;
 		}
@@ -800,9 +795,8 @@ int updateStateOfPlay(int player)
         state = getStatusValue(x);
 	if (x == 7) {
                 winingLine = 4;
-                return state;
         }
-        if (state > max) {
+	if (state > max) {
                 max = state;
         }
 
@@ -812,12 +806,13 @@ int updateStateOfPlay(int player)
 	// Diagonal two
 	for (i = 2; i >= 0; i--)
 	{
-		if (board[i][j] == player)
-		{
+                // If the player is here, mark the square.
+		if (board[i][j] == player) {
 			x = setBit(i, x);
 		}
-		else if (board[i][j] == opponent)
-		{
+                // if the other player is here, mark the row as
+                // a loss.
+		else if (board[i][j] == opponent) {
 			x = 8;
 			break;
 		}
@@ -828,9 +823,8 @@ int updateStateOfPlay(int player)
         state = getStatusValue(x);
 	if (x == 7) {
                 winingLine = 8;
-                return state;
         }
-        if (state > max) {
+	if (state > max) {
                 max = state;
         }
 	x = 0;
