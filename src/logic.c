@@ -724,7 +724,7 @@ int updateStateOfPlay(int player)
                         // If the player is here, mark the square.
 			if (moves[i][j] == player)
 			{
-				x = readLineStatus(j, x);
+				x = setBitForPlayerInSquare(j);
 			}
 			else if ((moves[i][j] == 1) || (moves[i][j] == 2))
 			{
@@ -748,7 +748,7 @@ int updateStateOfPlay(int player)
 		{
 			if (moves[i][j] == player)
 			{
-				x = readLineStatus(i, x);
+				x = setBitForPlayerInSquare(i);
 			}
 			else if ((moves[i][j] == 1) || (moves[i][j] == 2))
 			{
@@ -771,7 +771,7 @@ int updateStateOfPlay(int player)
 	{
 		if (moves[i][i] == player)
 		{
-			x = readLineStatus(i, x);
+			x = setBitForPlayerInSquare(i);
 		}
 		else if ((moves[i][i] == 1) || (moves[i][i] == 2))
 		{
@@ -795,7 +795,7 @@ int updateStateOfPlay(int player)
 	{
 		if (moves[i][j] == player)
 		{
-			x = readLineStatus(i, x);
+			x = setBitForPlayerInSquare(i);
 		}
 		else if ((moves[i][j] == 1) || (moves[i][j] == 2))
 		{
@@ -818,7 +818,7 @@ int updateStateOfPlay(int player)
 /*
  * Returns the bit mask required to set the requested bit.
  */
-int readLineStatus(int j, int x)
+int setBitForPlayerInSquare(int mask)
 {
 	/*
 	 * Use 3 bit binary word used to add the move to the rows state.
