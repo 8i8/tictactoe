@@ -503,7 +503,6 @@ int randomMove(int player)
 	 */
 	int movesLeft;
 	int choice;
-	srand(time(NULL));
 
 	// Get the quantity of spaces left remaining.
 	movesLeft = MATRIX - keepCount(VALUE);
