@@ -53,17 +53,10 @@ int main(void)
 
 void menu()
 {
-	int verif = 0;
 	srand(time(NULL));
 	clearScreen();
 	ticTacToe();
 	sysOutMenu();
-	
-	while (!verif)
-	{
-		getchar();
-		verif = setLevel('0');
-	}
 }
 
 /*
