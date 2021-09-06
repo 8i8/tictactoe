@@ -50,7 +50,6 @@ int keepScore(int player, int inc);
 void resetBoard(void);
 int  setLevel(int newLevel);
 void winningLine(void);
-int  traslateCharForMove(int x, int y, int player);
 void printDebugMoves(void);
 void refreshMoves(int);
 int  updateGame(int player);

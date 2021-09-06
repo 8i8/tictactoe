@@ -31,6 +31,8 @@
 #include "ticTacToe.h"
 
 int  updateRowStates(int player);
+int  traslateCharForMove(int x, int y, int player);
+
 /* The size of the playing board, the 'hash'. */
 #define MATRIX	9
 #define M_SQRT	3
@@ -272,36 +274,6 @@ void winningLine()
 }
 
 /*
- * Translates the char values entered by the user into the integer
- * values that correspond to them, and then writes those values to the
- * board array.
- */
-int traslateCharForMove(int x, int y, int player)
-{
-	if 	(x == 97) // a
-		x = 0;
-	else if (x == 98) // b
-		x = 1;
-	else if (x == 99) // c
-		x = 2;
-
-	if	(y == 49) // 1
-		y = 0;
-	else if (y == 50) // 2
-		y = 1;
-	else if (y == 51) // 3
-		y = 2;
-
-	// If the square is already in use return 0
-	if (board[y][x] != EMPTY)
-		return 0;
-
-        // Place the move on the board.
-        board[y][x] = player;
-        return 1;
-}
-
-/*
  * Ask player to input either heads or tails, an ancient form of
  * divination used by tribes that depend upon counting tokens as their
  * major deities.  This rite predicts the nature of the act that follow
@@ -360,6 +332,36 @@ void player1WinsCoinToss(int player)
 	drawGrid();
 	sysOut(5, player);
 	usleep(1000);
+}
+
+/*
+ * Translates the char values entered by the user into the integer
+ * values that correspond to them, and then writes those values to the
+ * board array.
+ */
+int traslateCharForMove(int x, int y, int player)
+{
+	if 	(x == 97) // a
+		x = 0;
+	else if (x == 98) // b
+		x = 1;
+	else if (x == 99) // c
+		x = 2;
+
+	if	(y == 49) // 1
+		y = 0;
+	else if (y == 50) // 2
+		y = 1;
+	else if (y == 51) // 3
+		y = 2;
+
+	// If the square is already in use return 0
+	if (board[y][x] != EMPTY)
+		return 0;
+
+        // Place the move on the board.
+        board[y][x] = player;
+        return 1;
 }
 
 /*
