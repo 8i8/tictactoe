@@ -83,6 +83,11 @@ static int level;
 static int myRandom;
 
 /*
+ * The returned state from updateBoard
+ */
+static int state;
+
+/*
  * ACME debugging tool for ticTacToe. Is this perhaps the embryo of a
  * unit test?  See the header file, to activate -> DEBUG 1
  */
@@ -99,6 +104,7 @@ void printDebugMoves()
 	printf("Player 2 status -> %d\n", rowState[PLAYER2][0]);
 	printf("Player 1 score -> %d\n", score[PLAYER1]);
 	printf("Player 2 score -> %d\n", score[PLAYER2]);
+	printf("state -> %d\n", state);
 	/* The four matrices */
 	printf("   board  p1nextM p2nextM\n");
 	for (int i = 0; i < M_SQRT; i++) {
@@ -161,6 +167,7 @@ int updateGame(int player)
 
 	if (player == PLAYER1 || player == PLAYER2) {
 		status = updateStateOfPlay(player);
+                if (DEBUG) state = status;
 		writeMovesToBoard(*board);
 	} else if (player == RESET) {
 		clearStatusArrays();
