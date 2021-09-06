@@ -62,7 +62,7 @@ void menu()
 	while (!verif)
 	{
 		getchar();
-		verif = setLevel(48);
+		verif = setLevel('0');
 	}
 	resetBoard();
 }

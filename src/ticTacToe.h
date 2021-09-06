@@ -44,7 +44,7 @@
 int  keepCount(int option);
 int keepScore(int player, int inc);
 void resetBoard(void);
-int  setLevel(int newLevel);
+int  setLevel(char newLevel);
 void winningLine(void);
 void printDebugMoves(void);
 int  updateGame(int player);

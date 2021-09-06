@@ -260,13 +260,13 @@ void resetBoard()
 /*
  * Set the difficulty level.
  */
-int setLevel(int newLevel)
+int setLevel(char newLevel)
 {
-	if (newLevel == 48) {
+	if (newLevel == '0') {
 		myRandom = 1;
 		return 1;
 	}
-	if (newLevel > 48 && newLevel < 54) {
+	if (newLevel > '0' && newLevel < '6') {
 		myRandom = 0;
 		level = newLevel - 48;
 		return 1;
