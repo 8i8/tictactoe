@@ -462,6 +462,7 @@ int computerMove(int player)
 			break;
 	}
 
+        keepCount(AUGMENT);
 	status = updateGame(player);
 	currentStateOfPlay[player-1][0] = status;
 	return status;
