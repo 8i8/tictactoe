@@ -65,7 +65,6 @@ int  bestPossibleMove(int player);
 void clearNextMoves(void);
 int  checkStaleMate(void);
 void clearStatusArrays(void);
-int  updateStateOfPlay(int player);
 int  setBit(int j, int row);
 int  getStatusValue(int x);
 int  makeMove(int state, int line, int player);

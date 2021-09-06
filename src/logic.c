@@ -30,6 +30,7 @@
 #include <time.h>
 #include "ticTacToe.h"
 
+int  updateRowStates(int player);
 /* The size of the playing board, the 'hash'. */
 #define MATRIX	9
 #define M_SQRT	3
@@ -166,7 +167,7 @@ int updateGame(int player)
 	int status;
 
 	if (player == PLAYER1 || player == PLAYER2) {
-		status = updateStateOfPlay(player);
+		status = updateRowStates(player);
                 if (DEBUG) state = status;
 		writeMovesToBoard(*board);
 	} else if (player == RESET) {
