@@ -518,16 +518,10 @@ int randomMove(int player)
  */
 int bestPossibleMove(int player)
 {
-	int opponent;
+	int opponent = (player + 1) % 2;
 	int value;
 	int coin;
 	int count;
-
-	/*
-         * Resolve the player id's so as to find the corresponding index
-         * for the player status array.
-	 */
-	opponent = (player + 1) % 2;
 
 	/*
          * If the center square is empty and there is no winning move,
@@ -711,6 +705,7 @@ void clearStatusArrays()
 int updateStateOfPlay(int player)
 {
 	int state;
+        int opponent = (player + 1) % 2;
 	int max; // The best found state.
 	int i;
 	int j;
@@ -728,7 +723,7 @@ int updateStateOfPlay(int player)
 			}
                         // if the other player is here, mark them as
                         // present.
-			else if (moves[i][j] == (player + 1) % 2)
+			else if (moves[i][j] == opponent)
 			{
 				x = 8;
 				break;
@@ -752,7 +747,7 @@ int updateStateOfPlay(int player)
 			{
 				x = setBitForPlayerInSquare(i);
 			}
-			else if (moves[i][j] == (player + 1) % 2)
+			else if (moves[i][j] == opponent)
 			{
 				x = 8;
 				break;
@@ -775,7 +770,7 @@ int updateStateOfPlay(int player)
 		{
 			x = setBitForPlayerInSquare(i);
 		}
-		else if (moves[i][j] == (player + 1) % 2)
+		else if (moves[i][j] == opponent)
 		{
 			x = 8;
 			break;
@@ -799,7 +794,7 @@ int updateStateOfPlay(int player)
 		{
 			x = setBitForPlayerInSquare(i);
 		}
-		else if (moves[i][j] == (player + 1) % 2)
+		else if (moves[i][j] == opponent)
 		{
 			x = 8;
 			break;
