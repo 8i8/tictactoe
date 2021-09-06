@@ -38,7 +38,8 @@ int es_closeFile(FILE *f)
         return 0;
 }
 
-#define RBUF 7
+// Verification buffer for escape character comparison.
+#define VBUF 7
 
 char pushback;
 int ptr;
@@ -65,7 +66,7 @@ int es_readLine(FILE *f, char *buf, int *count)
         }
 
         char* ctest = "\033[22;0f";
-        char* rbuf = malloc(sizeof(char) * RBUF);
+        char* vbuf = malloc(sizeof(char) * VBUF);
 
         int c, n, ri, out, max;
         for (n = 0, out = 0; (c = read(f)) != EOF; n++, max++) {
@@ -74,6 +75,9 @@ int es_readLine(FILE *f, char *buf, int *count)
                 buf[n] = c;
 
                 if (c == '\033') {
+                        // If this is the text after the last cursor
+                        // move (\033[22;0) then push back the char and
+                        // get out of here.
                         if (out > 0){
                                 push(c);
                                 if (max > *count) {
@@ -82,14 +86,19 @@ int es_readLine(FILE *f, char *buf, int *count)
                                 max = 0;
                                 break;
                         }
+                        // reset the count.
                         ri = 0;
                 }
 
-                if (ri < RBUF){
-                        rbuf[ri++] = c;
+                // If there is room in the verification buffer, write to
+                // it.
+                if (ri < VBUF){
+                        vbuf[ri++] = c;
                 }
 
-                if (ri == RBUF && ((strncmp(rbuf, ctest, RBUF)) == 0 )) {
+                // The verification buffer is ready to make a
+                // comparison.
+                if (ri == VBUF && ((strncmp(vbuf, ctest, VBUF)) == 0 )) {
                         out = 1;
                 }
         }
