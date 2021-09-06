@@ -239,27 +239,27 @@ void winningLine()
  */
 int traslateCharForMove(int x, int y, int player)
 {
-	if 	(x == 97)
+	if 	(x == 97) // a
 		x = 0;
-	else if (x == 98)
+	else if (x == 98) // b
 		x = 1;
-	else if (x == 99)
+	else if (x == 99) // c
 		x = 2;
 
-	if	(y == 49)
+	if	(y == 49) // 1
 		y = 0;
-	else if (y == 50)
+	else if (y == 50) // 2
 		y = 1;
-	else if (y == 51)
+	else if (y == 51) // 3
 		y = 2;
 
-	// !!! `x` here is `j` and `y` is `i` !!!
+	// If the square is already in use return 0
 	if (moves[y][x] == 0 || moves[y][x] == 1)
 		return 0;
-	else {
-		moves[y][x] = player;
-		return 1;
-	}
+
+        // Place the move on the board.
+        moves[y][x] = player;
+        return 1;
 }
 
 /*
