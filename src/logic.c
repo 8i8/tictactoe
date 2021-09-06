@@ -553,7 +553,7 @@ int bestPossibleMove(int player)
 		for (int i = 1; i <= 2*M_SQRT+2; i++) {
 			value = rowState[player-1][i];
 			if (value == 3 || value == 5 || value == 6 ) {
-				calculateNextMove(value, i, player);
+				makeMove(value, i, player);
 				return 4;
 			}
 		}
@@ -566,7 +566,7 @@ int bestPossibleMove(int player)
 		for (int i = 1; i <= 2*M_SQRT+2; i++) {
 			value = rowState[opponent-1][i];
 			if (value == 3 || value == 5 || value == 6 ) {
-				calculateNextMove(value, i, opponent);
+				makeMove(value, i, opponent);
 				return 0;
 			}
 		}
@@ -582,11 +582,11 @@ int bestPossibleMove(int player)
 		for (int i = 1; i <= 2*M_SQRT+2; i++) {
 			value = rowState[player-1][i];
 			if (value == 1 || value == 2 || value == 4 ) {
-				calculateNextMove(value, i, player);
+				makeMove(value, i, player);
 			}
 			value = rowState[opponent-1][i];
 			if (value == 1 || value == 2 || value == 4 ) {
-				calculateNextMove(value, i, opponent);
+				makeMove(value, i, opponent);
 			}
 		}
 		if (DEBUG)
@@ -904,7 +904,7 @@ int getStatusValue(int x)
 	}
 }
 
-int calculateNextMove(int state, int line, int player)
+int makeMove(int state, int line, int player)
 {
 	/*
 	 * Act upon states 0 through 7
