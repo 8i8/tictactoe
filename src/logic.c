@@ -828,21 +828,16 @@ int setBitForPlayerInSquare(int mask)
 	 *   100 -> 4
          *
 	 */
-	switch(j)
+	switch(mask)
 	{
-		case 0:
-			x = x + 4;
-			return x;
-		case 1:
-			x = x + 2;
-			return x;
 		case 2:
-			x = x + 1;
-			return x;
-		default:
-			return x;
+			return 1;
+		case 1:
+			return 2;
+		case 0:
+			return 4;
 	}
-	return -1;
+	return 0;
 }
 
 /*
