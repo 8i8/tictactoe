@@ -170,7 +170,6 @@ int updateGame(int player)
                 if (DEBUG) state = status;
 		writeMovesToBoard(*board);
 	} else if (player == RESET) {
-		clearStatusArrays();
 		resetBoard();
 	}
 
@@ -231,8 +230,11 @@ int keepScore(int player, int inc)
  */
 void resetBoard()
 {
-	for (int i = 0; i < MATRIX; i++)
-		*(*board+i) = 0;
+	for (int i = 0; i < MATRIX; i++) {
+		*(*board+i) = EMPTY;
+                *(*rowState+i) = EMPTY;
+                *(*rowState+MATRIX+i) = EMPTY;
+        }
 	writeMovesToBoard(*board);
 
 	if (myRandom)
@@ -698,22 +700,11 @@ int checkStaleMate()
 }
 
 /*
- * Erases the arrays which store each players game status; Called
- * between games.
- */
-void clearStatusArrays()
-{
-	for (int i = 0; i < 2*M_SQRT+3; i++) {
-		*(*rowState+i) = 0;
-	}
-}
-
-/*
  * Fills the status arrays which are then in turn used to calculate the
  * AI's next move, first scanning the status of each horizontal row,
  * then the vertical column and finally the two diagonals.
  */
-int updateStateOfPlay(int player)
+int updateRowStates(int player)
 {
 	int state;
         int opponent;
