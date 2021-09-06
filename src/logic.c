@@ -68,6 +68,11 @@ static int currentStateOfPlay[2][9];
 static int score[2];
 
 /*
+ * The number of moves made.
+ */
+static int movesMade;
+
+/*
  * winingLine is the line that is to be played.
  */
 static int winingLine;
@@ -174,17 +179,16 @@ void printDebugMoves()
  */
 int keepCount(int option)
 {
-	static int movesMade = 0;
-
-	if (option == RESET) {
+        switch (option) {
+        case RESET:
 		movesMade = 0;
 		return 0;
-	} else if (option == PLAYER1) {
+        case AUGMENT:
 		movesMade++;
-		return 0;
-	} else if (option == VALUE) {
 		return movesMade;
-	}
+        case VALUE:
+		return movesMade;
+        }
 	return -1;
 }
 
