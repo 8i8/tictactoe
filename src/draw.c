@@ -50,8 +50,8 @@ void ticTacToe()
 }
 
 /*
- * For those of you with high high-definition wide screen TVs, here it is, the
- * big screen ...
+ * For those of you with high high-definition wide screen TVs, here it
+ * is, the big screen ...
  */
 static int bigScreen[19][80] =
 {//           0    1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23   24   25   26   27   28   29   30   31   32   33   34   35   36   37   38   39    40    41   42   43   44   45    46   47   48   49   50    51   52   53   54   55    56   57   58   59   60    61   62   63   64   65    66   67   68   69   70    71   72   73   74   75    76   77   78   79
@@ -117,14 +117,15 @@ static int glyphBlank[4][7] =
 };
 
 /*
- * Translates the stored moves recorded in the moves array in the file logic.c,
- * into the values displayed on screen in both the grid arrays, found above.
+ * Translates the stored moves recorded in the moves array in the file
+ * logic.c, into the values displayed on screen in both the grid arrays,
+ * found above.
  */
 void writeMovesToBoard(int *moves)
 {
 	/*
-	 * Map the 3*3 grid into the corresponding display, no fancy math here
-	 * just plain hard coded coordinates.
+         * Map the 3*3 grid into the corresponding display, no fancy
+         * math here just plain hard coded coordinates.
 	 */
 	int map1[9] = { 16, 20, 24, 42, 46, 50, 68, 72, 76 };
 	int map2[9] = { 86, 97,108, 566, 577, 588, 1046, 1057, 1068 };
@@ -405,7 +406,8 @@ void redrawGrid(int line)
 }
 
 /*
- * As its name suggests, this function clears the screen between player moves.
+ * As its name suggests, this function clears the screen between player
+ * moves.
  */
 int clearScreen()
 {
@@ -431,18 +433,19 @@ void sysOutMenu()
 }
 
 /*
- * The wordy part; This function sends all of the programs text phrases out
- * into the world, well to the screen at least, and believe it or not, just at
- * the appropriate moment. Be warned, at times creating the illusion of an
- * opponent, when there is really no one there. That is, other than the poor
- * NSA operative, who has had the misfortune of being assigned to your sad
- * deluded arse. Clever stuff this programming thingy; Could get your self in
- * to hot water with it I am sure; It really is that civilised.
+ * The wordy part; This function sends all of the programs text phrases
+ * out into the world, well to the screen at least, and believe it or
+ * not, just at the appropriate moment. Be warned, at times creating the
+ * illusion of an opponent, when there is really no one there. That is,
+ * other than the poor NSA operative, who has had the misfortune of
+ * being assigned to your sad deluded arse. Clever stuff this
+ * programming thingy; Could get your self in to hot water with it I am
+ * sure; It really is that civilised.
  */
 void sysOut(int write, int player) {
 /*
- * If player is > 0 then -1; Corrects the value of 'player' for use in the
- * printf statement, that is, when the output is player dependant.
+ * If player is > 0 then -1; Corrects the value of 'player' for use in
+ * the printf statement, that is, when the output is player dependant.
  */
 	if (player) player = player - 1;
 

@@ -79,8 +79,8 @@ static int level;
 static int myRandom;
 
 /*
- * keepCount is used to inform the computer how many moves remain, this function
- * has several uses, each defined by the integer value entered.
+ * keepCount is used to inform the computer how many moves remain, this
+ * function has several uses, each defined by the integer value entered.
  *
  * 0 -> return count
  * 1 -> count
@@ -125,8 +125,8 @@ int keepScore(int player, int inc)
 }
 
 /*
- * Resets the moves array to zero and then calls the function that writes the
- * new status quo to the grid.
+ * Resets the moves array to zero and then calls the function that
+ * writes the new status quo to the grid.
  */
 void resetBoard()
 {
@@ -159,8 +159,8 @@ int setLevel(int newLevel)
 }
 
 /*
- * Transfers the command from main.c, to draw the winning line, here it simply
- * picks up the line reference.
+ * Transfers the command from main.c, to draw the winning line, here it
+ * simply picks up the line reference.
  */
 void winningLine()
 {
@@ -168,8 +168,9 @@ void winningLine()
 }
 
 /*
- * Translates the char values entered by the user into the integer values that
- * correspond to them, and then writes those values to the moves array.
+ * Translates the char values entered by the user into the integer
+ * values that correspond to them, and then writes those values to the
+ * moves array.
  */
 int traslateCharForMove(int x, int y, int player)
 {
@@ -197,8 +198,8 @@ int traslateCharForMove(int x, int y, int player)
 }
 
 /*
- * ACME debugging tool for ticTacToe. Is this perhaps the embryo of a unit test?
- * See the header file, to activate -> DEBUG 1
+ * ACME debugging tool for ticTacToe. Is this perhaps the embryo of a
+ * unit test?  See the header file, to activate -> DEBUG 1
  */
 void printDebugMoves()
 {
@@ -260,8 +261,8 @@ void printDebugMoves()
 }
 
 /*
- * updateGame refreshes the graphical display, the int entered represents the
- * player else a reset.
+ * updateGame refreshes the graphical display, the int entered
+ * represents the player else a reset.
  */
 int updateGame(int player)
 {
@@ -282,10 +283,10 @@ int updateGame(int player)
 }
 
 /*
- * Ask player to input either heads or tails, an ancient form of divination
- * used by tribes that depend upon counting tokens as their major deities.
- * This rite predicts the nature of the act that follow in an uncannily precise
- * manor.
+ * Ask player to input either heads or tails, an ancient form of
+ * divination used by tribes that depend upon counting tokens as their
+ * major deities.  This rite predicts the nature of the act that follow
+ * in an uncannily precise manor.
  */
 int headsOrTails()
 {
@@ -309,8 +310,8 @@ int headsOrTails()
 }
 
 /*
- * Returns a n / n result, a virtual coin toss if you will humour me that,
- * about as random as a dice in space ...
+ * Returns a n / n result, a virtual coin toss if you will humour me
+ * that, about as random as a dice in space ...
  */
 int coinToss(int howManySides)
 {
@@ -403,9 +404,9 @@ int yourMove(int player)
 }
 
 /*
- * The twisted logic of my first ever AI, call me 'Frankenstein' if you will
- * but I shall have the last laugh yet. [Evil laughter ensues, scene fades to
- * black]
+ * The twisted logic of my first ever AI, call me 'Frankenstein' if you
+ * will but I shall have the last laugh yet. [Evil laughter ensues,
+ * scene fades to black]
  */
 int computerMove(int player)
 {
@@ -459,9 +460,9 @@ int computerMove(int player)
 }
 
 /*
- * A totally random move using no logic other than, how many spaces remain
- * after n moves, the square is chosen on a 1..n random basis where n
- * is the number of empty squares remaining.
+ * A totally random move using no logic other than, how many spaces
+ * remain after n moves, the square is chosen on a 1..n random basis
+ * where n is the number of empty squares remaining.
  */
 int randomMove(int player)
 {
@@ -506,12 +507,13 @@ int randomMove(int player)
 }
 
 /*
- * For now this is the best possible move for the computer intelligence, I am
- * aware that there is another 'to win' condition that requires programming.
- * For now it is sufficient, I will add this at a later date.
+ * For now this is the best possible move for the computer intelligence,
+ * I am aware that there is another 'to win' condition that requires
+ * programming.  For now it is sufficient, I will add this at a later
+ * date.
  *
- * TODO add knowledge of the double winning move trap, to be chose if the
- * occasion arises.
+ * TODO add knowledge of the double winning move trap, to be chose if
+ * the occasion arises.
  */
 int bestPossibleMove(int player)
 {
@@ -521,14 +523,14 @@ int bestPossibleMove(int player)
 	int count;
 
 	/*
-	 * Resolve the player id's so as to find the corresponding index for the
-	 * player status array.
+         * Resolve the player id's so as to find the corresponding index
+         * for the player status array.
 	 */
 	opponent = (player + 1) % 2;
 
 	/*
-	 * If the center square is empty and there is no winning move, move
-	 * there.
+         * If the center square is empty and there is no winning move,
+         * move there.
 	 */
 	if (moves[1][1] == 2 && currentStateOfPlay[player][0] != 3) {
 		moves[1][1] = player;
@@ -538,9 +540,9 @@ int bestPossibleMove(int player)
 	/*
 	 * If there is a winning move, take it.
 	 *
-	 * 2*M_SQRT+2 is the number of columns and rows plus the two diagonals.
-	 * The loop starts at one due to the position being used to store the
-	 * status.
+         * 2*M_SQRT+2 is the number of columns and rows plus the two
+         * diagonals.  The loop starts at one due to the position being
+         * used to store the status.
 	 */
 	if (currentStateOfPlay[player][0] == 3) {
 		for (int i = 1; i <= 2*M_SQRT+2; i++) {
@@ -567,22 +569,23 @@ int bestPossibleMove(int player)
 
 	// Evaluate next best moves.
 	count = 0;
-	// Fill the nextMoves grid with the available best moves of each player.
+        // Fill the nextMoves grid with the available best moves of each
+        // player.
 	if (currentStateOfPlay[player][0] == 2) {
 		for (int i = 1; i <= 2*M_SQRT+2; i++) {
 			value = currentStateOfPlay[player][i];
 			if (value == 1 || value == 2 || value == 4 ) {
 				/*
-				 * The translate status in this case, writes to
-				 * the nextMoves grid.
+                                 * The translate status in this case,
+                                 * writes to the nextMoves grid.
 				 */
 				calculateNextMove(value, i);
 			}
 			value = currentStateOfPlay[opponent][i];
 			if (value == 1 || value == 2 || value == 4 ) {
 				/*
-				 * The translate status in this case, writes to
-				 * the nextMoves grid.
+                                 * The translate status in this case,
+                                 * writes to the nextMoves grid.
 				 */
 				calculateNextMove(value, i);
 			}
@@ -591,9 +594,9 @@ int bestPossibleMove(int player)
 			updateGame(player);
 
 		/*
-		 * Count the number of available places, that are shared
-		 * between the two, your move will also block and opponents
-		 * move.
+                 * Count the number of available places, that are shared
+                 * between the two, your move will also block and
+                 * opponents move.
 		 */
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
@@ -627,8 +630,8 @@ int bestPossibleMove(int player)
 		}
 
 		/*
-		 * So there were no shared choices, do the same for your
-		 *  own best possible moves.
+                 * So there were no shared choices, do the same for your
+                 * own best possible moves.
 		 * First count them ...
 		 */
 		count = 0;
@@ -689,8 +692,8 @@ int checkStaleMate()
 }
 
 /*
- * Erases the arrays which store each players game status; Called between
- * games.
+ * Erases the arrays which store each players game status; Called
+ * between games.
  */
 void clearStatusArrays()
 {
@@ -700,9 +703,9 @@ void clearStatusArrays()
 }
 
 /*
- * Fills the status arrays which are then in turn used to calculate the AI's
- * next move, first scanning the status of each horizontal row, then the
- * vertical column and finally the two diagonals.
+ * Fills the status arrays which are then in turn used to calculate the
+ * AI's next move, first scanning the status of each horizontal row,
+ * then the vertical column and finally the two diagonals.
  */
 int updateStateOfPlay(int player)
 {
@@ -841,10 +844,10 @@ int setBitForPlayerInSquare(int mask)
 }
 
 /*
- * The final count of each rows logic is given here, this value allows the
- * computer to understand the state of each row and is used in the computation
- * of the computers next move, when the difficulty is set to the higher or the
- * intermediate value.
+ * The final count of each rows logic is given here, this value allows
+ * the computer to understand the state of each row and is used in the
+ * computation of the computers next move, when the difficulty is set to
+ * the higher or the intermediate value.
  */
 int getStatusValue(int x)
 {

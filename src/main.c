@@ -38,10 +38,10 @@
 int main(void)
 {
 /*
- * Value 1 represents the initial condition, any subsequent calls to play() can
- * be made with other values, to enable the storing of variables between games
- * and also to permit the launching of different commands upon the games first
- * launch.
+ * Value 1 represents the initial condition, any subsequent calls to
+ * play() can be made with other values, to enable the storing of
+ * variables between games and also to permit the launching of different
+ * commands upon the games first launch.
  */
 	menu();
 	play(1);
@@ -67,8 +67,8 @@ void menu()
 /*
  * Oh dear, what a mess this function turned into, hmm ... One of those
  * 'things to do' that you keep ignoring, the tangled mess that is the
- * beginning of this program, bears witness to code which has yet to come; that
- * is my excuse, if you are buying.
+ * beginning of this program, bears witness to code which has yet to
+ * come; that is my excuse, if you are buying.
  */
 void play(int firstRun)
 {
