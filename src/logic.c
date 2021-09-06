@@ -59,7 +59,7 @@ static int board[3][3];
  * indices 8, 9 the two diagonals.
  *
  */
-static int currentStateOfPlay[2][9];
+static int rowState[2][9];
 
 /*
  * The scorboard.
@@ -95,8 +95,8 @@ void printDebugMoves()
 		puts("Random mode off.");
 	printf("Level= %d\n", level);
 	printf("Moves made = %d\n", keepCount(VALUE));
-	printf("Player 1 status -> %d\n", currentStateOfPlay[PLAYER1][0]);
-	printf("Player 2 status -> %d\n", currentStateOfPlay[PLAYER2][0]);
+	printf("Player 1 status -> %d\n", rowState[PLAYER1][0]);
+	printf("Player 2 status -> %d\n", rowState[PLAYER2][0]);
 	printf("Player 1 score -> %d\n", score[PLAYER1]);
 	printf("Player 2 score -> %d\n", score[PLAYER2]);
 	/* The four matrices */
@@ -128,26 +128,26 @@ void printDebugMoves()
 
         /* state of play */
         printf("p1{%d}(%d,%d,%d}{%d}{%d,%d,%d}{%d}\n", 
-                        currentStateOfPlay[PLAYER1][0],
-                        currentStateOfPlay[PLAYER1][1],
-                        currentStateOfPlay[PLAYER1][2],
-                        currentStateOfPlay[PLAYER1][3],
-                        currentStateOfPlay[PLAYER1][4],
-                        currentStateOfPlay[PLAYER1][5],
-                        currentStateOfPlay[PLAYER1][6],
-                        currentStateOfPlay[PLAYER1][7],
-                        currentStateOfPlay[PLAYER1][8]);
+                        rowState[PLAYER1][0],
+                        rowState[PLAYER1][1],
+                        rowState[PLAYER1][2],
+                        rowState[PLAYER1][3],
+                        rowState[PLAYER1][4],
+                        rowState[PLAYER1][5],
+                        rowState[PLAYER1][6],
+                        rowState[PLAYER1][7],
+                        rowState[PLAYER1][8]);
 
         printf("p2{%d}(%d,%d,%d}{%d}{%d,%d,%d}{%d}\n", 
-                        currentStateOfPlay[PLAYER2][0],
-                        currentStateOfPlay[PLAYER2][1],
-                        currentStateOfPlay[PLAYER2][2],
-                        currentStateOfPlay[PLAYER2][3],
-                        currentStateOfPlay[PLAYER2][4],
-                        currentStateOfPlay[PLAYER2][5],
-                        currentStateOfPlay[PLAYER2][6],
-                        currentStateOfPlay[PLAYER2][7],
-                        currentStateOfPlay[PLAYER2][8]);
+                        rowState[PLAYER2][0],
+                        rowState[PLAYER2][1],
+                        rowState[PLAYER2][2],
+                        rowState[PLAYER2][3],
+                        rowState[PLAYER2][4],
+                        rowState[PLAYER2][5],
+                        rowState[PLAYER2][6],
+                        rowState[PLAYER2][7],
+                        rowState[PLAYER2][8]);
 	puts("\n");
 }
 
@@ -364,7 +364,7 @@ int yourMove(int player)
 	// Ok play.
 	int status;
 	status = updateGame(player);
-	currentStateOfPlay[player-1][0] = status;
+	rowState[player-1][0] = status;
 	sysOut(7, player);
 
 	int x = 0;
@@ -408,7 +408,7 @@ int yourMove(int player)
 	keepCount(AUGMENT);
 	
 	status = updateGame(player);
-	currentStateOfPlay[player-1][0] = status;
+	rowState[player-1][0] = status;
 	return status;
 }
 
@@ -427,7 +427,7 @@ int computerMove(int player)
 	int status;
 	int coin;
 	status = updateGame(player);
-	currentStateOfPlay[player-1][0] = status;
+	rowState[player-1][0] = status;
 	sysOut(7, player);
 	sleep(2);
 
@@ -465,7 +465,7 @@ int computerMove(int player)
 
         keepCount(AUGMENT);
 	status = updateGame(player);
-	currentStateOfPlay[player-1][0] = status;
+	rowState[player-1][0] = status;
 	return status;
 }
 
@@ -541,7 +541,7 @@ int bestPossibleMove(int player)
          * If the center square is empty and there is no winning move,
          * move there.
 	 */
-	if (board[1][1] == EMPTY && currentStateOfPlay[player-1][0] != 3) {
+	if (board[1][1] == EMPTY && rowState[player-1][0] != 3) {
 		board[1][1] = player;
 		return 0;
 	}
@@ -549,9 +549,9 @@ int bestPossibleMove(int player)
 	/*
 	 * If there is a winning move, take it.
 	 */
-	if (currentStateOfPlay[player-1][0] == 3) {
+	if (rowState[player-1][0] == 3) {
 		for (int i = 1; i <= 2*M_SQRT+2; i++) {
-			value = currentStateOfPlay[player-1][i];
+			value = rowState[player-1][i];
 			if (value == 3 || value == 5 || value == 6 ) {
 				calculateNextMove(value, i, player);
 				return 4;
@@ -562,9 +562,9 @@ int bestPossibleMove(int player)
         /*
 	 * If opponent has a winning move, block them.
          */
-	if (currentStateOfPlay[opponent-1][0] == 3) {
+	if (rowState[opponent-1][0] == 3) {
 		for (int i = 1; i <= 2*M_SQRT+2; i++) {
-			value = currentStateOfPlay[opponent-1][i];
+			value = rowState[opponent-1][i];
 			if (value == 3 || value == 5 || value == 6 ) {
 				calculateNextMove(value, i, opponent);
 				return 0;
@@ -578,13 +578,13 @@ int bestPossibleMove(int player)
 	count = 0;
         // Fill the nextMoves grid with the available best moves of each
         // player.
-	if (currentStateOfPlay[player-1][0] == 2) {
+	if (rowState[player-1][0] == 2) {
 		for (int i = 1; i <= 2*M_SQRT+2; i++) {
-			value = currentStateOfPlay[player-1][i];
+			value = rowState[player-1][i];
 			if (value == 1 || value == 2 || value == 4 ) {
 				calculateNextMove(value, i, player);
 			}
-			value = currentStateOfPlay[opponent-1][i];
+			value = rowState[opponent-1][i];
 			if (value == 1 || value == 2 || value == 4 ) {
 				calculateNextMove(value, i, opponent);
 			}
@@ -697,7 +697,7 @@ int checkStaleMate()
 void clearStatusArrays()
 {
 	for (int i = 0; i < 2*M_SQRT+3; i++) {
-		*(*currentStateOfPlay+i) = 0;
+		*(*rowState+i) = 0;
 	}
 }
 
@@ -738,7 +738,7 @@ int updateStateOfPlay(int player)
 			}
 		}
                 // Write the first 3 states, into indices 1 to 3.
-		currentStateOfPlay[player-1][i+1] = x;
+		rowState[player-1][i+1] = x;
 		state = getStatusValue(x);
 		if (x == 7) {
                         winingLine = i+1;
@@ -765,7 +765,7 @@ int updateStateOfPlay(int player)
 			}
 		}
                 // carry on from indices 5 to 7 with further states.
-		currentStateOfPlay[player-1][j+5] = x;
+		rowState[player-1][j+5] = x;
 		state = getStatusValue(x);
 		if (x == 7) {
                         winingLine = j+5;
@@ -791,7 +791,7 @@ int updateStateOfPlay(int player)
 		}
 	}
         // Add the first diagonal, at index 4.
-	currentStateOfPlay[player-1][4] = x;
+	rowState[player-1][4] = x;
         state = getStatusValue(x);
 	if (x == 7) {
                 winingLine = 4;
@@ -819,7 +819,7 @@ int updateStateOfPlay(int player)
 		j++;
 	}
         // Add the second diagonal, at index 8.
-	currentStateOfPlay[player-1][8] = x;
+	rowState[player-1][8] = x;
         state = getStatusValue(x);
 	if (x == 7) {
                 winingLine = 8;
