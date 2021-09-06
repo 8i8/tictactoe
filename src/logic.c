@@ -459,6 +459,7 @@ int computerMove(int player)
 		case 5: bestPossibleMove(player);
 			break;
 		default:
+                        printf("error: unknown level in computerMove");
 			break;
 	}
 
@@ -511,6 +512,8 @@ int randomMove(int player)
 			}
 		}
 	}
+        printf("error: randomMove failed to make move keepCount returned %d", movesLeft);
+        exit(2);
 	return 0;
 }
 
