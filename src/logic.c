@@ -48,11 +48,6 @@ int  makeMove(int state, int line, int player);
 #define REQUIRED_TO_WIN 17
 
 /*
- * Moves that will put two pieces on one line.
- */
-static int nextMoves[2][3][3];
-
-/*
  * The game board.
  */
 static int board[3][3];
@@ -70,6 +65,11 @@ static int board[3][3];
  *
  */
 static int rowState[2][9];
+
+/*
+ * Moves that will put two pieces on one line.
+ */
+static int nextMoves[2][3][3];
 
 /*
  * The scorboard.
