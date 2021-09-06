@@ -86,10 +86,10 @@ void play(int firstRun)
                 // Setup.
                 while (firstRun)
                 {
+                        firstRun = 0;
                         updateGame(RESET);
                         keepCount(RESET);
 
-                        firstRun = 0;
                                 choice = headsOrTails();
                         }
                         coin = coinToss(2);
