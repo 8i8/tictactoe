@@ -96,39 +96,60 @@ void printDebugMoves()
 	printf("Player 1 score -> %d\n", score[PLAYER1]);
 	printf("Player 2 score -> %d\n", score[PLAYER2]);
 	/* The four matrices */
-	printf(" p1 state  \t p2 state  \t p1 nextM  \t p2 nextM\n");
+	printf("  p1state p2state p1nextM p2nextM\n");
 	for (int i = 0; i < M_SQRT; i++) {
 		/* Player one */
 		printf(" |");
 		for (int j = 0; j < M_SQRT; j++) {
 			printf("%2d", moves[i][j]);
 		}
-		printf(" |%2d\t", currentStateOfPlay[PLAYER1][i+1]);
 		/* Player two */
 		printf(" |");
 		for (int j = 0; j < M_SQRT; j++) {
 			printf("%2d", moves[i][j]);
 		}
-		printf(" |%2d\t", currentStateOfPlay[PLAYER2][i+1]);
 
 		/* Player one nextMoves*/
 		printf(" |");
 		for (int j = 0; j < M_SQRT; j++) {
 			printf("%2d", nextMoves[PLAYER1][i][j]);
 		}
-		printf(" |\t");
 
 		/* Player two nextMoves */
 		printf(" |");
 		for (int j = 0; j < M_SQRT; j++) {
 			printf("%2d", nextMoves[PLAYER2][i][j]);
 		}
-		printf(" |\t");
+		printf(" |");
 		puts("");
 	}
 
 	/* Beneath the two matrices */
-	printf("  ------   \t  ------   \t  ------   \t  ------\n");
+	printf("  ------- ------- ------- -------\n");
+
+        /* state of play */
+        printf("p1{%d}(%d,%d,%d}{%d}{%d,%d,%d}{%d}\n", 
+                        currentStateOfPlay[PLAYER1][0],
+                        currentStateOfPlay[PLAYER1][1],
+                        currentStateOfPlay[PLAYER1][2],
+                        currentStateOfPlay[PLAYER1][3],
+                        currentStateOfPlay[PLAYER1][4],
+                        currentStateOfPlay[PLAYER1][5],
+                        currentStateOfPlay[PLAYER1][6],
+                        currentStateOfPlay[PLAYER1][7],
+                        currentStateOfPlay[PLAYER1][8]);
+
+        printf("p2{%d}(%d,%d,%d}{%d}{%d,%d,%d}{%d}\n", 
+                        currentStateOfPlay[PLAYER2][0],
+                        currentStateOfPlay[PLAYER2][1],
+                        currentStateOfPlay[PLAYER2][2],
+                        currentStateOfPlay[PLAYER2][3],
+                        currentStateOfPlay[PLAYER2][4],
+                        currentStateOfPlay[PLAYER2][5],
+                        currentStateOfPlay[PLAYER2][6],
+                        currentStateOfPlay[PLAYER2][7],
+                        currentStateOfPlay[PLAYER2][8]);
+
 	/* P1 status array */
 	printf("%d ", currentStateOfPlay[PLAYER1][8]);
 	for (int i = 0; i < 3; i++)
