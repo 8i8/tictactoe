@@ -728,7 +728,7 @@ int updateStateOfPlay(int player)
                         // If the player is here, mark the square.
 			if (board[i][j] == player)
 			{
-				x = setBitForPlayerInSquare(j);
+				x = setBitForPlayerInSquare(j, x);
 			}
                         // if the other player is here, mark them as
                         // present.
@@ -757,7 +757,7 @@ int updateStateOfPlay(int player)
 		{
 			if (board[i][j] == player)
 			{
-				x = setBitForPlayerInSquare(i);
+				x = setBitForPlayerInSquare(j, x);
 			}
 			else if (board[i][j] == opponent)
 			{
@@ -783,7 +783,7 @@ int updateStateOfPlay(int player)
 	{
 		if (board[i][i] == player)
 		{
-			x = setBitForPlayerInSquare(i);
+			x = setBitForPlayerInSquare(i, x);
 		}
 		else if (board[i][j] == opponent)
 		{
@@ -810,7 +810,7 @@ int updateStateOfPlay(int player)
 	{
 		if (board[i][j] == player)
 		{
-			x = setBitForPlayerInSquare(i);
+			x = setBitForPlayerInSquare(i, x);
 		}
 		else if (board[i][j] == opponent)
 		{
@@ -836,7 +836,7 @@ int updateStateOfPlay(int player)
 /*
  * Returns the bit mask required to set the requested bit.
  */
-int setBitForPlayerInSquare(int mask)
+int setBitForPlayerInSquare(int bit, int state)
 {
 	/*
 	 * Use 3 bit binary word used to add the move to the rows state.
@@ -848,14 +848,17 @@ int setBitForPlayerInSquare(int mask)
 	 *   100 -> 4
          *
 	 */
-	switch(mask)
+	switch(bit)
 	{
 		case 2:
-			return 1;
+                        state &= 1;
+			return state;
 		case 1:
-			return 2;
+                        state &= 2;
+			return state;
 		case 0:
-			return 4;
+                        state &= 4;
+			return state;
 	}
 	return 0;
 }
