@@ -211,10 +211,11 @@ void printDebugMoves()
 	printf("Level= %d\n", level);
 	printf("Moves made = %d\n", keepCount(VALUE));
 	printf("Player 1 status -> %d\n", currentStateOfPlay[PLAYER1][0]);
-	printf("Player 2 status -> %d\n\n", currentStateOfPlay[PLAYER2][0]);
+	printf("Player 2 status -> %d\n", currentStateOfPlay[PLAYER2][0]);
 	printf("Player 1 score -> %d\n", score[PLAYER1]);
-	printf("Player 2 score -> %d\n\n", score[PLAYER2]);
+	printf("Player 2 score -> %d\n", score[PLAYER2]);
 	/* The four matrices */
+	printf(" p1 state  \t p2 state  \t p1 nextM  \t p2 nextM\n");
 	for (int i = 0; i < M_SQRT; i++) {
 		/* Player one */
 		printf(" |");
