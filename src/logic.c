@@ -35,7 +35,6 @@
 #define M_SQRT	3
 #define AUGMENT	1
 #define VALUE	2
-#define EMPTY	2
 #define REQUIRED_TO_WIN 17
 
 /*
@@ -262,7 +261,7 @@ int traslateCharForMove(int x, int y, int player)
 		y = 2;
 
 	// If the square is already in use return 0
-	if (board[y][x] == PLAYER1 || board[y][x] == PLAYER2)
+	if (board[y][x] != EMPTY)
 		return 0;
 
         // Place the move on the board.
@@ -501,7 +500,7 @@ int randomMove(int player)
 	for (int i = 0; i < M_SQRT; i++) {
 		for (int j = 0; j < M_SQRT; j++)
 		{
-			if ( (board[i][j] != 0) && (board[i][j] != 1) )
+			if ( board[i][j] == EMPTY )
 			{
 				if (count == choice) {
 					board[i][j] = player;
@@ -541,7 +540,7 @@ int bestPossibleMove(int player)
          * If the center square is empty and there is no winning move,
          * move there.
 	 */
-	if (board[1][1] == 2 && currentStateOfPlay[player-1][0] != 3) {
+	if (board[1][1] == EMPTY && currentStateOfPlay[player-1][0] != 3) {
 		board[1][1] = player;
 		return 0;
 	}
