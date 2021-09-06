@@ -169,7 +169,7 @@ void writeGlyphToGrid(int* glyph, int j)
 /*
  * Keep score of wins aside the board.
  */
-void scoreBarCharts(int score1, int score2)
+void drawScore(int score1, int score2)
 {
 	int bar1 = 1482;
 	int bar2 = bar1 + 6;

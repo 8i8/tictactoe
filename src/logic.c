@@ -97,7 +97,7 @@ int keepScore(int player, int inc)
                 score[player] = 0;
         }
 
-	scoreBarCharts(score[PLAYER1], score[PLAYER2]);
+	drawScore(score[PLAYER1], score[PLAYER2]);
 
         return 0;
 }
@@ -254,7 +254,8 @@ int updateGame(int player)
 		clearStatusArrays();
 		resetMoves();
 	}
-	scoreBarCharts(score[0], score[1]);
+
+	drawScore(score[PLAYER1], score[PLAYER2]);
 	drawGrid();
 
 	return status;
