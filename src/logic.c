@@ -134,26 +134,26 @@ void printDebugMoves()
 
         /* state of play */
         printf("p1{%d}(%d,%d,%d}{%d}{%d,%d,%d}{%d}\n", 
-                        rowState[PLAYER1][0],
-                        rowState[PLAYER1][1],
-                        rowState[PLAYER1][2],
-                        rowState[PLAYER1][3],
-                        rowState[PLAYER1][4],
-                        rowState[PLAYER1][5],
-                        rowState[PLAYER1][6],
-                        rowState[PLAYER1][7],
-                        rowState[PLAYER1][8]);
+                        rowState[PLAYER1-1][0],
+                        rowState[PLAYER1-1][1],
+                        rowState[PLAYER1-1][2],
+                        rowState[PLAYER1-1][3],
+                        rowState[PLAYER1-1][4],
+                        rowState[PLAYER1-1][5],
+                        rowState[PLAYER1-1][6],
+                        rowState[PLAYER1-1][7],
+                        rowState[PLAYER1-1][8]);
 
         printf("p2{%d}(%d,%d,%d}{%d}{%d,%d,%d}{%d}\n", 
-                        rowState[PLAYER2][0],
-                        rowState[PLAYER2][1],
-                        rowState[PLAYER2][2],
-                        rowState[PLAYER2][3],
-                        rowState[PLAYER2][4],
-                        rowState[PLAYER2][5],
-                        rowState[PLAYER2][6],
-                        rowState[PLAYER2][7],
-                        rowState[PLAYER2][8]);
+                        rowState[PLAYER2-1][0],
+                        rowState[PLAYER2-1][1],
+                        rowState[PLAYER2-1][2],
+                        rowState[PLAYER2-1][3],
+                        rowState[PLAYER2-1][4],
+                        rowState[PLAYER2-1][5],
+                        rowState[PLAYER2-1][6],
+                        rowState[PLAYER2-1][7],
+                        rowState[PLAYER2-1][8]);
 	puts("\n");
 }
 
