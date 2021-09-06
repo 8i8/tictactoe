@@ -961,140 +961,140 @@ int makeMove(int rowState, int line, int player)
 			                                                        // 0X0
 										// 00O
 			/* */
-			else if (line == 5) nextMoves[player-1][1][0] = player;   // O00 0O0 00O
-			else if (line == 6) nextMoves[player-1][1][1] = player;   // X00 0X0 00X
-			else if (line == 7) nextMoves[player-1][1][2] = player;   // O00 0O0 00O
+			else if (line == 5) nextMoves[player-1][1][0] = player; // O00 0O0 00O
+			else if (line == 6) nextMoves[player-1][1][1] = player; // X00 0X0 00X
+			else if (line == 7) nextMoves[player-1][1][2] = player; // O00 0O0 00O
 			/* */
-			else if (line == 8) nextMoves[player-1][1][1] = player;   // 00O
-                                                                                  // 0X0
-			                                                          // O00
+			else if (line == 8) nextMoves[player-1][1][1] = player; // 00O
+                                                                                // 0X0
+			                                                        // O00
 			break;
 		case 2:
 			// Good move
 			// 010 -> 1 XOO
-			if 	(line == 1) nextMoves[player-1][0][0] = player;   // XOO 000 000
-			else if (line == 2) nextMoves[player-1][1][0] = player;   // 000 XOO 000
-			else if (line == 3) nextMoves[player-1][2][0] = player;   // 000 000 XOO
+			if 	(line == 1) nextMoves[player-1][0][0] = player; // XOO 000 000
+			else if (line == 2) nextMoves[player-1][1][0] = player; // 000 XOO 000
+			else if (line == 3) nextMoves[player-1][2][0] = player; // 000 000 XOO
 			/* */
-			else if (line == 4) nextMoves[player-1][0][0] = player;   // X00
-							        		  // 0O0
-							        		  // 00O
+			else if (line == 4) nextMoves[player-1][0][0] = player; // X00
+							        		// 0O0
+							        		// 00O
 			/* */
-			else if (line == 5) nextMoves[player-1][0][0] = player;   // X00 0X0 00X
-			else if (line == 6) nextMoves[player-1][0][1] = player;   // O00 0O0 00O
-			else if (line == 7) nextMoves[player-1][0][2] = player;   // O00 0O0 00O
+			else if (line == 5) nextMoves[player-1][0][0] = player; // X00 0X0 00X
+			else if (line == 6) nextMoves[player-1][0][1] = player; // O00 0O0 00O
+			else if (line == 7) nextMoves[player-1][0][2] = player; // O00 0O0 00O
 			/* */
-			else if (line == 8) nextMoves[player-1][0][2] = player;   // 00X
-							        		  // 0O0
-							        		  // O00
+			else if (line == 8) nextMoves[player-1][0][2] = player; // 00X
+							        		// 0O0
+							        		// O00
 			// 010 -> 2 OOX
-			if 	(line == 1) nextMoves[player-1][0][2] = player;   // OOX 000 000
-			else if (line == 2) nextMoves[player-1][1][2] = player;   // 000 OOX 000
-			else if (line == 3) nextMoves[player-1][2][2] = player;   // 000 000 OOX
+			if 	(line == 1) nextMoves[player-1][0][2] = player; // OOX 000 000
+			else if (line == 2) nextMoves[player-1][1][2] = player; // 000 OOX 000
+			else if (line == 3) nextMoves[player-1][2][2] = player; // 000 000 OOX
 			/* */
-			else if (line == 4) nextMoves[player-1][2][2] = player;   // O00
-                                                                                  // 0O0
-                                                                                  // 00X
+			else if (line == 4) nextMoves[player-1][2][2] = player; // O00
+                                                                                // 0O0
+                                                                                // 00X
 			/* */
-			else if (line == 5) nextMoves[player-1][2][0] = player;   // O00 0O0 00O
-			else if (line == 6) nextMoves[player-1][2][1] = player;   // O00 0O0 00O
-			else if (line == 7) nextMoves[player-1][2][2] = player;   // X00 0X0 00X
+			else if (line == 5) nextMoves[player-1][2][0] = player; // O00 0O0 00O
+			else if (line == 6) nextMoves[player-1][2][1] = player; // O00 0O0 00O
+			else if (line == 7) nextMoves[player-1][2][2] = player; // X00 0X0 00X
 			/* */
-			else if (line == 8) nextMoves[player-1][2][0] = player;   // 00O
-                                                                                  // 0O0
-			                                                          // X00
+			else if (line == 8) nextMoves[player-1][2][0] = player; // 00O
+                                                                                // 0O0
+			                                                        // X00
 			break;
 		case 3:
 			// Move to win
 			// 011 -> 0 X00
-			if 	(line == 1) board[0][0] = player; 		  // XOO 000 000
-			else if (line == 2) board[1][0] = player;                 // 000 XOO 000
-			else if (line == 3) board[2][0] = player;                 // 000 000 XOO
+			if 	(line == 1) board[0][0] = player; 		// XOO 000 000
+			else if (line == 2) board[1][0] = player;               // 000 XOO 000
+			else if (line == 3) board[2][0] = player;               // 000 000 XOO
 			/* */
-			else if (line == 4) board[0][0] = player;                 // X00
-                                                                                  // 0O0
-                                                                                  // 00O
+			else if (line == 4) board[0][0] = player;               // X00
+                                                                                // 0O0
+                                                                                // 00O
 			/* */
-			else if (line == 5) board[0][0] = player;                 // X00 0X0 00X
-			else if (line == 6) board[0][1] = player;                 // O00 0O0 00O
-			else if (line == 7) board[0][2] = player;                 // O00 0O0 00O
+			else if (line == 5) board[0][0] = player;               // X00 0X0 00X
+			else if (line == 6) board[0][1] = player;               // O00 0O0 00O
+			else if (line == 7) board[0][2] = player;               // O00 0O0 00O
 			/* */
-			else if (line == 8) board[0][2] = player;                 // 00X
-                                                                                  // 0O0
-                                                                                  // O00
+			else if (line == 8) board[0][2] = player;               // 00X
+                                                                                // 0O0
+                                                                                // O00
 			break;
 		case 4:
 			// Good move
 			// 100 -> 1 OXO
-			if 	(line == 1) nextMoves[player-1][0][1] = player;   // OXO 000 000
-			else if (line == 2) nextMoves[player-1][1][1] = player;   // 000 OXO 000
-			else if (line == 3) nextMoves[player-1][2][1] = player;   // 000 000 OXO
+			if 	(line == 1) nextMoves[player-1][0][1] = player; // OXO 000 000
+			else if (line == 2) nextMoves[player-1][1][1] = player; // 000 OXO 000
+			else if (line == 3) nextMoves[player-1][2][1] = player; // 000 000 OXO
 			/* */
-			else if (line == 4) nextMoves[player-1][1][1] = player;   // O00
-                                                                                  // 0X0
-                                                                                  // 00O
+			else if (line == 4) nextMoves[player-1][1][1] = player; // O00
+                                                                                // 0X0
+                                                                                // 00O
 			/* */
-			else if (line == 5) nextMoves[player-1][1][0] = player;   // O00 0O0 00O
-			else if (line == 6) nextMoves[player-1][1][1] = player;   // X00 0X0 00X
-			else if (line == 7) nextMoves[player-1][1][2] = player;   // O00 0O0 00O
+			else if (line == 5) nextMoves[player-1][1][0] = player; // O00 0O0 00O
+			else if (line == 6) nextMoves[player-1][1][1] = player; // X00 0X0 00X
+			else if (line == 7) nextMoves[player-1][1][2] = player; // O00 0O0 00O
 			/* */
-			else if (line == 8) nextMoves[player-1][1][1] = player;   // 00O
-                                                                                  // 0X0
-                                                                                  // O00
+			else if (line == 8) nextMoves[player-1][1][1] = player; // 00O
+                                                                                // 0X0
+                                                                                // O00
 			// 100 -> 2 OOX
-			if 	(line == 1) nextMoves[player-1][0][2] = player;   // OOX 000 000
-			else if (line == 2) nextMoves[player-1][1][2] = player;   // 000 OOX 000
-			else if (line == 3) nextMoves[player-1][2][2] = player;   // 000 000 OOX
+			if 	(line == 1) nextMoves[player-1][0][2] = player; // OOX 000 000
+			else if (line == 2) nextMoves[player-1][1][2] = player; // 000 OOX 000
+			else if (line == 3) nextMoves[player-1][2][2] = player; // 000 000 OOX
 
-                                                                                  // O00
-			/* */                                                     // 0O0
-			else if (line == 4) nextMoves[player-1][2][2] = player;   // 00X
+                                                                                // O00
+			/* */                                                   // 0O0
+			else if (line == 4) nextMoves[player-1][2][2] = player; // 00X
 			/* */
-			else if (line == 5) nextMoves[player-1][2][0] = player;   // O00 0O0 00O
-			else if (line == 6) nextMoves[player-1][2][1] = player;   // O00 0O0 00O
-			else if (line == 7) nextMoves[player-1][2][2] = player;   // X00 0X0 00X
+			else if (line == 5) nextMoves[player-1][2][0] = player; // O00 0O0 00O
+			else if (line == 6) nextMoves[player-1][2][1] = player; // O00 0O0 00O
+			else if (line == 7) nextMoves[player-1][2][2] = player; // X00 0X0 00X
 			/* */
-			else if (line == 8) nextMoves[player-1][2][0] = player;   // 00O
-                                                                                  // 0O0
-			                                                          // X00
+			else if (line == 8) nextMoves[player-1][2][0] = player; // 00O
+                                                                                // 0O0
+			                                                        // X00
 			break;
 		case 5:
 			// Move to win
 			// 101 -> 0 OXO
-			if 	(line == 1) board[0][1] = player; 		  // OXO 000 000
-			else if (line == 2) board[1][1] = player;                 // 000 OXO 000
-			else if (line == 3) board[2][1] = player;                 // 000 000 OXO
+			if 	(line == 1) board[0][1] = player; 		// OXO 000 000
+			else if (line == 2) board[1][1] = player;               // 000 OXO 000
+			else if (line == 3) board[2][1] = player;               // 000 000 OXO
 			/* */
-			else if (line == 4) board[1][1] = player;                 // O00
-                                                                                  // 0X0
-                                                                                  // 00O
+			else if (line == 4) board[1][1] = player;               // O00
+                                                                                // 0X0
+                                                                                // 00O
 			/* */
-			else if (line == 5) board[1][0] = player;                 // O00 0O0 00O
-			else if (line == 6) board[1][1] = player;                 // X00 0X0 00X
-			else if (line == 7) board[1][2] = player;                 // O00 0O0 00O
+			else if (line == 5) board[1][0] = player;               // O00 0O0 00O
+			else if (line == 6) board[1][1] = player;               // X00 0X0 00X
+			else if (line == 7) board[1][2] = player;               // O00 0O0 00O
 			/* */
-			else if (line == 8) board[1][1] = player;                 // 00O
-                                                                                  // 0X0
-                                                                                  // O00
+			else if (line == 8) board[1][1] = player;               // 00O
+                                                                                // 0X0
+                                                                                // O00
 			break;
 		case 6:
 			// Move to win
 			// 110 -> 0 OOX
-			if 	(line == 1) board[0][2] = player;		  // OOX 000 000
-			else if (line == 2) board[1][2] = player;                 // 000 OOX 000
-			else if (line == 3) board[2][2] = player;                 // 000 000 OOX
+			if 	(line == 1) board[0][2] = player;		// OOX 000 000
+			else if (line == 2) board[1][2] = player;               // 000 OOX 000
+			else if (line == 3) board[2][2] = player;               // 000 000 OOX
 			/* */
-			else if (line == 4) board[2][2] = player;                 // O00
-                                                                                  // 0O0
-                                                                                  // 00X
+			else if (line == 4) board[2][2] = player;               // O00
+                                                                                // 0O0
+                                                                                // 00X
 			/* */
-			else if (line == 5) board[2][0] = player;                 // O00 0O0 00O
-			else if (line == 6) board[2][1] = player;                 // O00 0O0 00O
-			else if (line == 7) board[2][2] = player;                 // X00 0X0 00X
+			else if (line == 5) board[2][0] = player;               // O00 0O0 00O
+			else if (line == 6) board[2][1] = player;               // O00 0O0 00O
+			else if (line == 7) board[2][2] = player;               // X00 0X0 00X
 			/* */
-			else if (line == 8) board[2][0] = player;                 // 00O
-                                                                                  // 0O0
-                                                                                  // X00
+			else if (line == 8) board[2][0] = player;               // 00O
+                                                                                // 0O0
+                                                                                // X00
 			break;
 		case 7:
 			// Player wins!
