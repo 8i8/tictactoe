@@ -33,8 +33,8 @@
 /* The size of the playing board, the 'hash'. */
 #define MATRIX	9
 #define M_SQRT	3
-#define VALUE	2
 #define AUGMENT	1
+#define VALUE	2
 #define EMPTY	2
 #define REQUIRED_TO_WIN 17
 
@@ -221,7 +221,7 @@ int keepScore(int player, int inc)
 void resetBoard()
 {
 	for (int i = 0; i < MATRIX; i++)
-		*(*board+i) = 2;
+		*(*board+i) = 0;
 	writeMovesToBoard(*board);
 
 	if (myRandom)

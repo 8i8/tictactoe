@@ -28,10 +28,10 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define DEBUG			0
-#define PLAYER1			0
-#define PLAYER2			1
-#define RESET 			2
+#define DEBUG			1
+#define PLAYER1			1
+#define PLAYER2			2
+#define RESET 			0
 #define COIN_UN_SPUN	3
 #define PLAYER1_WIN		4
 #define STALE_MATE		5
