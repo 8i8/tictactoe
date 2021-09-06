@@ -33,20 +33,20 @@
 /* The size of the playing board, the 'hash'. */
 #define MATRIX	9
 #define M_SQRT	3
-
-#define NEXT	2
-#define TO_WIN	3
-#define EMPTY	0
-
-#define RESET	0
-#define AUGMENT	1
 #define VALUE	2
+#define AUGMENT	1
+#define EMPTY	2
+#define REQUIRED_TO_WIN 17
 
-#define WIN 17
-
-static int moves[3][3];
+/*
+ * Moves that will put two pieces on one line.
+ */
 static int nextMoves[2][3][3];
-static int playerStatus[2][9];
+
+/*
+ * Any move on the bord that will cause a win.
+ */
+static int moves[3][3];
 
 /*
  * The first index, 0 contains the best overall state available to the
@@ -82,13 +82,13 @@ int keepCount(int option)
 {
 	static int movesMade = 0;
 
-	if (option == 0) {
+	if (option == RESET) {
 		movesMade = 0;
 		return 0;
-	} else if (option == 1) {
+	} else if (option == PLAYER1) {
 		movesMade++;
 		return 0;
-	} else if (option == 2) {
+	} else if (option == VALUE) {
 		return movesMade;
 	}
 	return -1;
@@ -100,11 +100,11 @@ int keepCount(int option)
  */
 int keepScore(int player, int inc)
 {
-	if (inc == 0) {
+	if (inc == RESET) {
 		score[player] = 0;
-	} 
+	}
         score[player] += inc;
-        if (score[player] >= WIN) {
+        if (score[player] >= REQUIRED_TO_WIN) {
                 return 1;
         }
         if (score[player] < 0) {
@@ -341,7 +341,7 @@ int yourMove(int player)
 {
 	// If none can move, get out of here.
 	if (checkStaleMate())
-		return 5;
+		return STALE_MATE;
 
 	// Ok play.
 	int status;
@@ -398,12 +398,12 @@ int yourMove(int player)
  * The twisted logic of my first ever AI, call me 'Frankenstein' if you will
  * but I shall have the last laugh yet. [Evil laughter ensues, scene fades to
  * black]
- */ 
+ */
 int computerMove(int player)
 {
 	// If none can move, get out of here.
 	if (checkStaleMate())
-		return 5;
+		return STALE_MATE;
 
 	// Ok play.
 	int status;
@@ -882,6 +882,8 @@ int getStatusValue(int x)
 
 int calculateNextMove(int state, int line)
 {
+        int player1 = PLAYER1 + 1;
+        int player2 = PLAYER2 + 1;
 	/*
 	 * Act upon states 0 through 7
 	 * 0 -> 000

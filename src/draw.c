@@ -131,17 +131,17 @@ void writeMovesToBoard(int *moves)
 
 	for (int i = 0; i < 9; i++) {
 
-		if (*(moves+i) == 1)
+		if (*(moves+i) == PLAYER1)
 		{
 			*(*grid+*(map1+i)) = 'O';
 			writeGlyphToGrid(*glyphO, *(map2+i));
 		}
-		else if (*(moves+i) == 2)
+		else if (*(moves+i) == PLAYER2)
 		{
 			*(*grid+*(map1+i)) = 'X';
 			writeGlyphToGrid(*glyphX, *(map2+i));
 		}
-		else if (*(moves+i) == 0)
+		else if (*(moves+i) == RESET)
 		{
 			*(*grid+*(map1+i)) = ' ';
 			writeGlyphToGrid(*glyphBlank, *(map2+i));

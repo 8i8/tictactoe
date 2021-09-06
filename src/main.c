@@ -35,14 +35,6 @@
 #include "ticTacToe.h"
 #include <unistd.h>
 
-#define WIN		4
-#define STALE_MATE	5
-#define UN_SPUN		3
-
-#define RESET	        0
-#define INCREMENT	4
-#define DECREMENT	-4
-
 int main(void)
 {
 /*
@@ -98,30 +90,31 @@ void play(int firstRun)
                         keepCount(RESET);
 
                         firstRun = 0;
-                        if (coin == UN_SPUN) {
                                 choice = headsOrTails();
                         }
                         coin = coinToss(2);
 
                         if (choice != coin) 
                         {
-                                player2WinsToss(PLAYER2);
+                                // Set up board and play a move.
+                                player2WinsCoinToss(PLAYER2);
                                 break;
                         }
 
-                        player1WinsTheToss(PLAYER1);
 
                         if (coin)
                                 coin = 0;
                         else 
                                 coin = 1;
+                        // Set up board and then continue.
+                        player1WinsCoinToss(PLAYER1);
                 }
 
                 // Player input.
 		status = yourMove(PLAYER1);
 
                 // Player win.
-		if(status == WIN) {
+		if(status == PLAYER1_WIN) {
                         // Print status
 			sysOut(0, 0);
                         if (keepScore(PLAYER1, INCREMENT) > 0) {
@@ -140,7 +133,7 @@ void play(int firstRun)
 		stale_mate = 0;
 
                 // Computer wins.
-		if(status == WIN && !winner) {
+		if(status == PLAYER1_WIN && !winner) {
 			sysOut(1, 0);
                         if (keepScore(PLAYER2, INCREMENT) > 0) {
                                 winner = 2;
