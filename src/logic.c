@@ -571,7 +571,7 @@ int bestPossibleMove(int player)
 	 * If there is a winning move, take it.
 	 */
 	if (rowState[player-1][0] == 3) {
-		for (int i = 1; i <= 2*M_SQRT+2; i++) {
+		for (int i = 1; i <= MATRIX-1; i++) {
 			value = rowState[player-1][i];
 			if (value == 3 || value == 5 || value == 6 ) {
 				makeMove(value, i, player);
@@ -584,7 +584,7 @@ int bestPossibleMove(int player)
 	 * If opponent has a winning move, block them.
          */
 	if (rowState[opponent-1][0] == 3) {
-		for (int i = 1; i <= 2*M_SQRT+2; i++) {
+		for (int i = 1; i <= MATRIX-1; i++) {
 			value = rowState[opponent-1][i];
 			if (value == 3 || value == 5 || value == 6 ) {
 				makeMove(value, i, opponent);
@@ -600,7 +600,7 @@ int bestPossibleMove(int player)
         // Fill the nextMoves grid with the available best moves of each
         // player.
 	if (rowState[player-1][0] == 2) {
-		for (int i = 1; i <= 2*M_SQRT+2; i++) {
+		for (int i = 1; i <= MATRIX-1; i++) {
 			value = rowState[player-1][i];
 			if (value == 1 || value == 2 || value == 4 ) {
 				makeMove(value, i, player);
