@@ -131,7 +131,7 @@ int keepScore(int player, int inc)
 void resetBoard()
 {
 	for (int i = 0; i < MATRIX; i++)
-		*(*moves+i) = 0;
+		*(*moves+i) = 2;
 	writeMovesToBoard(*moves);
 
 	if (myRandom)
@@ -188,7 +188,7 @@ int traslateCharForMove(int x, int y, int player)
 		y = 2;
 
 	// !!! `x` here is `j` and `y` is `i` !!!
-	if (moves[y][x] == 1 || moves[y][x] == 2)
+	if (moves[y][x] == 0 || moves[y][x] == 1)
 		return 0;
 	else {
 		moves[y][x] = player;
@@ -479,7 +479,7 @@ int randomMove(int player)
 		choice = rand()%(movesLeft-1);
 		choice++;
 	}
-	else 
+	else
 	{
 		choice = 1;
 	}
@@ -492,7 +492,7 @@ int randomMove(int player)
 	for (int i = 0; i < M_SQRT; i++) {
 		for (int j = 0; j < M_SQRT; j++)
 		{
-			if ( (moves[i][j] != 1) && (moves[i][j] != 2) )
+			if ( (moves[i][j] != 0) && (moves[i][j] != 1) )
 			{
 				if (count == choice) {
 					moves[i][j] = player;
@@ -515,7 +515,6 @@ int randomMove(int player)
  */
 int bestPossibleMove(int player)
 {
-	int playerM;
 	int opponent;
 	int value;
 	int coin;
@@ -525,8 +524,7 @@ int bestPossibleMove(int player)
 	 * Resolve the player id's so as to find the corresponding index for the
 	 * player status array.
 	 */
-	opponent = (player % 2); 
-	playerM = player-1;
+	opponent = (player + 1) % 2;
 
 	/*
 	 * If the center square is empty and there is no winning move, move
@@ -599,7 +597,7 @@ int bestPossibleMove(int player)
 		 */
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
-				if (nextMoves[playerM][i][j] && nextMoves[opponent][i][j]) {
+				if (nextMoves[player][i][j] && nextMoves[opponent][i][j]) {
 					count++;
 				}
 			}
@@ -611,15 +609,15 @@ int bestPossibleMove(int player)
 			// Pick a random move from within that scope.
 			if (count > 1)
 				coin = coinToss(count);
-			else 
+			else
 				coin = 1;
 
 			count = 0;
 			for (int i = 0; i < 3; i++) {
 				for (int j = 0; j < 3; j++) {
-					if (nextMoves[playerM][i][j] && nextMoves[opponent][i][j]) {
+					if (nextMoves[player][i][j] && nextMoves[opponent][i][j]) {
 						if (coin == count) {
-							moves[i][j] = player;
+							moves[i][j] = player + 1;
 							return 0;
 						}
 						count++;
@@ -637,7 +635,7 @@ int bestPossibleMove(int player)
 		coin = 0;
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
-				if (nextMoves[playerM][i][j]) {
+				if (nextMoves[player][i][j]) {
 					count++;
 				}
 			}
@@ -649,15 +647,15 @@ int bestPossibleMove(int player)
 			// Choose one.
 			if (count > 1)
 				coin = coinToss(count);
-			else 
+			else
 				coin = 1;
 			count = 0;
 
 			for (int i = 0; i < 3; i++) {
 				for (int j = 0; j < 3; j++) {
-					if (nextMoves[playerM][i][j]) {
+					if (nextMoves[player][i][j]) {
 						if (count == coin) {
-							moves[i][j] = player;
+							moves[i][j] = player + 1;
 							return 0;
 						}
 						count++;
@@ -686,7 +684,7 @@ int checkStaleMate()
 	if (MATRIX - keepCount(VALUE) == 0) {
 		return 1;
 	}
-	else 
+	else
 		return 0;
 }
 
