@@ -62,7 +62,11 @@ static int moves[3][3];
  */
 static int currentStateOfPlay[2][9];
 static int score[2];
-static int line;
+
+/*
+ * winingLine is the line that is to be played.
+ */
+static int winingLine;
 
 /*
  * A temporary measure of nothingness.
@@ -129,8 +133,8 @@ void resetBoard()
 	if (myRandom)
 		level = coinToss(5)+1;
 
-	redrawGrid(line);
-	line = 0;
+	redrawGrid(winingLine);
+	winingLine = 0;
 }
 
 /*
@@ -156,7 +160,7 @@ int setLevel(int newLevel)
  */
 void winningLine()
 {
-	drawWinningLine(line);
+	drawWinningLine(winingLine);
 }
 
 /*
@@ -725,11 +729,12 @@ int updateStateOfPlay(int player)
 				break;
 			}
 		}
-		if (x == 7) line = i+1;
-		marker = getStatusValue(x);
-		if (marker > state) {
-			state = marker;
+                // Write the first 3 states, into indices 1 to 3.
 		currentStateOfPlay[player][i+1] = x;
+		if (x == 7) winingLine = i+1;
+		max = getStatusValue(x);
+		if (max > state) {
+			state = max;
 		}
 		x = 0;
 	}
@@ -748,11 +753,12 @@ int updateStateOfPlay(int player)
 				break;
 			}
 		}
-		if (x == 7) line = j+5;
-		marker = getStatusValue(x);
-		if (marker > state) {
-			state = marker;
+                // carry on from indices 5 to 7 with further states.
 		currentStateOfPlay[player][j+5] = x;
+		if (x == 7) winingLine = j+5;
+		max = getStatusValue(x);
+		if (max > state) {
+			state = max;
 		}
 		x = 0;
 	}
@@ -770,11 +776,12 @@ int updateStateOfPlay(int player)
 			break;
 		}
 	}
-	if (x == 7) line = 4;
-	marker = getStatusValue(x);
-	if (marker > state) {
-		state = marker;
+        // Add the first diagonal, at index 4.
 	currentStateOfPlay[player][4] = x;
+	if (x == 7) winingLine = 4;
+	max = getStatusValue(x);
+	if (max > state) {
+		state = max;
 	}
 
 	x = 0;
@@ -794,11 +801,12 @@ int updateStateOfPlay(int player)
 		}
 		j++;
 	}
-	if (x == 7) line = 8;
-	marker = getStatusValue(x);
-	if (marker > state) {
-		state = marker;
+        // Add the second diagonal, at index 8.
 	currentStateOfPlay[player][8] = x;
+	if (x == 7) winingLine = 8;
+	max = getStatusValue(x);
+	if (max > state) {
+		state = max;
 	}
 	x = 0;
 	return state;
