@@ -251,7 +251,7 @@ void resetBoard()
 		level = coinToss(5)+1;
 
         if (DEBUG)
-                fprintf(stderr, "log: level: %d\n", level);
+                fprintf(stderr, "debug: %s: level: %d\n", __func__, level);
 
 	redrawGrid(winingLine);
 	winingLine = 0;
@@ -481,8 +481,8 @@ int computerMove(int player)
 		case 5: bestPossibleMove(player);
 			break;
 		default:
-                        printf("error: unknown level in computerMove");
-			break;
+                        fprintf(stderr, "error: %s: level\n", __func__);
+                        exit(2);
 	}
 
         keepCount(AUGMENT);
@@ -530,7 +530,7 @@ int randomMove(int player)
 			}
 		}
 	}
-        printf("error: randomMove failed to make move keepCount returned %d", movesLeft);
+        fprintf(stderr, "error: %s: failed to move\n", __func__);
         exit(2);
 	return 0;
 }
