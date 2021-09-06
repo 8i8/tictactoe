@@ -733,9 +733,9 @@ int updateStateOfPlay(int player)
                 // Write the first 3 states, into indices 1 to 3.
 		currentStateOfPlay[player][i+1] = x;
 		if (x == 7) winingLine = i+1;
-		max = getStatusValue(x);
-		if (max > state) {
-			state = max;
+		state = getStatusValue(x);
+		if (state > max) {
+			max = state;
 		}
 		x = 0;
 	}
@@ -757,9 +757,9 @@ int updateStateOfPlay(int player)
                 // carry on from indices 5 to 7 with further states.
 		currentStateOfPlay[player][j+5] = x;
 		if (x == 7) winingLine = j+5;
-		max = getStatusValue(x);
-		if (max > state) {
-			state = max;
+		state = getStatusValue(x);
+		if (state > max) {
+			max = state;
 		}
 		x = 0;
 	}
@@ -780,10 +780,10 @@ int updateStateOfPlay(int player)
         // Add the first diagonal, at index 4.
 	currentStateOfPlay[player][4] = x;
 	if (x == 7) winingLine = 4;
-	max = getStatusValue(x);
-	if (max > state) {
-		state = max;
-	}
+        state = getStatusValue(x);
+        if (state > max) {
+                max = state;
+        }
 
 	x = 0;
 	j = 0;
@@ -805,12 +805,12 @@ int updateStateOfPlay(int player)
         // Add the second diagonal, at index 8.
 	currentStateOfPlay[player][8] = x;
 	if (x == 7) winingLine = 8;
-	max = getStatusValue(x);
-	if (max > state) {
-		state = max;
-	}
+        state = getStatusValue(x);
+        if (state > max) {
+                max = state;
+        }
 	x = 0;
-	return state;
+	return max;
 }
 
 /*
