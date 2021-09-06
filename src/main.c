@@ -95,18 +95,13 @@ void play(int firstRun)
                         }
                         coin = coinToss(2);
 
-                        if (choice != coin) 
+                        if (choice != coin)
                         {
                                 // Set up board and play a move.
                                 player2WinsCoinToss(PLAYER2);
                                 break;
                         }
 
-
-                        if (coin)
-                                coin = 0;
-                        else 
-                                coin = 1;
                         // Set up board and then continue.
                         player1WinsCoinToss(PLAYER1);
                 }
