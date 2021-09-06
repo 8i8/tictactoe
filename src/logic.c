@@ -61,6 +61,10 @@ static int moves[3][3];
  *
  */
 static int currentStateOfPlay[2][9];
+
+/*
+ * The scorboard.
+ */
 static int score[2];
 
 /*
@@ -257,7 +261,7 @@ void printDebugMoves()
 
 /*
  * updateGame refreshes the graphical display, the int entered represents the
- * player, 1 for player 1 and 2 for player 2, 0 initiates a total reset.
+ * player else a reset.
  */
 int updateGame(int player)
 {
@@ -687,7 +691,7 @@ int checkStaleMate()
 }
 
 /*
- * Erases the arrays which store each players game status; Called between 
+ * Erases the arrays which store each players game status; Called between
  * games.
  */
 void clearStatusArrays()
@@ -700,7 +704,7 @@ void clearStatusArrays()
 /*
  * Fills the status arrays which are then in turn used to calculate the AI's
  * next move, first scanning the status of each horizontal row, then the
- * vertical column and finally the two diagonals. 
+ * vertical column and finally the two diagonals.
  */
 int updateStateOfPlay(int player)
 {
@@ -719,6 +723,7 @@ int updateStateOfPlay(int player)
 	for (i = 0; i < M_SQRT; i++) {
 		for (j = 0; j < M_SQRT; j++)
 		{
+                        // If the player is here, mark the square.
 			if (moves[i][j] == player)
 			{
 				x = readLineStatus(j, x);
@@ -813,20 +818,19 @@ int updateStateOfPlay(int player)
 }
 
 /*
- * This function is used by the previous one to count this places filled by each
- * opponents moves. A value is ascribed to x dependant upon the 'geometry' of
- * the move, that is to say it position in a binary row, the value returned is
- * defined by this position, in the same manor that a value is ascribed to a
- * bit in binary notation.
+ * Returns the bit mask required to set the requested bit.
  */
 int readLineStatus(int j, int x)
 {
 	/*
-	 * Use 3 bit binary pattern to read row state.
-	 * 000 -> 0
-	 * 001 -> 1
-	 * 010 -> 2
-	 *  ...
+	 * Use 3 bit binary word used to add the move to the rows state.
+         *
+         *   012
+         *   ---
+	 *   001 -> 1
+	 *   010 -> 2
+	 *   100 -> 4
+         *
 	 */
 	switch(j)
 	{
