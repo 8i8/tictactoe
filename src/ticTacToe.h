@@ -59,8 +59,8 @@ int  bestPossibleMove(int player);
 void clearNextMoves(void);
 int  checkStaleMate(void);
 void clearStatusArrays(void);
-int  calculateStatus(int player);
 int  readLineStatus(int j, int x);
+int  updateStateOfPlay(int player);
 int  getStatusValue(int x);
 int  calculateNextMove(int state, int line);
 

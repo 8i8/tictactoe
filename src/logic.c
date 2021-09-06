@@ -259,12 +259,10 @@ int updateGame(int player)
 {
 	int status;
 
-	if (player) {
-		status = calculateStatus(player);
-	} 
-	else
-	{
+	if (player == PLAYER1 || player == PLAYER2) {
+		status = updateStateOfPlay(player);
 		writeMovesToBoard(*moves);
+	} else if (player == RESET) {
 		clearStatusArrays();
 		resetBoard();
 	}
@@ -700,7 +698,7 @@ void clearStatusArrays()
  * next move, first scanning the status of each horizontal row, then the
  * vertical column and finally the two diagonals. 
  */
-int calculateStatus(int player)
+int updateStateOfPlay(int player)
 {
 	int playerMod;
 	int state;
