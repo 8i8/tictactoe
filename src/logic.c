@@ -110,10 +110,10 @@ void printDebugMoves()
 		puts("Random mode off.");
 	printf("Level= %d\n", level);
 	printf("Moves made = %d\n", keepCount(VALUE));
-	printf("Player 1 status -> %d\n", rowState[PLAYER1][0]);
-	printf("Player 2 status -> %d\n", rowState[PLAYER2][0]);
-	printf("Player 1 score -> %d\n", score[PLAYER1]);
-	printf("Player 2 score -> %d\n", score[PLAYER2]);
+	printf("Player 1 status -> %d\n", rowState[PLAYER1-1][0]);
+	printf("Player 2 status -> %d\n", rowState[PLAYER2-1][0]);
+	printf("Player 1 score -> %d\n", score[PLAYER1-1]);
+	printf("Player 2 score -> %d\n", score[PLAYER2-1]);
 	printf("state -> %d\n", state);
 	/* The four matrices */
 	printf("   board  p1nextM p2nextM\n");
@@ -127,13 +127,13 @@ void printDebugMoves()
 		/* Player one nextMoves*/
 		printf(" |");
 		for (int j = 0; j < M_SQRT; j++) {
-			printf("%2d", nextMoves[PLAYER1][i][j]);
+			printf("%2d", nextMoves[PLAYER1-1][i][j]);
 		}
 
 		/* Player two nextMoves */
 		printf(" |");
 		for (int j = 0; j < M_SQRT; j++) {
-			printf("%2d", nextMoves[PLAYER2][i][j]);
+			printf("%2d", nextMoves[PLAYER2-1][i][j]);
 		}
 		printf(" |");
 		puts("");
