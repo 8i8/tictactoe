@@ -597,7 +597,7 @@ int bestPossibleMove(int player)
 
 	// Evaluate next best moves.
 	count = 0;
-        // Fill the nextMoves grid with the available best moves of each
+        // Fill the nextMoves grid with the available best moves for each
         // player.
 	if (rowState[player-1][0] == 2) {
 		for (int i = 1; i <= MATRIX-1; i++) {
