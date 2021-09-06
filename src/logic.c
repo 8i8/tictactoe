@@ -50,7 +50,7 @@ static int moves[3][3];
 
 /*
  * The first index, 0 contains the best overall state available to the
- * player.
+ * player or otherwise said, the status.
  * Following this is the state of each square in relation to its
  * neighbours, accounting for each horizontal, vertical and diagonal
  * direction. This data is used to evaluate the next move.
