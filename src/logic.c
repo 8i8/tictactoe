@@ -149,18 +149,6 @@ void printDebugMoves()
                         currentStateOfPlay[PLAYER2][6],
                         currentStateOfPlay[PLAYER2][7],
                         currentStateOfPlay[PLAYER2][8]);
-
-	/* P1 status array */
-	printf("%d ", currentStateOfPlay[PLAYER1][8]);
-	for (int i = 0; i < 3; i++)
-		printf("%2d", currentStateOfPlay[PLAYER1][i+5]);
-	printf(" %2d\t", currentStateOfPlay[PLAYER1][4]);
-	/* P1 status array */
-	printf("%d ", currentStateOfPlay[PLAYER2][8]);
-	for (int i = 0; i < 3; i++)
-		printf("%2d", currentStateOfPlay[PLAYER2][i+5]);
-	printf(" %2d\t", currentStateOfPlay[PLAYER2][4]);
-	/* End of the line */
 	puts("\n");
 }
 
