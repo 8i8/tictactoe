@@ -36,6 +36,8 @@
 #include "ticTacToe.h"
 #include "endscene.h"
 
+void writeGlyphToGrid(int* glyph, int j);
+
 /*
  * The heading what!
  */

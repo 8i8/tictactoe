@@ -40,10 +40,6 @@
 #define INCREMENT	4
 #define DECREMENT	-4
 
-// ticTacToe.c
-void menu(void);
-void play(int firstRun);
-
 //logic.c
 int  keepCount(int option);
 int keepScore(int player, int inc);
@@ -51,7 +47,6 @@ void resetBoard(void);
 int  setLevel(int newLevel);
 void winningLine(void);
 void printDebugMoves(void);
-void refreshMoves(int);
 int  updateGame(int player);
 int  headsOrTails(void);
 int  coinToss(int howManySides);
@@ -59,19 +54,10 @@ void player2WinsCoinToss(int player);
 void player1WinsCoinToss(int player);
 int  yourMove(int player);
 int  computerMove(int player);
-int  randomMove(int player);
-int  bestPossibleMove(int player);
-void clearNextMoves(void);
-int  checkStaleMate(void);
-void clearStatusArrays(void);
-int  setBit(int j, int row);
-int  getStatusValue(int x);
-int  makeMove(int state, int line, int player);
 
 // draw.c
 void ticTacToe(void);
 void writeMovesToBoard(int *moves);
-void writeGlyphToGrid(int* glyph, int j);
 void drawScore(int score1, int score2);
 void drawWinningLine(int line);
 void drawGrid(void);

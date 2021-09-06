@@ -32,6 +32,13 @@
 
 int  updateRowStates(int player);
 int  charToGlyph(int x, int y, int player);
+int  randomMove(int player);
+int  bestPossibleMove(int player);
+void clearNextMoves(void);
+int  checkStaleMate(void);
+int  setBit(int j, int row);
+int  getStatusValue(int x);
+int  makeMove(int state, int line, int player);
 
 /* The size of the playing board, the 'hash'. */
 #define MATRIX	9

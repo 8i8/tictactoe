@@ -35,6 +35,9 @@
 #include "ticTacToe.h"
 #include <unistd.h>
 
+void menu(void);
+void play(int firstRun);
+
 int main(void)
 {
 /*
