@@ -67,7 +67,7 @@ void clearStatusArrays(void);
 int  updateStateOfPlay(int player);
 int  setBitForPlayerInSquare(int j);
 int  getStatusValue(int x);
-int  calculateNextMove(int state, int line);
+int  calculateNextMove(int state, int line, int player);
 
 // draw.c
 void ticTacToe(void);
