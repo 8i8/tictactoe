@@ -587,7 +587,7 @@ int bestPossibleMove(int player)
 		for (int i = 1; i < MATRIX; i++) {
 			value = rowState[opponent-1][i];
 			if (value == 3 || value == 5 || value == 6 ) {
-				makeMove(value, i, opponent);
+				makeMove(value, i, player);
 				return 0;
 			}
 		}
