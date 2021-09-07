@@ -27,6 +27,7 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <assert.h>
 #include <time.h>
 #include "ticTacToe.h"
 
@@ -173,15 +174,10 @@ void printDebugMoves()
  */
 int updateGame(int player)
 {
-	int status;
-
-	if (player == PLAYER1 || player == PLAYER2) {
-		status = updateRowStates(player);
-                if (DEBUG) state = status;
-		writeMovesToBoard(*board);
-	} else if (player == RESET) {
-		resetBoard();
-	}
+        assert(player == PLAYER1 || player == PLAYER2);
+        int status = updateRowStates(player);
+        if (DEBUG) state = status;
+        writeMovesToBoard(*board);
 
 	drawScore(score[0], score[1]);
 	drawGrid();

@@ -82,7 +82,7 @@ void play()
                 while (firstRun)
                 {
                         firstRun = 0;
-                        updateGame(RESET);
+                        resetBoard();
                         keepCount(RESET);
 
                         if (coin == COIN_UN_SPUN) {

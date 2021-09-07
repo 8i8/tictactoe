@@ -41,6 +41,7 @@
 #define DECREMENT	-4
 
 //logic.c
+void resetBoard(void);
 int  keepCount(int option);
 int keepScore(int player, int inc);
 void resetBoard(void);
