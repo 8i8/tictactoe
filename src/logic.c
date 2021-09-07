@@ -530,190 +530,6 @@ int randomMove(int player)
 	return 0;
 }
 
-/*
- * For now this is the best possible move for the computer intelligence,
- * I am aware that there is another 'to win' condition that requires
- * programming.  For now it is sufficient, I will add this at a later
- * date.
- *
- * TODO add knowledge of the double winning move trap, to be chose if
- * the occasion arises.
- */
-int bestPossibleMove(int player)
-{
-	int opponent;
-	int value;
-	int coin;
-	int count;
-
-        if (player == PLAYER1) {
-                opponent = PLAYER2;
-        } else {
-                opponent = PLAYER1;
-        }
-
-        if (DEBUG)
-                fprintf(stderr, "log: %s: trying best move\n", __func__);
-
-	/*
-         * If the center square is empty and there is no winning move,
-         * move there.
-	 */
-	if (board[1][1] == EMPTY && rowState[player-1][0] != 3) {
-		board[1][1] = player;
-		return 0;
-	}
-
-	/*
-	 * If there is a winning move, take it.
-	 */
-	if (rowState[player-1][0] == 3) {
-                if (DEBUG)
-                        fprintf(stderr, "log: check for winning move\n");
-		for (int i = 1; i < MATRIX; i++) {
-			value = rowState[player-1][i];
-			if (value == 3 || value == 5 || value == 6 ) {
-				setBoard(value, i, player);
-				return 4;
-			}
-		}
-                fprintf(stderr, "error: failed to find winning move\n");
-                exit(1);
-	}
-
-        /*
-	 * If opponent has a winning move, block them.
-         */
-	if (rowState[opponent-1][0] == 3) {
-                if (DEBUG)
-                        fprintf(stderr, "log: blocking opponent\n");
-		for (int i = 1; i < MATRIX; i++) {
-			value = rowState[opponent-1][i];
-			if (value == 3 || value == 5 || value == 6 ) {
-				setBoard(value, i, player);
-				return 0;
-			}
-		}
-                fprintf(stderr, "error: failed to find opponents move\n");
-                exit(1);
-	}
-
-	clearNextMoves();
-
-	// Evaluate next best moves.
-	count = 0;
-        // Fill the nextMoves grid with the available best moves for each
-        // player.
-	if (rowState[player-1][0] == 2) {
-                if (DEBUG)
-                        fprintf(stderr, "log: analyzing moves\n");
-		for (int i = 1; i < MATRIX; i++) {
-			value = rowState[player-1][i];
-			if (value == 1 || value == 2 || value == 4 ) {
-				makeMove(value, i, player);
-			}
-			value = rowState[opponent-1][i];
-			if (value == 1 || value == 2 || value == 4 ) {
-				makeMove(value, i, opponent);
-			}
-		}
-		if (DEBUG)
-			updateGame(player);
-
-		/*
-                 * Count the number of available places, that are shared
-                 * between the two, your move will also block and
-                 * opponents move.
-		 */
-                if (DEBUG)
-                        fprintf(stderr, "log: examining nextMoves from set of both players\n");
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
-				if (nextMoves[player-1][i][j] && nextMoves[opponent-1][i][j]) {
-					count++;
-				}
-			}
-		}
-
-		// Make your move.
-		if (count > 0) {
-
-			// Pick a random move from within that scope.
-			if (count > 1)
-				coin = coinToss(count);
-			else
-				coin = 1;
-
-                        if (DEBUG)
-                                fprintf(stderr, "log: random choice from set of good moves\n");
-
-			count = 0;
-			for (int i = 0; i < 3; i++) {
-				for (int j = 0; j < 3; j++) {
-					if (nextMoves[player-1][i][j] && nextMoves[opponent-1][i][j]) {
-						if (coin == count) {
-							board[i][j] = player + 1;
-							return 0;
-						}
-						count++;
-					}
-				}
-			}
-                        fprintf(stderr, "error: failed to find move combined set\n");
-                        exit(1);
-		}
-
-		/*
-                 * So there were no shared choices, do the same for your
-                 * own best possible moves.
-		 * First count them ...
-		 */
-                if (DEBUG)
-                        fprintf(stderr, "log: examining nextMoves from own set\n");
-		count = 0;
-		coin = 0;
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
-				if (nextMoves[player-1][i][j]) {
-					count++;
-				}
-			}
-		}
-
-		// and move there.
-		if (count < 0) {
-
-			// Choose one.
-			if (count > 1)
-				coin = coinToss(count);
-			else
-				coin = 1;
-			count = 0;
-
-                        if (DEBUG)
-                                fprintf(stderr, "log: random choice from returned set\n");
-
-			for (int i = 0; i < 3; i++) {
-				for (int j = 0; j < 3; j++) {
-					if (nextMoves[player-1][i][j]) {
-						if (count == coin) {
-							board[i][j] = player;
-							return 0;
-						}
-						count++;
-					}
-				}
-			}
-                        fprintf(stderr, "error: failed to find move in own set\n");
-                        exit(1);
-		}
-	}
-
-	// Otherwise just make a random move.
-	randomMove(player);
-	return 0;
-}
-
 void clearNextMoves()
 {
 	for (int i = 0; i < 18; i++)
@@ -1207,6 +1023,190 @@ int makemove(int rowState, int line, int player)
                                 nextMoves[player-1][2][0],
                                 nextMoves[player-1][2][1],
                                 nextMoves[player-1][2][2]);
+	return 0;
+}
+
+/*
+ * For now this is the best possible move for the computer intelligence,
+ * I am aware that there is another 'to win' condition that requires
+ * programming.  For now it is sufficient, I will add this at a later
+ * date.
+ *
+ * TODO add knowledge of the double winning move trap, to be chose if
+ * the occasion arises.
+ */
+int bestPossibleMove(int player)
+{
+	int opponent;
+	int value;
+	int coin;
+	int count;
+
+        if (player == PLAYER1) {
+                opponent = PLAYER2;
+        } else {
+                opponent = PLAYER1;
+        }
+
+        if (DEBUG)
+                fprintf(stderr, "log: %s: trying best move\n", __func__);
+
+	/*
+         * If the center square is empty and there is no winning move,
+         * move there.
+	 */
+	if (board[1][1] == EMPTY && rowState[player-1][0] != 3) {
+		board[1][1] = player;
+		return 0;
+	}
+
+	/*
+	 * If there is a winning move, take it.
+	 */
+	if (rowState[player-1][0] == 3) {
+                if (DEBUG)
+                        fprintf(stderr, "log: check for winning move\n");
+		for (int i = 1; i < MATRIX; i++) {
+			value = rowState[player-1][i];
+			if (value == 3 || value == 5 || value == 6 ) {
+				setBoard(value, i, player);
+				return 4;
+			}
+		}
+                fprintf(stderr, "error: failed to find winning move\n");
+                exit(1);
+	}
+
+        /*
+	 * If opponent has a winning move, block them.
+         */
+	if (rowState[opponent-1][0] == 3) {
+                if (DEBUG)
+                        fprintf(stderr, "log: blocking opponent\n");
+		for (int i = 1; i < MATRIX; i++) {
+			value = rowState[opponent-1][i];
+			if (value == 3 || value == 5 || value == 6 ) {
+				setBoard(value, i, player);
+				return 0;
+			}
+		}
+                fprintf(stderr, "error: failed to find opponents move\n");
+                exit(1);
+	}
+
+	clearNextMoves();
+
+	// Evaluate next best moves.
+	count = 0;
+        // Fill the nextMoves grid with the available best moves for each
+        // player.
+	if (rowState[player-1][0] == 2) {
+                if (DEBUG)
+                        fprintf(stderr, "log: analyzing moves\n");
+		for (int i = 1; i < MATRIX; i++) {
+			value = rowState[player-1][i];
+			if (value == 1 || value == 2 || value == 4 ) {
+				setNextMoves(value, i, player);
+			}
+			value = rowState[opponent-1][i];
+			if (value == 1 || value == 2 || value == 4 ) {
+				setNextMoves(value, i, opponent);
+			}
+		}
+		if (DEBUG)
+			updateGame(player);
+
+		/*
+                 * Count the number of available places, that are shared
+                 * between the two, your move will also block and
+                 * opponents move.
+		 */
+                if (DEBUG)
+                        fprintf(stderr, "log: examining nextMoves from set of both players\n");
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				if (nextMoves[player-1][i][j] && nextMoves[opponent-1][i][j]) {
+					count++;
+				}
+			}
+		}
+
+		// Make your move.
+		if (count > 0) {
+
+			// Pick a random move from within that scope.
+			if (count > 1)
+				coin = coinToss(count);
+			else
+				coin = 1;
+
+                        if (DEBUG)
+                                fprintf(stderr, "log: random choice from set of good moves\n");
+
+			count = 0;
+			for (int i = 0; i < 3; i++) {
+				for (int j = 0; j < 3; j++) {
+					if (nextMoves[player-1][i][j] && nextMoves[opponent-1][i][j]) {
+						if (coin == count) {
+							board[i][j] = player + 1;
+							return 0;
+						}
+						count++;
+					}
+				}
+			}
+                        fprintf(stderr, "error: failed to find move combined set\n");
+                        exit(1);
+		}
+
+		/*
+                 * So there were no shared choices, do the same for your
+                 * own best possible moves.
+		 * First count them ...
+		 */
+                if (DEBUG)
+                        fprintf(stderr, "log: examining nextMoves from own set\n");
+		count = 0;
+		coin = 0;
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				if (nextMoves[player-1][i][j]) {
+					count++;
+				}
+			}
+		}
+
+		// and move there.
+		if (count < 0) {
+
+			// Choose one.
+			if (count > 1)
+				coin = coinToss(count);
+			else
+				coin = 1;
+			count = 0;
+
+                        if (DEBUG)
+                                fprintf(stderr, "log: random choice from returned set\n");
+
+			for (int i = 0; i < 3; i++) {
+				for (int j = 0; j < 3; j++) {
+					if (nextMoves[player-1][i][j]) {
+						if (count == coin) {
+							board[i][j] = player;
+							return 0;
+						}
+						count++;
+					}
+				}
+			}
+                        fprintf(stderr, "error: failed to find move in own set\n");
+                        exit(1);
+		}
+	}
+
+	// Otherwise just make a random move.
+	randomMove(player);
 	return 0;
 }
 
