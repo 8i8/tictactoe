@@ -307,7 +307,6 @@ int headsOrTails()
 int coinToss(int howManySides)
 {
 	int coin;
-	srand(time(NULL));
 	coin = rand()%howManySides;
 	return coin;
 }
