@@ -54,6 +54,7 @@ int main(void)
 void menu()
 {
 	srand(time(NULL));
+        setLevel('0');
 	clearScreen();
 	ticTacToe();
 	sysOutMenu();
