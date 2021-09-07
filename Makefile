@@ -6,7 +6,7 @@ EXE = $(exedir)ticTacToe
 SRC = $(wildcard $(srcdir)*.c)
 HDR = $(wildcard $(srcdir)*.h)
 OBJ = $(SRC:$(srcdir)%.c=$(objdir)%.o) 
-OUT = $(dir $(OBJ) $(exedir))
+OUT = $(dir $(objdir) $(exedir))
 
 # Generate the build directory if it is not present.
 $(shell mkdir -p $(objdir) $(exedir))
