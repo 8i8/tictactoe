@@ -139,7 +139,7 @@ void printDebugMoves()
 	printf("  ------- ------- -------\n");
 
         /* state of play */
-        printf("p1{%d}(%d,%d,%d}{%d}{%d,%d,%d}{%d}\n", 
+        printf("p1{%d}(%d,%d,%d}{%d}{%d,%d,%d}{%d}\n",
                         rowState[PLAYER1-1][0],
                         rowState[PLAYER1-1][1],
                         rowState[PLAYER1-1][2],
@@ -150,7 +150,7 @@ void printDebugMoves()
                         rowState[PLAYER1-1][7],
                         rowState[PLAYER1-1][8]);
 
-        printf("p2{%d}(%d,%d,%d}{%d}{%d,%d,%d}{%d}\n", 
+        printf("p2{%d}(%d,%d,%d}{%d}{%d,%d,%d}{%d}\n",
                         rowState[PLAYER2-1][0],
                         rowState[PLAYER2-1][1],
                         rowState[PLAYER2-1][2],
@@ -171,7 +171,7 @@ int updateGame(int player)
 {
         assert(player == PLAYER1 || player == PLAYER2);
         int status = updateRowStates(player);
-        if (DEBUG) 
+        if (DEBUG)
                 fprintf(stdout, "log: %s: state %d", __func__, status);
         writeMovesToBoard(*board);
 	drawScore(score[0], score[1]);
@@ -420,7 +420,7 @@ int yourMove(int player)
 	}
 
 	keepCount(AUGMENT);
-	
+
 	status = updateGame(player);
 	rowState[player-1][0] = status;
 	return status;
@@ -762,6 +762,7 @@ int getStatusValue(int x)
 }
 
 void setBoard(int rowState, int line, int player) {
+
 	/*
 	 * Act upon states 0 through 7
 	 * 0 -> 000
