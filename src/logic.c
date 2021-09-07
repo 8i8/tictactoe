@@ -170,9 +170,8 @@ int updateGame(int player)
 {
         assert(player == PLAYER1 || player == PLAYER2);
         int status = updateRowStates(player);
-        if (DEBUG) {
+        if (DEBUG) 
                 fprintf(stdout, "log: %s: state %d", __func__, status);
-        }
         writeMovesToBoard(*board);
 	drawScore(score[0], score[1]);
 	drawGrid();
