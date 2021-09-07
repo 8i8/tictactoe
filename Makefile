@@ -1,12 +1,15 @@
-srcdir	= src/
-objdir	= $(srcdir)
-exedir	=
+srcdir = src/
+objdir = build/
+#exedir = ~/.bin/
 
-EXE	= $(exedir)ticTacToe
+EXE = $(exedir)ticTacToe
+SRC = $(wildcard $(srcdir)*.c)
+HDR = $(wildcard $(srcdir)*.h)
+OBJ = $(SRC:$(srcdir)%.c=$(objdir)%.o) 
+OUT = $(dir $(OBJ) $(exedir))
 
-SRCS	= $(srcdir)draw.c $(srcdir)logic.c $(srcdir)main.c $(srcdir)endscene.c
-OBJS	= $(SRCS:$(srcdir)%.c=$(objdir)%.o)
-OUTDIRS	= $(dir $(objdir) $(exedir))
+# Generate the build directory if it is not present.
+$(shell mkdir -p $(objdir))
 
 # Enable Debian/Ubuntu build hardening unless already
 # enabled/disabled  — see hardened-cc(1) —  and ensure
@@ -14,43 +17,37 @@ OUTDIRS	= $(dir $(objdir) $(exedir))
 # (and linker, hardened-ld(1)).
 DEB_BUILD_HARDENING ?= 1
 export DEB_BUILD_HARDENING
+CC = gcc
 
-CC	= gcc
+# CFLAGS += -fsanitize=address
+# CFLAGS += -fsanitize=undefined
+CFLAGS += -fno-omit-frame-pointer
+CFLAGS += -fsanitize=float-divide-by-zero
+CFLAGS += -fno-sanitize-recover=all
+CFLAGS += -Wextra -Wall -pedantic
+CFLAGS += -Wstrict-prototypes
+CFLAGS += -g
+#CFLAGS += -O
 
-# CFLAGS  += -fsanitize=address
-# CFLAGS  += -fno-omit-frame-pointer
-# CFLAGS  += -fsanitize=undefined
-# CFLAGS  += -fsanitize=float-divide-by-zero
-# CFLAGS  += -fno-sanitize-recover=all
-
-CFLAGS  += -Wextra -Wall -pedantic
-CFLAGS  += -Wstrict-prototypes
-#CFLAGS	 += -O
-CFLAGS	+= -g
-
-.PHONY:	all clean distclean
-all:	$(EXE)
+.PHONY: all clean distclean
+all: $(EXE)
 
 clean:
-	rm -f -- $(OBJS)
+	rm -f -- $(OBJ)
 
 distclean: clean
 	rm -f -- $(EXE)
-	-rmdir --ignore-fail-on-non-empty -- $(OUTDIRS)
+	-rmdir --ignore-fail-on-non-empty -- $(OUT)
 
-#$(EXE): $(OBJS)
-
-$(EXE):	$(OBJS)
-	$(CC) -o $@ $(OBJS)
-
-$(OBJS): $(srcdir)ticTacToe.h Makefile | $(OUTDIRS)
+$(EXE): $(OBJ)
+	$(CC) -o $@ $(OBJ)
 
 # When srcdir == objdir, make's default implicit rule works fine.
 # However, when srcdir ≠ objdir, it never matches, because (e.g.,
 # with `make objdir=foo- ...') foo-draw.o differs not just in the
 # suffix (.c → .o) but also in the prefix (src/ → foo-).  Hence,
 # we redefine the implicit rule to also work in that situation.
-$(objdir)%.o: $(srcdir)%.c
+$(objdir)%.o: $(srcdir)%.c Makefile
 	$(CC) -c $(CFLAGS) $< -o $@
 
 %/:
