@@ -35,6 +35,7 @@
 #include <sys/ioctl.h>
 #include "ticTacToe.h"
 #include "endscene.h"
+#include "error.h"
 
 void writeGlyphToGrid(int* glyph, int j);
 
@@ -449,6 +450,7 @@ void sysOut(int write, int player) {
  * If player is > 0 then -1; Corrects the value of 'player' for use in
  * the printf statement, that is, when the output is player dependant.
  */
+        assert(player == PLAYER1 || player == PLAYER2);
         player--;
 
 	char* text[9] = {
