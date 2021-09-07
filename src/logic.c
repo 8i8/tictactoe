@@ -886,13 +886,13 @@ int setBit(int bit, int row)
 	switch(bit)
 	{
 		case 2:
-                        row &= 1;
+                        row += 1;
 			return row;
 		case 1:
-                        row &= 2;
+                        row += 2;
 			return row;
 		case 0:
-                        row &= 4;
+                        row += 4;
 			return row;
 	}
 	return 0;
