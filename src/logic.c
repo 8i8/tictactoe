@@ -656,7 +656,7 @@ int bestPossibleMove(int player)
 					}
 				}
 			}
-                        fprintf(stderr, "error: failed to find move in either set\n");
+                        fprintf(stderr, "error: failed to find move combined set\n");
                         exit(1);
 		}
 
