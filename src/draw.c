@@ -418,7 +418,6 @@ int clearScreen()
 	ioctl(0, TIOCGWINSZ , &max);
 	puts("\033[H\033[J");	/* Clear screen */
 	return max.ws_col;
-
 }
 
 /*
