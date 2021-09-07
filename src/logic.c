@@ -867,6 +867,15 @@ int updateRowStates(int player)
                 max = state;
         }
 	x = 0;
+        if (DEBUG)
+                fprintf(stderr, "log: player %d rowState set: "
+                                "{%d}{%d,%d,%d}{%d}{%d,%d,%d}{%d}\n",
+                                player, rowState[player-1][0],
+                                rowState[player-1][1], rowState[player-1][2],
+                                rowState[player-1][3], rowState[player-1][4],
+                                rowState[player-1][5], rowState[player-1][6],
+                                rowState[player-1][7], rowState[player-1][8]);
+
 	return max;
 }
 
@@ -1136,6 +1145,19 @@ int makeMove(int rowState, int line, int player)
 			break;
 
 	}
+        if (DEBUG)
+                fprintf(stderr, "log: player %d: case %d: line %d: nextMoves set: "
+                                "{%d,%d,%d}{%d,%d,%d}{%d,%d,%d}\n",
+                                player, rowState, line,
+                                nextMoves[player-1][0][0],
+                                nextMoves[player-1][0][1],
+                                nextMoves[player-1][0][2],
+                                nextMoves[player-1][1][0],
+                                nextMoves[player-1][1][1],
+                                nextMoves[player-1][1][2],
+                                nextMoves[player-1][2][0],
+                                nextMoves[player-1][2][1],
+                                nextMoves[player-1][2][2]);
 	return 0;
 }
 
