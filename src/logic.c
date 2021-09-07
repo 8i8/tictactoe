@@ -604,7 +604,7 @@ int bestPossibleMove(int player)
         // player.
 	if (rowState[player-1][0] == 2) {
                 if (DEBUG)
-                        fprintf(stderr, "log: filling makeMove\n");
+                        fprintf(stderr, "log: analyzing moves\n");
 		for (int i = 1; i < MATRIX; i++) {
 			value = rowState[player-1][i];
 			if (value == 1 || value == 2 || value == 4 ) {
