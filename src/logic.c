@@ -513,6 +513,9 @@ int randomMove(int player)
 		choice = 1;
 	}
 
+        if (DEBUG)
+                fprintf(stderr, "log: %s: trying random move\n", __func__);
+
 	/*
 	 * Count empty squares until move selection is reached.
 	 */
@@ -557,6 +560,8 @@ int bestPossibleMove(int player)
                 opponent = PLAYER1;
         }
 
+        if (DEBUG)
+                fprintf(stderr, "log: %s: trying best move\n", __func__);
 
 	/*
          * If the center square is empty and there is no winning move,
@@ -571,6 +576,8 @@ int bestPossibleMove(int player)
 	 * If there is a winning move, take it.
 	 */
 	if (rowState[player-1][0] == 3) {
+                if (DEBUG)
+                        fprintf(stderr, "log: check for winning move\n");
 		for (int i = 1; i < MATRIX; i++) {
 			value = rowState[player-1][i];
 			if (value == 3 || value == 5 || value == 6 ) {
@@ -578,12 +585,16 @@ int bestPossibleMove(int player)
 				return 4;
 			}
 		}
+                fprintf(stderr, "error: failed to find winning move\n");
+                exit(2);
 	}
 
         /*
 	 * If opponent has a winning move, block them.
          */
 	if (rowState[opponent-1][0] == 3) {
+                if (DEBUG)
+                        fprintf(stderr, "log: blocking opponent\n");
 		for (int i = 1; i < MATRIX; i++) {
 			value = rowState[opponent-1][i];
 			if (value == 3 || value == 5 || value == 6 ) {
@@ -591,6 +602,8 @@ int bestPossibleMove(int player)
 				return 0;
 			}
 		}
+                fprintf(stderr, "error: failed to find opponents move\n");
+                exit(2);
 	}
 
 	clearNextMoves();
@@ -600,6 +613,8 @@ int bestPossibleMove(int player)
         // Fill the nextMoves grid with the available best moves for each
         // player.
 	if (rowState[player-1][0] == 2) {
+                if (DEBUG)
+                        fprintf(stderr, "log: filling makeMove\n");
 		for (int i = 1; i < MATRIX; i++) {
 			value = rowState[player-1][i];
 			if (value == 1 || value == 2 || value == 4 ) {
@@ -618,6 +633,8 @@ int bestPossibleMove(int player)
                  * between the two, your move will also block and
                  * opponents move.
 		 */
+                if (DEBUG)
+                        fprintf(stderr, "log: examining nextMoves from set of both players\n");
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				if (nextMoves[player-1][i][j] && nextMoves[opponent-1][i][j]) {
@@ -635,6 +652,9 @@ int bestPossibleMove(int player)
 			else
 				coin = 1;
 
+                        if (DEBUG)
+                                fprintf(stderr, "log: random choice from set of good moves\n");
+
 			count = 0;
 			for (int i = 0; i < 3; i++) {
 				for (int j = 0; j < 3; j++) {
@@ -647,6 +667,8 @@ int bestPossibleMove(int player)
 					}
 				}
 			}
+                        fprintf(stderr, "error: failed to find move in either set\n");
+                        exit(2);
 		}
 
 		/*
@@ -654,6 +676,8 @@ int bestPossibleMove(int player)
                  * own best possible moves.
 		 * First count them ...
 		 */
+                if (DEBUG)
+                        fprintf(stderr, "log: examining nextMoves from own set\n");
 		count = 0;
 		coin = 0;
 		for (int i = 0; i < 3; i++) {
@@ -674,6 +698,9 @@ int bestPossibleMove(int player)
 				coin = 1;
 			count = 0;
 
+                        if (DEBUG)
+                                fprintf(stderr, "log: random choice from returned set\n");
+
 			for (int i = 0; i < 3; i++) {
 				for (int j = 0; j < 3; j++) {
 					if (nextMoves[player-1][i][j]) {
@@ -685,6 +712,8 @@ int bestPossibleMove(int player)
 					}
 				}
 			}
+                        fprintf(stderr, "error: failed to find move in own set\n");
+                        exit(2);
 		}
 	}
 
