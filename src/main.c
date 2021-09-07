@@ -58,6 +58,7 @@ void menu()
 	clearScreen();
 	ticTacToe();
 	sysOutMenu();
+        getchar();
 }
 
 /*
