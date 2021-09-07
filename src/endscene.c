@@ -23,7 +23,7 @@ FILE* es_openFile()
         if (file == NULL) {
                 printf("error: %s: failed to open file: %s\n",
                                 __FILE__, FNAME);
-                exit(0);
+                exit(1);
         }
         return file;
 }
@@ -33,7 +33,7 @@ int es_closeFile(FILE *f)
         int i = fclose(f);
         if (i != 0) {
                 printf("error: %s: failed to close file\n", __FILE__);
-                exit(0);
+                exit(1);
         }
         return 0;
 }

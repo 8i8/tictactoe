@@ -473,7 +473,7 @@ int computerMove(int player)
 			break;
 		default:
                         fprintf(stderr, "error: %s: level\n", __func__);
-                        exit(2);
+                        exit(1);
 	}
 
         keepCount(AUGMENT);
@@ -525,7 +525,7 @@ int randomMove(int player)
 		}
 	}
         fprintf(stderr, "error: %s: failed to move\n", __func__);
-        exit(2);
+        exit(1);
 	return 0;
 }
 
@@ -577,7 +577,7 @@ int bestPossibleMove(int player)
 			}
 		}
                 fprintf(stderr, "error: failed to find winning move\n");
-                exit(2);
+                exit(1);
 	}
 
         /*
@@ -594,7 +594,7 @@ int bestPossibleMove(int player)
 			}
 		}
                 fprintf(stderr, "error: failed to find opponents move\n");
-                exit(2);
+                exit(1);
 	}
 
 	clearNextMoves();
@@ -659,7 +659,7 @@ int bestPossibleMove(int player)
 				}
 			}
                         fprintf(stderr, "error: failed to find move in either set\n");
-                        exit(2);
+                        exit(1);
 		}
 
 		/*
@@ -704,7 +704,7 @@ int bestPossibleMove(int player)
 				}
 			}
                         fprintf(stderr, "error: failed to find move in own set\n");
-                        exit(2);
+                        exit(1);
 		}
 	}
 
@@ -940,7 +940,7 @@ int getStatusValue(int x)
 			return 0;
 		default:
                         printf("error: getStatusValue: unknown state");
-                        exit(2);
+                        exit(1);
 	}
 }
 
