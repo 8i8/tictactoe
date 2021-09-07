@@ -1,7 +1,7 @@
-#include "endscene.h"
 #include <stdlib.h>
-#include <assert.h>
 #include <string.h>
+#include "endscene.h"
+#include "error.h"
 
 #define FNAME "assets/end-scene"
 #define BUFFER_SIZE 63000

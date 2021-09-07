@@ -27,9 +27,9 @@
 
 #include <unistd.h>
 #include <stdlib.h>
-#include <assert.h>
 #include <time.h>
 #include "ticTacToe.h"
+#include "error.h"
 
 int  updateRowStates(int player);
 int  charToGlyph(int x, int y, int player);
