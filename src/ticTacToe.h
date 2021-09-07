@@ -67,4 +67,3 @@ int clearScreen(void);
 void sysOutMenu(void);
 void sysOut(int write, int player);
 void playEnding(void);
-
