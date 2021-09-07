@@ -1,6 +1,6 @@
 srcdir = src/
 objdir = build/
-#exedir = ~/.bin/
+exedir = bin/
 
 EXE = $(exedir)ticTacToe
 SRC = $(wildcard $(srcdir)*.c)
@@ -9,7 +9,7 @@ OBJ = $(SRC:$(srcdir)%.c=$(objdir)%.o)
 OUT = $(dir $(OBJ) $(exedir))
 
 # Generate the build directory if it is not present.
-$(shell mkdir -p $(objdir))
+$(shell mkdir -p $(objdir) $(exedir))
 
 # Enable Debian/Ubuntu build hardening unless already
 # enabled/disabled  — see hardened-cc(1) —  and ensure
