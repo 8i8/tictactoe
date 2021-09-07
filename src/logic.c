@@ -776,20 +776,6 @@ void setBoard(int rowState, int line, int player) {
 	 */
 	switch(rowState)
 	{
-		case 0:
-			// Anyone's
-			// 000
-			break;
-		case 1:
-			// Good move
-			// 001 -> 1 XOO
-			// 001 -> 2 OXO
-			break;
-		case 2:
-			// Good move
-			// 010 -> 1 XOO
-			// 010 -> 2 OOX
-			break;
 		case 3:
 			// Move to win
 			// 011 -> 0 X00
@@ -809,10 +795,6 @@ void setBoard(int rowState, int line, int player) {
                                                                                 // 0O0
                                                                                 // O00
 			break;
-		case 4:
-			// Good move
-			// 100 -> 1 OXO
-			// 100 -> 2 OOX
 		case 5:
 			// Move to win
 			// 101 -> 0 OXO
@@ -854,13 +836,36 @@ void setBoard(int rowState, int line, int player) {
 		case 7:
 			// Player wins!
 			// 111
+                        sprintf(&str[0], "case %d: the game should be over", rowState);
+                        ERROR(str);
 			break;
 		case 8:
 			// Opponent present.
+                        sprintf(&str[0], "case %d: the square is already in use", rowState);
+                        ERROR(str);
+			break;
+		case 0:
+			// Anyone's
+			// 000
+		case 1:
+			// Good move
+			// 001 -> 1 XOO
+			// 001 -> 2 OXO
+		case 2:
+			// Good move
+			// 010 -> 1 XOO
+			// 010 -> 2 OOX
+		case 4:
+			// Good move
+			// 100 -> 1 OXO
+			// 100 -> 2 OOX
+                        sprintf(&str[0], "case %d: requires use of setNextMove function", rowState);
+                        ERROR(str);
 			break;
 		default:
+                        sprintf(&str[0], "case %d: unknown rowState", rowState);
+                        ERROR(str);
 			break;
-
 	}
 }
 
@@ -953,10 +958,6 @@ int setNextMoves(int rowState, int line, int player)
                                                                                 // 0O0
 			                                                        // X00
 			break;
-		case 3:
-			// Move to win
-			// 011 -> 0 X00
-			break;
 		case 4:
 			// Good move
 			// 100 -> 1 OXO
@@ -992,22 +993,32 @@ int setNextMoves(int rowState, int line, int player)
                                                                                 // 0O0
 			                                                        // X00
 			break;
+		case 3:
+			// Move to win
+			// 011 -> 0 X00
 		case 5:
 			// Move to win
 			// 101 -> 0 OXO
-			break;
 		case 6:
 			// Move to win
 			// 110 -> 0 OOX
+                        sprintf(&str[0], "case %d: requires use of setBoard function", rowState);
+                        ERROR(str);
 			break;
 		case 7:
 			// Player wins!
 			// 111
+                        sprintf(&str[0], "case %d: the game should be over", rowState);
+                        ERROR(str);
 			break;
 		case 8:
 			// Opponent present.
+                        sprintf(&str[0], "case %d: the square is already in use", rowState);
+                        ERROR(str);
 			break;
 		default:
+                        sprintf(&str[0], "case %d: unknown rowState", rowState);
+                        ERROR(str);
 			break;
 
 	}
