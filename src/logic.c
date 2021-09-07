@@ -253,15 +253,17 @@ void resetBoard()
  */
 int setLevel(char newLevel)
 {
-	if (newLevel == '0') {
-		myRandom = 1;
-		return 1;
-	}
-	if (newLevel > '0' && newLevel < '6') {
-		myRandom = 0;
-		level = newLevel - 48;
-		return 1;
-	}
+	/* if (newLevel == '0') { */
+	/* 	myRandom = 1; */
+	/* 	return 1; */
+	/* } */
+	/* if (newLevel > '0' && newLevel < '6') { */
+	/* 	myRandom = 0; */
+	/* 	level = newLevel - 48; */
+	/* 	return 1; */
+	/* } */
+        level = newLevel - 48; // TODO remove this when uncommenting
+        level = 5; // TODO remove this when uncommenting
 	return 0;
 }
 
