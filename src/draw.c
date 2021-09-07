@@ -129,8 +129,8 @@ void writeMovesToBoard(int *moves)
          * Map the 3*3 grid into the corresponding display, no fancy
          * math here just plain hard coded coordinates.
 	 */
-	int map1[9] = { 16, 20, 24, 42, 46, 50, 68, 72, 76 };
-	int map2[9] = { 86, 97,108, 566, 577, 588, 1046, 1057, 1068 };
+	static int map1[9] = { 16, 20, 24, 42, 46, 50, 68, 72, 76 };
+	static int map2[9] = { 86, 97, 108, 566, 577, 588, 1046, 1057, 1068 };
 
 	for (int i = 0; i < 9; i++) {
 
