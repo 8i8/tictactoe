@@ -470,7 +470,7 @@ int computerMove(int player)
 		case 5: bestPossibleMove(player);
 			break;
 		default:
-                        fprintf(stderr, "error: %s: level\n", __func__);
+                        fprintf(stderr, "error: %s: level (%d)\n", __func__, level);
                         exit(1);
 	}
 
