@@ -40,7 +40,7 @@ int  checkStaleMate(void);
 int  setBit(int j, int row);
 int  getStatusValue(int x);
 void setBoard(int rowState, int line, int player);
-int  makeMove(int state, int line, int player);
+int  setNextMoves(int state, int line, int player);
 
 /* The size of the playing board, the 'hash'. */
 #define MATRIX	9
@@ -863,7 +863,7 @@ void setBoard(int rowState, int line, int player) {
 	}
 }
 
-int makemove(int rowState, int line, int player)
+int setNextMoves(int rowState, int line, int player)
 {
 	/*
 	 * Act upon states 0 through 7
