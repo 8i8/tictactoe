@@ -37,7 +37,7 @@
 #define PLAYER1_WIN		4
 #define STALE_MATE		5
 
-#define INCREMENT	4
+#define INCREMENT	 4
 #define DECREMENT	-4
 
 //logic.c
