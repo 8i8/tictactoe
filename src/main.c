@@ -79,6 +79,8 @@ void play()
         // Game loop.
 	while(!winner)
 	{
+                if (DEBUG)
+                        logPlayerStates();
                 // Setup.
                 while (firstRun)
                 {

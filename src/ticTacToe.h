@@ -54,6 +54,7 @@ void player2WinsCoinToss(int player);
 void player1WinsCoinToss(int player);
 int  yourMove(int player);
 int  computerMove(int player);
+void logPlayerStates(void);
 
 // draw.c
 void ticTacToe(void);
