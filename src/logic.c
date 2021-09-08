@@ -620,7 +620,7 @@ int updateRowStates(int player)
 			}
 		}
                 // Write the first 3 states, into indices 1 to 3.
-		rowState[player-1][i+1] = x;
+		rowState[player-1][1+(M_SQRT-i+1)] = x;
 		state = getStatusValue(x);
 		if (x == 7) {
                         winingLine = i+1;
@@ -632,8 +632,8 @@ int updateRowStates(int player)
 	}
 
 	// Vertical status
-	for (j = 0; j < M_SQRT; j++) {
-		for (i = 0; i < M_SQRT; i++)
+	for (i = 0; i < M_SQRT; i++) {
+		for (j = 0; j < M_SQRT; j++)
 		{
                         // If the player is here, mark the square.
 			if (board[i][j] == player) {
@@ -647,7 +647,7 @@ int updateRowStates(int player)
 			}
 		}
                 // carry on from indices 5 to 7 with further states.
-		rowState[player-1][j+5] = x;
+		rowState[player-1][5+i] = x;
 		state = getStatusValue(x);
 		if (x == 7) {
                         winingLine = j+5;
@@ -659,34 +659,7 @@ int updateRowStates(int player)
 	}
 
 	// Diagonal one
-	for (i = 0; i < 3; i++)
-	{
-                // If the player is here, mark the square.
-		if (board[i][i] == player) {
-			x = setBit(i, x);
-		}
-                // if the other player is here, mark the row as
-                // a loss.
-		else if (board[i][j] == opponent) {
-			x = 8;
-			break;
-		}
-	}
-        // Add the first diagonal, at index 4.
-	rowState[player-1][4] = x;
-        state = getStatusValue(x);
-	if (x == 7) {
-                winingLine = 4;
-        }
-	if (state > max) {
-                max = state;
-        }
-
-	x = 0;
-	j = 0;
-
-	// Diagonal two
-	for (i = 2; i >= 0; i--)
+	for (i = 0, j = 2; i < M_SQRT; i++)
 	{
                 // If the player is here, mark the square.
 		if (board[i][j] == player) {
@@ -698,10 +671,10 @@ int updateRowStates(int player)
 			x = 8;
 			break;
 		}
-		j++;
+		j--;
 	}
         // Add the second diagonal, at index 8.
-	rowState[player-1][8] = x;
+	rowState[player-1][4] = x;
         state = getStatusValue(x);
 	if (x == 7) {
                 winingLine = 8;
@@ -709,16 +682,34 @@ int updateRowStates(int player)
 	if (state > max) {
                 max = state;
         }
-	x = 0;
-        if (DEBUG)
-                fprintf(stderr, "log: player %d rowState set: "
-                                "{%d}{%d,%d,%d}{%d}{%d,%d,%d}{%d}\n",
-                                player, rowState[player-1][0],
-                                rowState[player-1][1], rowState[player-1][2],
-                                rowState[player-1][3], rowState[player-1][4],
-                                rowState[player-1][5], rowState[player-1][6],
-                                rowState[player-1][7], rowState[player-1][8]);
 
+	x = 0;
+	j = 0;
+
+	// Diagonal two
+	for (i = 0; i < M_SQRT; i++)
+	{
+                // If the player is here, mark the square.
+		if (board[i][i] == player) {
+			x = setBit(i, x);
+		}
+                // if the other player is here, mark the row as
+                // a loss.
+		else if (board[i][i] == opponent) {
+			x = 8;
+			break;
+		}
+	}
+        // Add the first diagonal, at index 4.
+	rowState[player-1][8] = x;
+        state = getStatusValue(x);
+	if (x == 7) {
+                winingLine = 4;
+        }
+	if (state > max) {
+                max = state;
+        }
+	x = 0;
 	return max;
 }
 
