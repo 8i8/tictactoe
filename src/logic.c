@@ -389,8 +389,9 @@ int yourMove(int player)
 	int a;
 	int b;
 
-	// Do not accept '\n' until two char are entered.
+	// Do not accept '\n' until two char are entered else q to quit.
 	while ((c = getchar()) != '\n') {
+                if (c == 'q') exit(0);
 		if (i == 0 && c != '\n')
 			x = c;
 		if (i == 1 && c != '\n')
