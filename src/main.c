@@ -32,8 +32,11 @@
  *  - automatic game end when stalemate is inevitable.
  */
 
-#include "ticTacToe.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 #include <unistd.h>
+#include "ticTacToe.h"
 
 void menu(void);
 void play(void);

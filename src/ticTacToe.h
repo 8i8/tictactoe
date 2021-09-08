@@ -24,9 +24,6 @@
 
  ============================================================================
  */
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
 
 #define DEBUG			1
 #define EMPTY			0
