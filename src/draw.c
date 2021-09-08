@@ -449,7 +449,11 @@ void sysOut(int write, int player) {
  * If player is > 0 then -1; Corrects the value of 'player' for use in
  * the printf statement, that is, when the output is player dependant.
  */
-        assert(player == PLAYER1 || player == PLAYER2);
+        if (player != PLAYER1 && player != PLAYER2) {
+                sprintf(&str[0], "unknown player: %d", player);
+                ERROR(str);
+                exit(1);
+        }
         player--;
 
 	char* text[9] = {
