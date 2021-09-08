@@ -1189,7 +1189,7 @@ int playBestMove(int player)
 				for (int j = 0; j < 3; j++) {
 					if (nextMoves[player-1][i][j] && nextMoves[opponent-1][i][j]) {
 						if (coin == count) {
-							board[i][j] = player + 1;
+							board[i][j] = player;
 							return 0;
 						}
 						count++;
