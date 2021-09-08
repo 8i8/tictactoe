@@ -910,10 +910,6 @@ int setNextMoves(int rowState, int line, int player)
 	 */
 	switch(rowState)
 	{
-		case 0:
-			// Anyone's
-			// 000
-			break;
 		case 1:
 			// Good move
 			// 001 -> 1 XOO
@@ -1018,6 +1014,12 @@ int setNextMoves(int rowState, int line, int player)
 			else if (line == 8) nextMoves[player-1][2][0] = player; // 00O
                                                                                 // 0O0
 			                                                        // X00
+			break;
+		case 0:
+			// Anyone's
+			// 000
+                        sprintf(&str[0], "case %d: requires use of a random move", rowState);
+                        ERROR(str);
 			break;
 		case 3:
 			// Move to win
