@@ -83,8 +83,8 @@ void play()
                 while (firstRun)
                 {
                         firstRun = 0;
-                        resetBoard();
                         keepCount(RESET);
+                        resetBoard();
 
                         if (coin == COIN_UN_SPUN) {
                                 choice = headsOrTails();
