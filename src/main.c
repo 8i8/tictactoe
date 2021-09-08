@@ -82,8 +82,6 @@ void play()
         // Game loop.
 	while(!winner)
 	{
-                if (DEBUG)
-                        logPlayerStates();
                 // Setup.
                 while (firstRun)
                 {
@@ -106,6 +104,9 @@ void play()
                         // Set up board and then continue.
                         player1WinsCoinToss(PLAYER1);
                 }
+
+                if (DEBUG)
+                        logPlayerStates();
 
                 // Player input.
 		status = yourMove(PLAYER1);
