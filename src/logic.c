@@ -374,10 +374,10 @@ void logPlayerState(int player) {
         fprintf(stderr, "log: player %d rowState set: "
                         "{%d}{%d,%d,%d}{%d}{%d,%d,%d}{%d}\n",
                         player, rowState[player-1][0],
-                        rowState[player-1][3], rowState[player-1][2],
-                        rowState[player-1][1], rowState[player-1][4],
-                        rowState[player-1][7], rowState[player-1][6],
-                        rowState[player-1][5], rowState[player-1][8]);
+                        rowState[player-1][1], rowState[player-1][2],
+                        rowState[player-1][3], rowState[player-1][4],
+                        rowState[player-1][5], rowState[player-1][6],
+                        rowState[player-1][7], rowState[player-1][8]);
         fprintf(stderr, "log: player %d: case %d: nextMoves set: "
                         "{%d,%d,%d}{%d,%d,%d}{%d,%d,%d}\n",
                         player, rowState[player-1][0],
