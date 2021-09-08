@@ -514,7 +514,7 @@ int computerMove(int player)
         keepCount(AUGMENT);
 	status = updateGame(player);
 	rowState[player-1][0] = status;
-       
+
 	return status;
 }
 
