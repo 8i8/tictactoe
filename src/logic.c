@@ -407,6 +407,7 @@ int yourMove(int player)
 
 	// Ok play.
 	int status;
+start:
 	status = updateGame(player);
 	rowState[player-1][0] = status;
 	sysOut(7, player);
@@ -419,6 +420,7 @@ int yourMove(int player)
 	int a;
 	int b;
 
+input:
 	// Do not accept '\n' until two char are entered else q to quit.
 	while ((c = getchar()) != '\n') {
                 if (c == 'q') exit(0);
@@ -440,13 +442,13 @@ int yourMove(int player)
 	// Repeat until reasonable values are entered ...
 	else if ((x < 97 || x > 99) || (y < 49 || y > 51))
 	{
-		yourMove(player);
+                goto input;
 		return 0;
 	}
 
 	// Write to the board array.
 	if (!charToGlyph(x, y, player)) {
-		yourMove(player);
+                goto start;
 		return 0;
 	}
 
@@ -454,6 +456,7 @@ int yourMove(int player)
 
 	status = updateGame(player);
 	rowState[player-1][0] = status;
+
 	return status;
 }
 
@@ -511,6 +514,7 @@ int computerMove(int player)
         keepCount(AUGMENT);
 	status = updateGame(player);
 	rowState[player-1][0] = status;
+       
 	return status;
 }
 
