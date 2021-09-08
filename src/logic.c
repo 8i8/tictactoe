@@ -35,7 +35,7 @@
 int  updateRowStates(int player);
 int  charToGlyph(int x, int y, int player);
 int  randomMove(int player);
-int  bestPossibleMove(int player);
+int  playBestMove(int player);
 void clearNextMoves(void);
 int  checkStaleMate(void);
 int  setBit(int j, int row);
@@ -488,24 +488,24 @@ int computerMove(int player)
 			if (coin) {
 				randomMove(player);
 			} else {
-				bestPossibleMove(player);
+				playBestMove(player);
 			}
 			break;
 		case 3: coin = coinToss(2);
 			if (coin) {
 				randomMove(player);
 			} else {
-				bestPossibleMove(player);
+				playBestMove(player);
 			}
 			break;
 		case 4: coin = coinToss(3);
 			if (coin) {
-				bestPossibleMove(player);
+				playBestMove(player);
 			} else {
 				randomMove(player);
 			}
 			break;
-		case 5: bestPossibleMove(player);
+		case 5: playBestMove(player);
 			break;
 		default:
                         fprintf(stderr, "error: %s: level (%d)\n", __func__, level);
@@ -1076,7 +1076,7 @@ int setNextMoves(int rowState, int line, int player)
  * TODO add knowledge of the double winning move trap, to be chose if
  * the occasion arises.
  */
-int bestPossibleMove(int player)
+int playBestMove(int player)
 {
 	int opponent;
 	int value;
