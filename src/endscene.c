@@ -68,7 +68,7 @@ int es_readLine(FILE *f, char *buf, int *count)
         char* ctest = "\033[22;0f";
         char* vbuf = malloc(sizeof(char) * VBUF);
 
-        int c, n, ri, out, max;
+        int c, n, ri, out, max = 0;
         for (n = 0, out = 0; (c = read(f)) != EOF; n++, max++) {
                 assert(n <= BUFFER_SIZE);
 

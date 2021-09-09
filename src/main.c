@@ -72,11 +72,9 @@ void menu()
  */
 void play()
 {
-	int choice;
-	int status;
+	int choice, status, winner, stale_mate;
+        choice = status = winner = stale_mate = 0;
 	int coin = 3;
-	int winner = 0;
-	int stale_mate = 0;
         int firstRun = 1;
 
         // Game loop.

@@ -1,3 +1,5 @@
+.POSIX:
+
 srcdir = src/
 objdir = build/
 exedir = bin/
@@ -49,6 +51,3 @@ $(EXE): $(OBJ)
 # we redefine the implicit rule to also work in that situation.
 $(objdir)%.o: $(srcdir)%.c Makefile
 	$(CC) -c $(CFLAGS) $< -o $@
-
-%/:
-	mkdir -p -- $@
