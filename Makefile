@@ -3,6 +3,7 @@
 srcdir = src/
 objdir = build/
 exedir = bin/
+insdir = ~/.bin
 
 EXE = $(exedir)ticTacToe
 SRC = $(wildcard $(srcdir)*.c)
@@ -31,8 +32,11 @@ CFLAGS += -Wstrict-prototypes
 CFLAGS += -g
 #CFLAGS += -O
 
-.PHONY: all clean distclean
+.PHONY: all install clean distclean
 all: $(EXE)
+
+install: $(EXE)
+	cp $(EXE) $(insdir)
 
 clean:
 	rm -f -- $(OBJ)
@@ -43,6 +47,9 @@ distclean: clean
 
 $(EXE): $(OBJ) $(HDR)
 	$(CC) -o $@ $(OBJ)
+
+run: 
+	$(EXE)
 
 # When srcdir == objdir, make's default implicit rule works fine.
 # However, when srcdir ≠ objdir, it never matches, because (e.g.,

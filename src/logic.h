@@ -1,0 +1,14 @@
+int  keepCount(int option);
+int keepScore(int player, int inc);
+void resetBoard(void);
+int  setLevel(char newLevel);
+void winningLine(void);
+void printDebugMoves(void);
+int  updateGame(int player);
+int  headsOrTails(void);
+int  coinToss(int howManySides);
+void player2WinsCoinToss(int player);
+void player1WinsCoinToss(int player);
+int  yourMove(int player);
+int  computerMove(int player);
+void logPlayerStates(void);

@@ -37,8 +37,12 @@
 #include "ticTacToe.h"
 #include "endscene.h"
 #include "error.h"
+#include "logic.h"
+#include "draw.h"
 
 void writeGlyphToGrid(int* glyph, int j);
+
+extern int DEBUG;
 
 /*
  * The heading what!

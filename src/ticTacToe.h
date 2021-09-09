@@ -25,7 +25,6 @@
  ============================================================================
  */
 
-#define DEBUG			0
 #define EMPTY			0
 #define PLAYER1			1
 #define PLAYER2			2
@@ -35,31 +34,3 @@
 #define STALE_MATE		5
 #define INCREMENT	 	4
 #define DECREMENT		-4
-
-//logic.c
-int  keepCount(int option);
-int keepScore(int player, int inc);
-void resetBoard(void);
-int  setLevel(char newLevel);
-void winningLine(void);
-void printDebugMoves(void);
-int  updateGame(int player);
-int  headsOrTails(void);
-int  coinToss(int howManySides);
-void player2WinsCoinToss(int player);
-void player1WinsCoinToss(int player);
-int  yourMove(int player);
-int  computerMove(int player);
-void logPlayerStates(void);
-
-// draw.c
-void ticTacToe(void);
-void writeMovesToBoard(int *moves);
-void drawScore(int score1, int score2);
-void drawWinningLine(int line);
-void drawGrid(void);
-void redrawGrid(int line);
-int clearScreen(void);
-void sysOutMenu(void);
-void sysOut(int write, int player);
-void playEnding(void);

@@ -30,6 +30,8 @@
 #include <stdlib.h>
 #include <time.h>
 #include "ticTacToe.h"
+#include "logic.h"
+#include "draw.h"
 #include "error.h"
 
 int  updateRowStates(int player);
@@ -42,6 +44,8 @@ int  setBit(int j, int row);
 int  getStatusValue(int x);
 void setBoard(int rowState, int line, int player);
 int  setNextMoves(int state, int line, int player);
+
+extern int DEBUG;
 
 /* The size of the playing board, the 'hash'. */
 #define MATRIX	9

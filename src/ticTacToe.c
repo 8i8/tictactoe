@@ -37,9 +37,13 @@
 #include <time.h>
 #include <unistd.h>
 #include "ticTacToe.h"
+#include "logic.h"
+#include "draw.h"
 
 void menu(void);
 void play(void);
+
+int DEBUG = 0;
 
 int main(void)
 {
