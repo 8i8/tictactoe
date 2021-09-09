@@ -435,24 +435,23 @@ input:
 	}
 
 	// Inverse the coordinates if reasonable values.
-	if ((x > 48 && x < 52) && (y > 96 && y < 100))
+	if ((x >= 'a' && x <= 'c') && (y >= '1' && y <= '3'))
 	{
 		a = x;
 		b = y;
 		x = b;
 		y = a;
 	}
+
 	// Repeat until reasonable values are entered ...
 	else if ((x < 97 || x > 99) || (y < 49 || y > 51))
 	{
                 goto input;
-		return 0;
 	}
 
 	// Write to the board array.
 	if (!charToGlyph(x, y, player)) {
                 goto start;
-		return 0;
 	}
 
 	keepCount(AUGMENT);
