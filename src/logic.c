@@ -642,7 +642,7 @@ int updateRowStates(int player)
 			}
                         // if the other player is here, mark the row as
                         // a loss.
-			else if (board[i][j] == player) {
+			else if (board[i][j] == opponent) {
 				x = 8;
 				break;
 			}
@@ -668,7 +668,7 @@ int updateRowStates(int player)
 		}
                 // if the other player is here, mark the row as
                 // a loss.
-		else if (board[i][i] == player) {
+		else if (board[i][i] == opponent) {
 			x = 8;
 			break;
 		}
@@ -695,7 +695,7 @@ int updateRowStates(int player)
 		}
                 // if the other player is here, mark the row as
                 // a loss.
-		else if (board[i][j] == player) {
+		else if (board[i][j] == opponent) {
 			x = 8;
 			break;
 		}
