@@ -25,7 +25,7 @@
  ============================================================================
  */
 
-#define DEBUG			1
+#define DEBUG			0
 #define EMPTY			0
 #define PLAYER1			1
 #define PLAYER2			2
