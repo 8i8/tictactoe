@@ -687,7 +687,7 @@ int updateRowStates(int player)
 	j = 0;
 
 	// Diagonal two
-	for (i = 0, j = 2; i < M_SQRT; i++)
+	for (i = 0, j = 2; i < M_SQRT; i++, j--)
 	{
                 // If the player is here, count the bit.
 		if (board[i][j] == player) {
@@ -699,7 +699,6 @@ int updateRowStates(int player)
 			x = 8;
 			break;
 		}
-		j--;
 	}
         // Add the second diagonal, at index 8.
 	rowState[player-1][8] = x;
