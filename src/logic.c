@@ -717,29 +717,30 @@ int updateRowStates(int player)
 /*
  * Returns the bit mask required to describe the state of the row.
  */
-int setBit(int bit, int row)
+int setBit(int j, int i)
 {
 	/*
-	 * Use 3 bit binary word used to add the move to the rows state.
+         * Use 3 bit binary word used to add the move to the acumulated
+         * state.
          *
-         *   012
+         * j 012
          *   ---
 	 *   001 -> 1
 	 *   010 -> 2
 	 *   100 -> 4
          *
 	 */
-	switch(bit)
+	switch(j)
 	{
-		case 2:
-                        row += 1;
-			return row;
-		case 1:
-                        row += 2;
-			return row;
 		case 0:
-                        row += 4;
-			return row;
+                        i += 4;
+			return i;
+		case 1:
+                        i += 2;
+			return i;
+		case 2:
+                        i += 1;
+			return i;
 	}
 	return 0;
 }
