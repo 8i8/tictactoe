@@ -9,6 +9,7 @@ SRC = $(wildcard $(srcdir)*.c)
 HDR = $(wildcard $(srcdir)*.h)
 OBJ = $(SRC:$(srcdir)%.c=$(objdir)%.o) 
 OUT = $(dir $(objdir) $(exedir))
+CC  = gcc
 
 # Generate the build directory if it is not present.
 $(shell mkdir -p $(objdir) $(exedir))
@@ -19,7 +20,6 @@ $(shell mkdir -p $(objdir) $(exedir))
 # (and linker, hardened-ld(1)).
 DEB_BUILD_HARDENING ?= 1
 export DEB_BUILD_HARDENING
-CC = gcc
 
 # CFLAGS += -fsanitize=address
 # CFLAGS += -fsanitize=undefined
@@ -41,7 +41,7 @@ distclean: clean
 	rm -f -- $(EXE)
 	-rmdir --ignore-fail-on-non-empty -- $(OUT)
 
-$(EXE): $(OBJ)
+$(EXE): $(OBJ) $(HDR)
 	$(CC) -o $@ $(OBJ)
 
 # When srcdir == objdir, make's default implicit rule works fine.
@@ -49,5 +49,5 @@ $(EXE): $(OBJ)
 # with `make objdir=foo- ...') foo-draw.o differs not just in the
 # suffix (.c → .o) but also in the prefix (src/ → foo-).  Hence,
 # we redefine the implicit rule to also work in that situation.
-$(objdir)%.o: $(srcdir)%.c Makefile
+$(objdir)%.o: $(srcdir)%.c
 	$(CC) -c $(CFLAGS) $< -o $@
