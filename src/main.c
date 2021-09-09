@@ -114,7 +114,7 @@ void play()
                 // Player win.
 		if(status == PLAYER1_WIN) {
                         // Print status
-			sysOut(0, 0);
+			sysOut(0, PLAYER1);
                         if (keepScore(PLAYER1, INCREMENT) > 0) {
                                 winner = 1;
                                 break;
@@ -132,7 +132,7 @@ void play()
 
                 // Computer wins.
 		if(status == PLAYER1_WIN && !winner) {
-			sysOut(1, 0);
+			sysOut(1, PLAYER1);
                         if (keepScore(PLAYER2, INCREMENT) > 0) {
                                 winner = 2;
                                 break;
@@ -142,7 +142,7 @@ void play()
 		} else if (status == STALE_MATE) {
 			updateGame(PLAYER1);
 			// Stale-mate
-			sysOut(2, 0);
+			sysOut(2, PLAYER1);
 			keepScore(PLAYER1, DECREMENT);
 			keepScore(PLAYER2, DECREMENT);
 			winner = 1;
