@@ -321,7 +321,7 @@ void player2WinsCoinToss(int player)
 {
 	drawGrid();
 	sysOut(5, player);
-	usleep(1000);
+	sleep(2);
 	computerMove(player);
 	updateGame(player);
 }
@@ -333,7 +333,7 @@ void player1WinsCoinToss(int player)
 {
 	drawGrid();
 	sysOut(5, player);
-	usleep(1000);
+	sleep(2);
 }
 
 /*

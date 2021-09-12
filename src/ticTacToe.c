@@ -116,7 +116,6 @@ void play()
                 // Player win.
 		if(status == PLAYER1_WIN) {
                         // Print status
-			sysOut(0, PLAYER1);
                         if (keepScore(PLAYER1, INCREMENT) > 0) {
                                 winner = 1;
                                 break;
@@ -134,7 +133,6 @@ void play()
 
                 // Computer wins.
 		if(status == PLAYER1_WIN && !winner) {
-			sysOut(1, PLAYER1);
                         if (keepScore(PLAYER2, INCREMENT) > 0) {
                                 winner = 2;
                                 break;
@@ -148,20 +146,23 @@ void play()
 			keepScore(PLAYER1, DECREMENT);
 			keepScore(PLAYER2, DECREMENT);
 			winner = 1;
+                        sleep(2);
 		}
 
                 // Game end.
 		if(winner) {
-			winner = 0;
-			firstRun = 1;
+			sysOut(winner-1, winner);
 			winningLine();
 			sleep(2);
+			firstRun = 1;
+			winner = 0;
 		}
 	}
 
         // End of the game.
         if (winner == 1) {
                 winningLine();
+		sysOut(0, PLAYER1);
                 sleep(2);
                 playEnding();
         }
