@@ -435,7 +435,7 @@ input:
 	}
 
 	// Inverse the coordinates if reasonable values.
-	if ((x >= 'a' && x <= 'c') && (y >= '1' && y <= '3'))
+	if ((x >= '1' && x <= '3') && (y >= 'a' && y <= 'c'))
 	{
 		a = x;
 		b = y;
@@ -1152,7 +1152,7 @@ int playBestMove(int player)
                         if (DEBUG)
                                 fprintf(stderr, "log: random choice from set of good moves\n");
 
-			count = 0;
+			count = 1;
 			for (int i = 0; i < 3; i++) {
 				for (int j = 0; j < 3; j++) {
 					if (nextMoves[player-1][i][j] && nextMoves[opponent-1][i][j]) {
@@ -1164,7 +1164,7 @@ int playBestMove(int player)
 					}
 				}
 			}
-                        fprintf(stderr, "error: failed to find move combined set\n");
+                        fprintf(stderr, "log: failed to find move combined set\n");
                         exit(1);
 		}
 
