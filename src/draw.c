@@ -462,9 +462,9 @@ void sysOut(int write, int player) {
         player--;
 
 	char* text[9] = {
-		"Congratulations, you are the winner!",			// 0
-		"I am the winner, better luck next time ...",		// 1
-		"Stale-mate, nobody wins ...",				// 2
+		"Congratulations, you are the winner!\n",			// 0
+		"I am the winner, better luck next time ...\n",		// 1
+		"Stale-mate, nobody wins ...\n",				// 2
 		"Would you like to play again? y/n or m for menu: ",	// 3
 		"Please choose, heads or tails 'h' or 't' ? ",		// 4
 		"You have won the toss. ",				// 5
