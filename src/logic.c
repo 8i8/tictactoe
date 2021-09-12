@@ -1166,7 +1166,6 @@ int playBestMove(int player)
 				}
 			}
                         fprintf(stderr, "log: failed to find move combined set\n");
-                        exit(1);
 		}
 
 		/*
