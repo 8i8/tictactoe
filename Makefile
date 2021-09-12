@@ -1,11 +1,12 @@
 .POSIX:
 
+name   = ticTacToe
 srcdir = src/
 objdir = build/
 exedir = bin/
-insdir = ~/.bin
+insdir = ~/.bin/
 
-EXE = $(exedir)ticTacToe
+EXE = $(exedir)$(name)
 SRC = $(wildcard $(srcdir)*.c)
 HDR = $(wildcard $(srcdir)*.h)
 OBJ = $(SRC:$(srcdir)%.c=$(objdir)%.o) 
@@ -43,6 +44,7 @@ clean:
 
 distclean: clean
 	rm -f -- $(EXE)
+	rm -f -- $(insdir)$(name)
 	-rmdir --ignore-fail-on-non-empty -- $(OUT)
 
 $(EXE): $(OBJ) $(HDR)
