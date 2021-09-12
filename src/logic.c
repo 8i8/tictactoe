@@ -424,13 +424,12 @@ start:
 	int b;
 
 input:
+        i = 0;
 	// Do not accept '\n' until two char are entered else q to quit.
 	while ((c = getchar()) != '\n') {
                 if (c == 'q') exit(0);
-		if (i == 0 && c != '\n')
-			x = c;
-		if (i == 1 && c != '\n')
-			y = c;
+		if (i == 0) x = c;
+		if (i == 1) y = c;
 		i++;
 	}
 
