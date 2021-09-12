@@ -362,11 +362,11 @@ int charToGlyph(int x, int y, int player)
 
 	// If the square is already in use return 0
 	if (board[y][x] != EMPTY)
-		return 0;
+		return 1;
 
         // Place the move on the board.
         board[y][x] = player;
-        return 1;
+        return 0;
 }
 
 /*
@@ -451,7 +451,7 @@ input:
 	}
 
 	// Write to the board array.
-	if (!charToGlyph(x, y, player)) {
+	if (charToGlyph(x, y, player)) {
                 goto start;
 	}
 
