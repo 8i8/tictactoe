@@ -287,22 +287,19 @@ void winningLine()
  */
 int headsOrTails()
 {
-	for(;;)
-	{
-		int c;
-		drawGrid();
-		sysOut(4, PLAYER1);
+        int c;
+        drawGrid();
+        sysOut(4, PLAYER1);
 
-		while ((c = getchar()) != '\n')
-		{
-			if (c == 'h')
-				return 0;
-			else if (c == 't')
-				return 1;
-			else
-				printf("h or t ?");
-		}
-	}
+        while ((c = getchar()) != '\n')
+        {
+                if (c == 'h')
+                        return 0;
+                else if (c == 't')
+                        return 1;
+                else
+                        printf("h or t ?");
+        }
 	return 1;
 }
 
