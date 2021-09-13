@@ -320,9 +320,9 @@ int coinToss(int howManySides)
 void player2WinsCoinToss(int player)
 {
 	drawGrid();
-	sysOut(5, player);
-	sleep(2);
 	sysOut(PLAYER_WINS_TOSS, player);
+        fflush(stdout);
+        sleep(2);
 	computerMove(player);
 	updateGame(player);
 }
@@ -333,9 +333,9 @@ void player2WinsCoinToss(int player)
 void player1WinsCoinToss(int player)
 {
 	drawGrid();
-	sysOut(5, player);
-	sleep(2);
 	sysOut(PLAYER_WINS_TOSS, player);
+        fflush(stdout);
+        sleep(2);
 }
 
 /*
@@ -479,6 +479,7 @@ int computerMove(int player)
 	status = updateGame(player);
 	rowState[player-1][0] = status;
 	sysOut(7, player);
+        fflush(stdout);
 	sleep(2);
 
 	switch (level)

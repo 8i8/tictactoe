@@ -115,14 +115,13 @@ void play()
 
                 // Player win.
 		if(status == PLAYER1_WIN) {
-                        // Print status
+			winner = PLAYER1;
                         if (keepScore(PLAYER1, INCREMENT) > 0) {
-                                winner = 1;
                                 break;
                         }
 			keepScore(PLAYER2, RESET);
-			winner = 1;
                         sysOut(PLAYER_WIN, PLAYER2);
+                        winningLine();
 		} else if (status == STALE_MATE)
 			stale_mate = 1;
 
@@ -134,29 +133,25 @@ void play()
 
                 // Computer wins.
 		if(status == PLAYER1_WIN && !winner) {
+                        winner = PLAYER2;
                         if (keepScore(PLAYER2, INCREMENT) > 0) {
-                                winner = 2;
                                 break;
                         }
 			keepScore(PLAYER1, RESET);
-			winner = 2;
                         sysOut(PLAYER_WIN, PLAYER2);
+                        winningLine();
 		} else if (status == STALE_MATE) {
-			updateGame(PLAYER1);
-			// Stale-mate
-			sysOut(2, PLAYER1);
 			keepScore(PLAYER1, DECREMENT);
 			keepScore(PLAYER2, DECREMENT);
-			winner = 1;
+			updateGame(PLAYER1);
 			sysOut(PLAYER_DRAW, PLAYER1);
+                        fflush(stdout);
                         sleep(2);
+                        winner = 1;
 		}
 
                 // Game end.
 		if(winner) {
-			sysOut(winner-1, winner);
-			winningLine();
-			sleep(2);
 			firstRun = 1;
 			winner = 0;
 		}
