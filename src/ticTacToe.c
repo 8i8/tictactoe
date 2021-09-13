@@ -122,6 +122,7 @@ void play()
                         }
 			keepScore(PLAYER2, RESET);
 			winner = 1;
+                        sysOut(PLAYER_WIN, PLAYER2);
 		} else if (status == STALE_MATE)
 			stale_mate = 1;
 
@@ -139,6 +140,7 @@ void play()
                         }
 			keepScore(PLAYER1, RESET);
 			winner = 2;
+                        sysOut(PLAYER_WIN, PLAYER2);
 		} else if (status == STALE_MATE) {
 			updateGame(PLAYER1);
 			// Stale-mate
@@ -146,6 +148,7 @@ void play()
 			keepScore(PLAYER1, DECREMENT);
 			keepScore(PLAYER2, DECREMENT);
 			winner = 1;
+			sysOut(PLAYER_DRAW, PLAYER1);
                         sleep(2);
 		}
 
@@ -162,7 +165,7 @@ void play()
         // End of the game.
         if (winner == 1) {
                 winningLine();
-		sysOut(0, PLAYER1);
+		sysOut(PLAYER_WIN, PLAYER1);
                 sleep(2);
                 playEnding();
         }

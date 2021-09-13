@@ -289,7 +289,7 @@ int headsOrTails()
 {
         int c;
         drawGrid();
-        sysOut(4, PLAYER1);
+        sysOut(HEADS_OR_TAILS, PLAYER1);
 
         while ((c = getchar()) != '\n')
         {
@@ -322,6 +322,7 @@ void player2WinsCoinToss(int player)
 	drawGrid();
 	sysOut(5, player);
 	sleep(2);
+	sysOut(PLAYER_WINS_TOSS, player);
 	computerMove(player);
 	updateGame(player);
 }
@@ -334,6 +335,7 @@ void player1WinsCoinToss(int player)
 	drawGrid();
 	sysOut(5, player);
 	sleep(2);
+	sysOut(PLAYER_WINS_TOSS, player);
 }
 
 /*

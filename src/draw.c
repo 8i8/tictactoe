@@ -439,6 +439,7 @@ void sysOutMenu()
 	puts("\n\n\n\n\n\n");
 }
 
+
 /*
  * The wordy part; This function sends all of the programs text phrases
  * out into the world, well to the screen at least, and believe it or
@@ -449,7 +450,7 @@ void sysOutMenu()
  * programming thingy; Could get your self in to hot water with it I am
  * sure; It really is that civilised.
  */
-void sysOut(int write, int player) {
+void sysOut(enum SYSDISP write, int player) {
 /*
  * If player is > 0 then -1; Corrects the value of 'player' for use in
  * the printf statement, that is, when the output is player dependant.
