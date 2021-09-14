@@ -76,8 +76,8 @@ void menu()
  */
 void play()
 {
-	int choice, status, winner, stale_mate;
-        choice = status = winner = stale_mate = 0;
+	int choice, status, winner, stale_mate, done;
+        choice = status = winner = stale_mate = done = 0;
 	int coin = 3;
         int firstRun = 1;
 
@@ -116,11 +116,10 @@ void play()
                 // Player win.
 		if(status == PLAYER1_WIN) {
 			winner = PLAYER1;
-                        if (keepScore(PLAYER1, INCREMENT) > 0) {
-                                break;
-                        }
+                        done = keepScore(PLAYER1, INCREMENT);
 			keepScore(PLAYER2, RESET);
                         winningLine();
+                        if (done) { break; }
                         sysOut(PLAYER_WIN);
                         fflush(stdout);
 		} else if (status == STALE_MATE)
@@ -135,11 +134,10 @@ void play()
                 // Computer wins.
 		if(status == PLAYER1_WIN && !winner) {
                         winner = PLAYER2;
-                        if (keepScore(PLAYER2, INCREMENT) > 0) {
-                                break;
-                        }
+                        done = keepScore(PLAYER2, INCREMENT);
 			keepScore(PLAYER1, RESET);
                         winningLine();
+                        if (done) { break; }
                         sysOut(OPONENT_WIN);
                         fflush(stdout);
 		} else if (status == STALE_MATE) {
@@ -163,6 +161,7 @@ void play()
         // End of the game.
         if (winner == 1) {
                 sysOut(SET_WIN);
+                fflush(stdout);
                 sleep(2);
                 playEnding();
         }
