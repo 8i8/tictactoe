@@ -291,16 +291,19 @@ int headsOrTails()
         drawGrid();
         sysOut(HEADS_OR_TAILS);
 
-        while ((c = getchar()) != '\n')
-        {
-                if (c == 'h')
-                        return 0;
-                else if (c == 't')
-                        return 1;
-                else
-                        printf("h or t ?");
+        // keep looping untill a choice is returned.
+        for (;;) {
+                while ((c = getchar()) != '\n')
+                {
+                        if (c == 'h')
+                                return 0;
+                        else if (c == 't')
+                                return 1;
+                        else
+                                printf("h or t ?");
+                }
         }
-	return 1;
+	return 0;
 }
 
 /*
