@@ -11,6 +11,7 @@ enum SYSDISP {
 		OPONENT_WINS_TOSS,
         PLAYER_MOVE,
 		OPONENT_MOVE,
+		SET_WIN,
 };
 
 void ticTacToe(void);

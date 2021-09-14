@@ -456,7 +456,7 @@ void sysOut(enum SYSDISP write) {
  * the printf statement, that is, when the output is player dependant.
  */
 
-	char* text[9] = {
+	char* text[10] = {
 		"Congratulations, you are the winner!\n",		// 0
 		"I am the winner, better luck next time ...\n",		// 1
 		"Stale-mate, nobody wins ...\n",			// 2
@@ -465,7 +465,8 @@ void sysOut(enum SYSDISP write) {
 		"You have won the toss. ",				// 5
 		"I have won the toss. ",				// 6
 		"It is your move ...  ",				// 7
-		"My turn, now then, let me see ..."			// 8
+		"My turn, now then, let me see ...",			// 8
+                "Congratulations, you have wone the series!!!",         // 9
 	};
 
 	printf("%s", text[write]);

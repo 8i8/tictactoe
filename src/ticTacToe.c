@@ -120,6 +120,7 @@ void play()
                                 break;
                         }
 			keepScore(PLAYER2, RESET);
+                        winningLine();
                         sysOut(PLAYER_WIN);
                         fflush(stdout);
 		} else if (status == STALE_MATE)
@@ -138,6 +139,7 @@ void play()
                                 break;
                         }
 			keepScore(PLAYER1, RESET);
+                        winningLine();
                         sysOut(OPONENT_WIN);
                         fflush(stdout);
 		} else if (status == STALE_MATE) {
@@ -152,7 +154,6 @@ void play()
 
                 // Game end.
 		if(winner) {
-                        winningLine();
                         sleep(2);
 			firstRun = 1;
 			winner = 0;
@@ -161,7 +162,7 @@ void play()
 
         // End of the game.
         if (winner == 1) {
-                winningLine();
+                sysOut(SET_WIN);
                 sleep(2);
                 playEnding();
         }
