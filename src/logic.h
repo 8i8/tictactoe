@@ -8,7 +8,7 @@ int  updateGame(int player);
 int  headsOrTails(void);
 int  coinToss(int howManySides);
 void player2WinsCoinToss(int player);
-void player1WinsCoinToss(int player);
+void player1WinsCoinToss(void);
 int  yourMove(int player);
 int  computerMove(int player);
 void logPlayerStates(void);

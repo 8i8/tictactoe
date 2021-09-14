@@ -330,7 +330,7 @@ void player2WinsCoinToss(int player)
 /*
  * Player one starts the game, this is simply the text output.
  */
-void player1WinsCoinToss(int player)
+void player1WinsCoinToss(void)
 {
 	drawGrid();
 	sysOut(PLAYER_WINS_TOSS, player);
