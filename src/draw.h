@@ -3,11 +3,14 @@
  */
 enum SYSDISP { 
         PLAYER_WIN,
+		OPONENT_WIN,
         PLAYER_DRAW,
         PLAY_AGAIN,
         HEADS_OR_TAILS,
         PLAYER_WINS_TOSS,
+		OPONENT_WINS_TOSS,
         PLAYER_MOVE,
+		OPONENT_MOVE,
 };
 
 void ticTacToe(void);
@@ -18,6 +21,6 @@ void drawGrid(void);
 void redrawGrid(int line);
 int clearScreen(void);
 void sysOutMenu(void);
-void sysOut(enum SYSDISP write, int player);
+void sysOut(enum SYSDISP write);
 void playEnding(void);
 

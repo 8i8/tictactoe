@@ -450,17 +450,11 @@ void sysOutMenu()
  * programming thingy; Could get your self in to hot water with it I am
  * sure; It really is that civilised.
  */
-void sysOut(enum SYSDISP write, int player) {
+void sysOut(enum SYSDISP write) {
 /*
  * If player is > 0 then -1; Corrects the value of 'player' for use in
  * the printf statement, that is, when the output is player dependant.
  */
-        if (player != PLAYER1 && player != PLAYER2) {
-                sprintf(&str[0], "unknown player: %d", player);
-                ERROR(str);
-                exit(1);
-        }
-        player--;
 
 	char* text[9] = {
 		"Congratulations, you are the winner!\n",		// 0
@@ -474,7 +468,7 @@ void sysOut(enum SYSDISP write, int player) {
 		"My turn, now then, let me see ..."			// 8
 	};
 
-	printf("%s", text[ write + (player) ]);
+	printf("%s", text[write]);
 }
 
 void playEnding() {

@@ -104,7 +104,7 @@ void play()
                         }
 
                         // Set up board and then continue.
-                        player1WinsCoinToss(PLAYER1);
+                        player1WinsCoinToss();
                 }
 
                 if (DEBUG)
@@ -120,8 +120,7 @@ void play()
                                 break;
                         }
 			keepScore(PLAYER2, RESET);
-                        sysOut(PLAYER_WIN, PLAYER2);
-                        winningLine();
+                        sysOut(PLAYER_WIN);
 		} else if (status == STALE_MATE)
 			stale_mate = 1;
 
@@ -138,13 +137,12 @@ void play()
                                 break;
                         }
 			keepScore(PLAYER1, RESET);
-                        sysOut(PLAYER_WIN, PLAYER2);
-                        winningLine();
+                        sysOut(OPONENT_WIN);
 		} else if (status == STALE_MATE) {
 			keepScore(PLAYER1, DECREMENT);
 			keepScore(PLAYER2, DECREMENT);
 			updateGame(PLAYER1);
-			sysOut(PLAYER_DRAW, PLAYER1);
+			sysOut(PLAYER_DRAW);
                         fflush(stdout);
                         sleep(2);
                         winner = 1;
@@ -152,6 +150,8 @@ void play()
 
                 // Game end.
 		if(winner) {
+                        winningLine();
+                        sleep(2);
 			firstRun = 1;
 			winner = 0;
 		}
@@ -160,7 +160,7 @@ void play()
         // End of the game.
         if (winner == 1) {
                 winningLine();
-		sysOut(PLAYER_WIN, PLAYER1);
+                fflush(stdout);
                 sleep(2);
                 playEnding();
         }

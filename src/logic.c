@@ -289,7 +289,7 @@ int headsOrTails()
 {
         int c;
         drawGrid();
-        sysOut(HEADS_OR_TAILS, PLAYER1);
+        sysOut(HEADS_OR_TAILS);
 
         while ((c = getchar()) != '\n')
         {
@@ -320,7 +320,7 @@ int coinToss(int howManySides)
 void player2WinsCoinToss(int player)
 {
 	drawGrid();
-	sysOut(PLAYER_WINS_TOSS, player);
+	sysOut(OPONENT_WINS_TOSS);
         fflush(stdout);
         sleep(2);
 	computerMove(player);
@@ -333,7 +333,7 @@ void player2WinsCoinToss(int player)
 void player1WinsCoinToss(void)
 {
 	drawGrid();
-	sysOut(PLAYER_WINS_TOSS, player);
+	sysOut(PLAYER_WINS_TOSS);
         fflush(stdout);
         sleep(2);
 }
@@ -412,7 +412,7 @@ int yourMove(int player)
 start:
 	status = updateGame(player);
 	rowState[player-1][0] = status;
-	sysOut(7, player);
+	sysOut(PLAYER_MOVE);
 
 	int x = 0;
 	int y = 0;
@@ -478,7 +478,7 @@ int computerMove(int player)
 	int coin;
 	status = updateGame(player);
 	rowState[player-1][0] = status;
-	sysOut(7, player);
+	sysOut(OPONENT_MOVE);
         fflush(stdout);
 	sleep(2);
 
