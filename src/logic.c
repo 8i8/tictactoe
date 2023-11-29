@@ -52,7 +52,7 @@ extern int DEBUG;
 #define M_SQRT	3
 #define AUGMENT	1
 #define VALUE	2
-#define REQUIRED_TO_WIN 17
+#define REQUIRED_TO_WIN 16
 
 /*
  * The game board.

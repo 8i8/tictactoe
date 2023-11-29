@@ -61,11 +61,11 @@ int main(void)
 void menu()
 {
 	srand(time(NULL));
-        setLevel('0');
+	setLevel('0');
 	clearScreen();
 	ticTacToe();
 	sysOutMenu();
-        getchar();
+	getchar();
 }
 
 /*
@@ -77,93 +77,93 @@ void menu()
 void play()
 {
 	int choice, status, winner, stale_mate, done;
-        choice = status = winner = stale_mate = done = 0;
+	choice = status = winner = stale_mate = done = 0;
 	int coin = 3;
-        int firstRun = 1;
+	int firstRun = 1;
 
-        // Game loop.
+	// Game loop.
 	while(!winner)
 	{
-                // Setup.
-                while (firstRun)
-                {
-                        firstRun = 0;
-                        keepCount(RESET);
-                        resetBoard();
+		// Setup.
+		while (firstRun)
+		{
+			firstRun = 0;
+			keepCount(RESET);
+			resetBoard();
 
-                        if (coin == COIN_UN_SPUN) {
-                                choice = headsOrTails();
-                        }
-                        coin = coinToss(2);
+			if (coin == COIN_UN_SPUN) {
+			 	choice = headsOrTails();
+			}
+			coin = coinToss(2);
 
-                        if (choice != coin)
-                        {
-                                // Set up board and play a move.
-                                player2WinsCoinToss(PLAYER2);
-                                break;
-                        }
+			if (choice != coin)
+			{
+			 	// Set up board and play a move.
+			 	player2WinsCoinToss(PLAYER2);
+			 	break;
+			}
 
-                        // Set up board and then continue.
-                        player1WinsCoinToss();
-                }
+			// Set up board and then continue.
+			player1WinsCoinToss();
+		}
 
-                if (DEBUG)
-                        logPlayerStates();
+		if (DEBUG)
+			logPlayerStates();
 
-                // Player input.
+		// Player input.
 		status = yourMove(PLAYER1);
 
-                // Player win.
+		// Player win.
 		if(status == PLAYER1_WIN) {
 			winner = PLAYER1;
-                        done = keepScore(PLAYER1, INCREMENT);
+			done = keepScore(PLAYER1, INCREMENT);
 			keepScore(PLAYER2, RESET);
-                        winningLine();
-                        if (done) { break; }
-                        sysOut(PLAYER_WIN);
-                        fflush(stdout);
+			winningLine();
+			if (done) { break; }
+			sysOut(PLAYER_WIN);
+			fflush(stdout);
 		} else if (status == STALE_MATE)
 			stale_mate = 1;
 
-                // Computers move.
+		// Computers move.
 		if(!winner && !stale_mate)
 			status = computerMove(PLAYER2);
 
 		stale_mate = 0;
 
-                // Computer wins.
+		// Computer wins.
 		if(status == PLAYER1_WIN && !winner) {
-                        winner = PLAYER2;
-                        done = keepScore(PLAYER2, INCREMENT);
+			winner = PLAYER2;
+			done = keepScore(PLAYER2, INCREMENT);
 			keepScore(PLAYER1, RESET);
-                        winningLine();
-                        if (done) { break; }
-                        sysOut(OPONENT_WIN);
-                        fflush(stdout);
+			winningLine();
+			if (done) { break; }
+			sysOut(OPONENT_WIN);
+			fflush(stdout);
 		} else if (status == STALE_MATE) {
 			keepScore(PLAYER1, DECREMENT);
 			keepScore(PLAYER2, DECREMENT);
 			updateGame(PLAYER1);
 			sysOut(PLAYER_DRAW);
-                        fflush(stdout);
-                        sleep(2);
-                        winner = 1;
+			fflush(stdout);
+			sleep(2);
+			winner = 1;
 		}
 
-                // Game end.
+		// Game end.
 		if(winner) {
-                        sleep(2);
+			sleep(2);
 			firstRun = 1;
 			winner = 0;
 		}
 	}
 
-        // End of the game.
-        if (winner == 1) {
-                sysOut(SET_WIN);
-                fflush(stdout);
-                sleep(2);
-                playEnding();
-        }
+	// End of the game.
+	if (winner == 1) {
+		sysOut(SET_WIN);
+		fflush(stdout);
+		sleep(2);
+		playEnding();
+	}
 }
 
